@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · E-mail marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../design-system/efizi-tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--efizi-font-sans);color:var(--efizi-ink);background:var(--efizi-cream);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+  @media(max-width:560px){.wrap{padding:0 22px}}
+
+  .top{background:var(--efizi-ink);color:var(--efizi-cream);padding:26px 0}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .back{font-size:13.5px;font-weight:700;color:rgba(245,243,239,.7);display:inline-flex;align-items:center;gap:7px}
+  .back:hover{color:#fff}.back svg{width:15px;height:15px}
+  .top .site{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.5)}
+
+  .head{padding:44px 0 8px}
+  .head .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--efizi-orange);margin:0 0 12px}
+  .head h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0 0 14px}
+  .head p{font-size:17px;line-height:1.55;max-width:680px;margin:0;color:var(--efizi-gray-600)}
+
+  section{padding:38px 0 8px}
+  .sec-head{margin-bottom:22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .sec-head h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0}
+  .sec-head .count{font-size:13px;font-weight:700;color:var(--efizi-gray-500)}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr 1fr}}
+  .mail{background:var(--efizi-white);border:1px solid var(--efizi-gray-200);border-radius:14px;overflow:hidden;box-shadow:var(--efizi-shadow-sm);transition:box-shadow .18s,transform .18s;display:block}
+  .mail:hover{box-shadow:var(--efizi-shadow-lg);transform:translateY(-3px)}
+  .mail .ph{aspect-ratio:7/9;overflow:hidden;background:var(--efizi-gray-100);border-bottom:1px solid var(--efizi-gray-200)}
+  .mail .ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .mail .cap{padding:12px 15px 14px}
+  .mail .cap .n{font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+  .mail .cap .t{font-size:11.5px;font-weight:700;color:var(--efizi-gray-500);margin-top:2px}
+
+  footer{border-top:1px solid var(--efizi-gray-200);margin-top:44px;padding:26px 0 44px;font-size:13px;color:var(--efizi-gray-500)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../hub.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Central da Marca</a>
+    <span class="site">Efizi · E-mail marketing</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <p class="kicker">Produção · Campanhas e automações</p>
+    <h1>E-mail marketing</h1>
+    <p>Exemplos de e-mail de campanha e de ciclo de vida na marca 2026. Clique num e-mail para abrir em tamanho cheio.</p>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>Campanha · Biodigestor Zero Escavação</h2><span class="count">3 looks da mesma peça</span></div>
+    <div class="grid">
+      <a class="mail" href="email-biodigestor-claro.html" target="_blank" rel="noopener"><span class="ph"><img src="_thumbs/email-biodigestor-claro.png" alt=""></span><span class="cap"><div class="n">Look claro</div><div class="t">Fundo creme, institucional</div></span></a>
+      <a class="mail" href="email-biodigestor-escuro.html" target="_blank" rel="noopener"><span class="ph"><img src="_thumbs/email-biodigestor-escuro.png" alt=""></span><span class="cap"><div class="n">Look escuro</div><div class="t">Fundo ink, alto contraste</div></span></a>
+      <a class="mail" href="email-biodigestor-hibrido.html" target="_blank" rel="noopener"><span class="ph"><img src="_thumbs/email-biodigestor-hibrido.png" alt=""></span><span class="cap"><div class="n">Look híbrido</div><div class="t">Claro + bloco escuro</div></span></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Automações e ciclo de vida</h2><span class="count">2 e-mails</span></div>
+    <div class="grid">
+      <a class="mail" href="newsletter-boas-vindas.html" target="_blank" rel="noopener"><span class="ph"><img src="_thumbs/newsletter-boas-vindas.png" alt=""></span><span class="cap"><div class="n">Boas-vindas</div><div class="t">Novo assinante</div></span></a>
+      <a class="mail" href="voltou-ao-estoque.html" target="_blank" rel="noopener"><span class="ph"><img src="_thumbs/voltou-ao-estoque.png" alt=""></span><span class="cap"><div class="n">Voltou ao estoque</div><div class="t">Aviso de reposição</div></span></a>
+    </div>
+  </section>
+
+  <footer>Exemplos de e-mail marketing Efizi · layout da marca 2026 · Central da Marca.</footer>
+</div>
+
+</body>
+</html>
