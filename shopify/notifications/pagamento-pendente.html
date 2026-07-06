@@ -57,16 +57,14 @@
         <p style="margin:16px 0 0 0;font-size:18px;line-height:1.55;color:#6B6660;font-weight:500;">A gente guardou o pedido <strong style="color:#0A0A0A;">{{ order_name }}</strong> pra você. É só finalizar o pagamento pelo botão abaixo que a gente começa a preparar tudo.</p>
       </td></tr>
 
-      <!-- MENSAGEM DA EQUIPE (drop obrigatório neste template) -->
-      {% if custom_message != blank %}
+      <!-- MENSAGEM DA EQUIPE (drop {{ custom_message }} solto — exigido pela Shopify) -->
       <tr><td class="card-px" style="padding:22px 40px 0 40px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;border-radius:12px;"><tr>
           <td style="padding:20px 24px;border-left:3px solid #FF4000;">
-            <p style="margin:0;font-size:15px;line-height:1.6;color:#4A4640;font-style:italic;">{{ custom_message }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#4A4640;font-style:italic;white-space:pre-line;">{{ custom_message }}</p>
           </td>
         </tr></table>
       </td></tr>
-      {% endif %}
 
       <!-- CTA pagar -->
       <tr><td class="card-px" align="left" style="padding:28px 40px 0 40px;">
