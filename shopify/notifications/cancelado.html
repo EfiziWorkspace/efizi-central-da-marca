@@ -1,0 +1,136 @@
+<!--
+  Efizi · Notificação transacional — PEDIDO CANCELADO (Order canceled)
+  Onde colar: Admin Shopify → Configurações → Notificações → Pedido cancelado → Editar código
+-->
+<!doctype html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>{{ shop.name }}</title>
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<![endif]-->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  body{margin:0;padding:0;width:100%!important;background:#F5F3EF;}
+  table{border-collapse:collapse;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{text-decoration:none;}
+  .em{color:#FF4000!important;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .px{padding-left:24px!important;padding-right:24px!important;}
+    .h1{font-size:34px!important;line-height:1.05!important;}
+    .card-px{padding-left:22px!important;padding-right:22px!important;}
+    .stack{display:block!important;width:100%!important;text-align:center!important;padding:0 0 10px 0!important;}
+    .stack a{display:block!important;}
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#F5F3EF;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;font-size:1px;line-height:1px;color:#F5F3EF;">Seu pedido {{ order_name }} foi cancelado. Se foi engano, a gente refaz rapidinho.&#8203;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;">
+<tr><td align="center" style="padding:0;">
+
+<table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- HEADER -->
+  <tr><td align="center" style="padding:30px 32px 24px 32px;">
+    <img src="https://cdn.shopify.com/s/files/1/0593/9894/6914/files/efizi-logo-orange.png?v=1783116148" width="96" alt="{{ shop.name }}" style="width:96px;height:auto;margin:0 auto;">
+  </td></tr>
+
+  <!-- CARD PRINCIPAL -->
+  <tr><td style="padding:0 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:18px;overflow:hidden;">
+
+      <!-- Faixa de status -->
+      <tr><td class="card-px" style="padding:34px 40px 0 40px;">
+        <p style="margin:0;font-size:13px;font-weight:800;letter-spacing:2px;color:#FF4000;text-transform:uppercase;">Pedido cancelado</p>
+        <h1 class="h1" style="margin:12px 0 0 0;font-size:38px;line-height:1.05;font-weight:800;letter-spacing:-1px;color:#0A0A0A;">Seu pedido foi cancelado, {{ customer.first_name | default: 'tudo certo' }}.</h1>
+        <p style="margin:16px 0 0 0;font-size:18px;line-height:1.55;color:#6B6660;font-weight:500;">O pedido <strong style="color:#0A0A0A;">{{ order_name }}</strong> foi cancelado. Se algum valor já tinha sido pago, o reembolso é feito automaticamente pelo mesmo meio de pagamento.</p>
+      </td></tr>
+
+      <!-- DIVIDER -->
+      <tr><td class="card-px" style="padding:30px 40px 0 40px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid #E4E0DA;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+
+      <!-- ITENS CANCELADOS -->
+      <tr><td class="card-px" style="padding:30px 40px 0 40px;">
+        <p style="margin:0 0 18px 0;font-size:13px;font-weight:800;letter-spacing:2px;color:#0A0A0A;text-transform:uppercase;">Itens do pedido</p>
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          {% for line in subtotal_line_items %}
+          <tr>
+            <td valign="top" width="64" style="padding:0 16px 20px 0;">
+              {% if line.image %}
+                <img src="{{ line | img_url: 'compact_cropped' }}" width="64" height="64" alt="{{ line.title | escape }}" style="width:64px;height:64px;border-radius:10px;border:1px solid #E4E0DA;object-fit:cover;">
+              {% else %}
+                <table role="presentation" width="64" cellpadding="0" cellspacing="0"><tr><td width="64" height="64" style="width:64px;height:64px;background:#F5F3EF;border-radius:10px;border:1px solid #E4E0DA;">&nbsp;</td></tr></table>
+              {% endif %}
+            </td>
+            <td valign="top" style="padding:0 12px 20px 0;">
+              <div style="font-size:16px;font-weight:700;line-height:1.35;color:#0A0A0A;">{{ line.title }}</div>
+              {% if line.variant.title != 'Default Title' %}
+                <div style="margin-top:3px;font-size:14px;color:#6B6660;">{{ line.variant.title }}</div>
+              {% endif %}
+              <div style="margin-top:6px;font-size:14px;color:#9A968F;">Qtd: {{ line.quantity }}</div>
+            </td>
+            <td valign="top" align="right" style="padding:0 0 20px 0;white-space:nowrap;">
+              <div style="font-size:16px;font-weight:700;color:#0A0A0A;">{{ line.final_line_price | money }}</div>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr><td colspan="3" style="padding:2px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid #E4E0DA;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+          <tr>
+            <td colspan="2" style="padding:14px 0 0 0;font-size:16px;font-weight:800;color:#0A0A0A;">Total cancelado</td>
+            <td align="right" style="padding:14px 0 0 0;font-size:18px;font-weight:800;color:#0A0A0A;">{{ total_price | money }}</td>
+          </tr>
+        </table>
+      </td></tr>
+
+      <!-- CTA refazer -->
+      <tr><td class="card-px" align="left" style="padding:30px 40px 0 40px;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td align="center" style="background:#FF4000;border-radius:9999px;">
+            <a href="{{ shop.url }}" style="display:inline-block;padding:16px 38px;font-size:17px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Fazer um novo pedido &rarr;</a>
+          </td>
+        </tr></table>
+      </td></tr>
+
+      <!-- AJUDA -->
+      <tr><td class="card-px" style="padding:30px 40px 34px 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;border-radius:14px;"><tr>
+          <td align="center" style="padding:28px 24px;">
+            <p style="margin:0;font-size:17px;line-height:1.4;color:#0A0A0A;font-weight:800;">Foi engano ou mudou de ideia?</p>
+            <p style="margin:8px 0 22px 0;font-size:15px;line-height:1.5;color:#6B6660;">A gente refaz seu pedido rapidinho.<br>Chama no WhatsApp ou liga pra gente.</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" align="center"><tr>
+              <td class="stack" valign="top" align="center" style="padding:0 5px 0 0;">
+                <a href="https://wa.me/551140039921" style="display:inline-block;background:#1FA855;border-radius:9999px;padding:14px 26px;font-size:15px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;white-space:nowrap;">&#128172;&nbsp; Chamar no WhatsApp</a>
+              </td>
+              <td class="stack" valign="top" align="center" style="padding:0 0 0 5px;">
+                <a href="tel:+551140039921" style="display:inline-block;background:#ffffff;border:2px solid #0A0A0A;border-radius:9999px;padding:12px 26px;font-size:15px;font-weight:800;color:#0A0A0A;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;white-space:nowrap;">&#128222;&nbsp; Ligar pra gente</a>
+              </td>
+            </tr></table>
+          </td>
+        </tr></table>
+      </td></tr>
+
+    </table>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td class="px" align="center" style="padding:34px 40px 40px 40px;">
+    <img src="https://cdn.shopify.com/s/files/1/0593/9894/6914/files/efizi-logo-orange.png?v=1783116148" width="72" alt="{{ shop.name }}" style="width:72px;height:auto;margin:0 auto 14px;">
+    <p style="margin:0;font-size:13px;line-height:1.6;color:#9A968F;">O maior e-commerce de tratamento de água e esgoto do Brasil<br><a href="{{ shop.url }}" style="color:#9A968F;text-decoration:underline;">{{ shop.domain }}</a></p>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>

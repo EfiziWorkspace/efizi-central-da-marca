@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta · trilha de progresso</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  body{margin:0;background:#F5F3EF;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;color:#0A0A0A;}
+  .wrap{max-width:640px;margin:0 auto;padding:40px 20px 60px;}
+  .card{background:#fff;border-radius:18px;padding:34px 34px 30px;margin-bottom:26px;}
+  .lbl{font-size:12px;font-weight:800;letter-spacing:2px;color:#FF4000;text-transform:uppercase;margin:0 0 24px;}
+  .track{display:flex;align-items:flex-start;justify-content:space-between;position:relative;}
+  .step{flex:1;text-align:center;position:relative;z-index:2;}
+  /* connector line */
+  .step:not(:last-child)::after{content:"";position:absolute;top:23px;left:50%;width:100%;height:4px;background:#EDE9E3;z-index:-1;}
+  .step.done:not(:last-child)::after{background:#FF4000;}
+  .circle{width:46px;height:46px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:22px;background:#EDE9E3;}
+  .step.done .circle,.step.current .circle{background:#FF4000;}
+  .step.current .circle{box-shadow:0 0 0 5px rgba(255,64,0,.18);}
+  .cap{margin-top:12px;font-size:13px;font-weight:700;line-height:1.25;color:#9A968F;}
+  .step.done .cap,.step.current .cap{color:#0A0A0A;}
+  .step.current .cap{color:#FF4000;}
+  .ico{filter:grayscale(1) opacity(.55);}
+  .step.done .ico,.step.current .ico{filter:none;}
+  h2{font-size:15px;margin:0 0 18px;color:#6B6660;font-weight:700;}
+  .note{max-width:640px;margin:0 auto;padding:0 20px;font-size:14px;color:#6B6660;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h2>Como a trilha vai preenchendo, e-mail a e-mail &darr;</h2>
+
+  <!-- ESTADO 1: PEDIDO CONFIRMADO -->
+  <div class="card">
+    <p class="lbl">E-mail 1 · Pedido confirmado</p>
+    <div class="track">
+      <div class="step current"><div class="circle"><span class="ico">&#9989;</span></div><div class="cap">Confirmado</div></div>
+      <div class="step"><div class="circle"><span class="ico">&#128230;</span></div><div class="cap">Enviado</div></div>
+      <div class="step"><div class="circle"><span class="ico">&#128666;</span></div><div class="cap">Saiu pra entrega</div></div>
+      <div class="step"><div class="circle"><span class="ico">&#127968;</span></div><div class="cap">Entregue</div></div>
+    </div>
+  </div>
+
+  <!-- ESTADO 2: PEDIDO ENVIADO -->
+  <div class="card">
+    <p class="lbl">E-mail 2 · Pedido enviado</p>
+    <div class="track">
+      <div class="step done"><div class="circle"><span class="ico">&#9989;</span></div><div class="cap">Confirmado</div></div>
+      <div class="step current"><div class="circle"><span class="ico">&#128230;</span></div><div class="cap">Enviado</div></div>
+      <div class="step"><div class="circle"><span class="ico">&#128666;</span></div><div class="cap">Saiu pra entrega</div></div>
+      <div class="step"><div class="circle"><span class="ico">&#127968;</span></div><div class="cap">Entregue</div></div>
+    </div>
+  </div>
+
+  <!-- ESTADO 3: SAIU PRA ENTREGA -->
+  <div class="card">
+    <p class="lbl">E-mail 3 · Saiu pra entrega</p>
+    <div class="track">
+      <div class="step done"><div class="circle"><span class="ico">&#9989;</span></div><div class="cap">Confirmado</div></div>
+      <div class="step done"><div class="circle"><span class="ico">&#128230;</span></div><div class="cap">Enviado</div></div>
+      <div class="step current"><div class="circle"><span class="ico">&#128666;</span></div><div class="cap">Saiu pra entrega</div></div>
+      <div class="step"><div class="circle"><span class="ico">&#127968;</span></div><div class="cap">Entregue</div></div>
+    </div>
+  </div>
+
+  <!-- ESTADO 4: ENTREGUE -->
+  <div class="card">
+    <p class="lbl">E-mail 4 · Pedido entregue</p>
+    <div class="track">
+      <div class="step done"><div class="circle"><span class="ico">&#9989;</span></div><div class="cap">Confirmado</div></div>
+      <div class="step done"><div class="circle"><span class="ico">&#128230;</span></div><div class="cap">Enviado</div></div>
+      <div class="step done"><div class="circle"><span class="ico">&#128666;</span></div><div class="cap">Saiu pra entrega</div></div>
+      <div class="step done"><div class="circle"><span class="ico">&#127968;</span></div><div class="cap">Entregue</div></div>
+    </div>
+  </div>
+
+</div>
+<p class="note"><strong>Obs.:</strong> aqui usei emoji só pra mostrar o conceito rápido. Na versão final eu troco por ícones monocromáticos da marca (brancos dentro do círculo), que ficam premium e renderizam igual em Gmail e Outlook.</p>
+</body>
+</html>
