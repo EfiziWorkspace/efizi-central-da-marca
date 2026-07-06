@@ -1,0 +1,208 @@
+/* =====================================================================
+   EFIZI · KIT DE APP / DASHBOARD  (Camada 1)
+   ---------------------------------------------------------------------
+   Componentes de interface pra apps e dashboards React/Next.
+   Consome a FUNDAÇÃO (efizi-tokens.css) pelos aliases semânticos
+   (--primary, --card, --border, --muted, --sidebar-*, --chart-*), então
+   MODO ESCURO funciona de graça: basta a classe .dark no <html>/<body>.
+
+   Prefixo .eui-* (Efizi UI) pra não colidir com o kit da Loja (.efizi-*).
+   Framework-agnóstico: são classes CSS puras — funcionam em React sem
+   Tailwind, ou servem de referência pra quem usa shadcn/Tailwind.
+   ===================================================================== */
+
+@import "efizi-tokens.css";
+
+.eui, .eui *{box-sizing:border-box}
+.eui{font-family:var(--efizi-font-sans); color:var(--foreground); background:var(--background)}
+/* fonte da marca como PADRÃO GLOBAL — cards de preview e designs gerados não têm o wrapper .eui,
+   então componentes que não fixam font-family (Badge, Stat, Table, Alert…) precisam herdar daqui */
+html{font-family:var(--efizi-font-sans)}
+
+/* ---------- Tipografia utilitária ---------- */
+.eui-h{font-weight:var(--efizi-fw-extrabold); letter-spacing:-.015em; margin:0}
+.eui-h--xl{font-size:28px} .eui-h--lg{font-size:22px} .eui-h--md{font-size:18px}
+.eui-muted{color:var(--muted-foreground)}
+.eui-eyebrow{font-size:11px; font-weight:800; letter-spacing:.10em; text-transform:uppercase; color:var(--muted-foreground)}
+
+/* ---------- Botões ---------- */
+.eui-btn{font-family:var(--efizi-font-sans); font-weight:var(--efizi-fw-bold); font-size:14px;
+  padding:9px 16px; border-radius:var(--radius); border:1px solid transparent; cursor:pointer;
+  display:inline-flex; align-items:center; gap:8px; line-height:1; transition:filter .15s,background .15s}
+.eui-btn svg{width:16px; height:16px}
+.eui-btn--primary{background:var(--primary); color:var(--primary-foreground); border-color:var(--primary)}
+.eui-btn--primary:hover{filter:brightness(.94)}
+.eui-btn--secondary{background:var(--secondary); color:var(--secondary-foreground); border-color:var(--border)}
+.eui-btn--ghost{background:transparent; color:var(--foreground)}
+.eui-btn--ghost:hover{background:var(--muted)}
+.eui-btn--destructive{background:var(--destructive); color:var(--destructive-foreground); border-color:var(--destructive)}
+.eui-btn--sm{padding:6px 12px; font-size:13px}
+.eui-btn--icon{padding:8px; width:34px; height:34px; justify-content:center}
+.eui-btn:disabled{opacity:.5; cursor:not-allowed}
+
+/* ---------- Campos ---------- */
+.eui-label{display:block; font-size:13px; font-weight:var(--efizi-fw-semibold); margin-bottom:6px}
+.eui-input,.eui-select,.eui-textarea{width:100%; font-family:var(--efizi-font-sans); font-size:14px;
+  padding:9px 12px; border:1px solid var(--input); border-radius:var(--radius); background:var(--card);
+  color:var(--foreground); outline:none}
+.eui-input::placeholder{color:var(--muted-foreground)}
+.eui-input:focus,.eui-select:focus,.eui-textarea:focus{border-color:var(--ring); box-shadow:0 0 0 3px color-mix(in srgb, var(--ring) 22%, transparent)}
+.eui-textarea{min-height:84px; resize:vertical}
+.eui-input--error{border-color:var(--destructive); box-shadow:0 0 0 3px color-mix(in srgb, var(--destructive) 18%, transparent)}
+.eui-hint{font-size:12px; color:var(--muted-foreground); margin-top:5px}
+
+/* Checkbox / radio / switch */
+.eui-check{display:inline-flex; align-items:center; gap:9px; font-size:14px; cursor:pointer}
+.eui-check__box{width:18px; height:18px; border-radius:5px; border:1.5px solid var(--input); display:grid; place-items:center; background:var(--card)}
+.eui-check__box--on{background:var(--primary); border-color:var(--primary)}
+.eui-check__box--on svg{width:12px; height:12px; stroke:var(--primary-foreground); stroke-width:3; fill:none}
+.eui-switch{width:40px; height:23px; border-radius:9999px; background:var(--muted); position:relative; cursor:pointer; transition:background .15s}
+.eui-switch--on{background:var(--primary)}
+.eui-switch::after{content:""; position:absolute; top:2px; left:2px; width:19px; height:19px; border-radius:50%; background:#fff; transition:left .15s}
+.eui-switch--on::after{left:19px}
+
+/* ---------- Badges / status ---------- */
+.eui-badge{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:var(--efizi-fw-bold);
+  padding:3px 9px; border-radius:9999px; line-height:1.3}
+.eui-badge .dot{width:7px; height:7px; border-radius:50%; background:currentColor}
+.eui-badge--neutral{background:var(--muted); color:var(--muted-foreground)}
+.eui-badge--success{background:var(--efizi-success-bg); color:var(--efizi-success)}
+.eui-badge--warning{background:var(--efizi-warning-bg); color:var(--efizi-warning)}
+.eui-badge--error{background:var(--efizi-error-bg); color:var(--efizi-error)}
+.eui-badge--brand{background:var(--accent); color:var(--accent-foreground)}
+
+/* ---------- Card / painel ---------- */
+.eui-card{background:var(--card); border:1px solid var(--border); border-radius:var(--efizi-radius-lg);
+  box-shadow:var(--efizi-shadow-sm); padding:18px 20px}
+.eui-card__head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px}
+
+/* KPI / stat */
+.eui-stat{display:flex; flex-direction:column; gap:6px}
+.eui-stat__label{font-size:12px; font-weight:var(--efizi-fw-semibold); color:var(--muted-foreground); text-transform:uppercase; letter-spacing:.04em}
+.eui-stat__value{font-size:30px; font-weight:var(--efizi-fw-extrabold); letter-spacing:-.02em; line-height:1}
+.eui-delta{display:inline-flex; align-items:center; gap:4px; font-size:12.5px; font-weight:var(--efizi-fw-bold)}
+.eui-delta--up{color:var(--efizi-success)} .eui-delta--down{color:var(--efizi-error)}
+.eui-delta svg{width:14px; height:14px}
+
+/* ---------- Tabela ---------- */
+.eui-table{width:100%; border-collapse:collapse; font-size:13.5px}
+.eui-table th{text-align:left; font-weight:var(--efizi-fw-bold); color:var(--muted-foreground); font-size:11.5px;
+  text-transform:uppercase; letter-spacing:.05em; padding:10px 12px; border-bottom:1px solid var(--border)}
+.eui-table td{padding:12px; border-bottom:1px solid var(--border); vertical-align:middle}
+.eui-table tr:hover td{background:var(--muted)}
+.eui-table__name{font-weight:var(--efizi-fw-bold)}
+
+/* ---------- Tabs ---------- */
+.eui-tabs{display:flex; gap:4px; border-bottom:1px solid var(--border)}
+.eui-tab{font-size:14px; font-weight:var(--efizi-fw-semibold); padding:10px 14px; color:var(--muted-foreground);
+  border-bottom:2px solid transparent; cursor:pointer; margin-bottom:-1px}
+.eui-tab--active{color:var(--primary); border-bottom-color:var(--primary)}
+
+/* ---------- Alert ---------- */
+.eui-alert{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; padding:12px 14px; border-radius:var(--radius); border:1px solid transparent; line-height:1.45}
+.eui-alert svg{width:18px; height:18px; flex:none; margin-top:1px}
+.eui-alert--info{background:var(--efizi-info-bg); color:var(--efizi-info); border-color:color-mix(in srgb, var(--efizi-info) 25%, transparent)}
+.eui-alert--success{background:var(--efizi-success-bg); color:var(--efizi-success); border-color:color-mix(in srgb, var(--efizi-success) 25%, transparent)}
+.eui-alert--error{background:var(--efizi-error-bg); color:var(--efizi-error); border-color:color-mix(in srgb, var(--efizi-error) 25%, transparent)}
+
+/* ---------- Progress ---------- */
+.eui-progress{height:8px; border-radius:9999px; background:var(--muted); overflow:hidden}
+.eui-progress__bar{height:100%; background:var(--primary); border-radius:9999px}
+
+/* ---------- Avatar ---------- */
+.eui-avatar{width:36px; height:36px; border-radius:50%; background:var(--accent); color:var(--accent-foreground);
+  display:grid; place-items:center; font-weight:var(--efizi-fw-bold); font-size:13px}
+
+/* ---------- Sidebar / shell ---------- */
+.eui-shell{display:grid; grid-template-columns:230px 1fr; min-height:520px; border:1px solid var(--border); border-radius:var(--efizi-radius-lg); overflow:hidden; background:var(--background)}
+.eui-sidebar{background:var(--sidebar); border-right:1px solid var(--sidebar-border); padding:18px 14px; display:flex; flex-direction:column; gap:4px}
+.eui-sidebar__brand{display:flex; align-items:center; gap:9px; font-weight:var(--efizi-fw-extrabold); font-size:16px; padding:6px 8px 16px}
+.eui-sidebar__logo{width:22px; height:22px; border-radius:6px; background:var(--primary)}
+.eui-nav{display:flex; align-items:center; gap:10px; padding:9px 11px; border-radius:var(--radius); font-size:14px;
+  font-weight:var(--efizi-fw-semibold); color:var(--sidebar-foreground); cursor:pointer; text-decoration:none}
+.eui-nav:hover{background:var(--sidebar-accent)}
+.eui-nav--active{background:var(--sidebar-accent); color:var(--sidebar-accent-foreground)}
+.eui-nav svg{width:17px; height:17px; opacity:.9}
+.eui-nav__group{font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-foreground); padding:14px 11px 6px}
+.eui-topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 22px; border-bottom:1px solid var(--border); background:var(--card)}
+.eui-main{padding:22px}
+
+/* ---------- Radio ---------- */
+.eui-radio{display:inline-flex; align-items:center; gap:9px; font-size:14px; cursor:pointer}
+.eui-radio__dot{width:18px; height:18px; border-radius:50%; border:1.5px solid var(--input); background:var(--card); display:grid; place-items:center}
+.eui-radio__dot--on{border-color:var(--primary)}
+.eui-radio__dot--on::after{content:""; width:9px; height:9px; border-radius:50%; background:var(--primary)}
+
+/* ---------- Segmented control (toggle group) ---------- */
+.eui-segmented{display:inline-flex; background:var(--muted); border-radius:var(--radius); padding:3px; gap:2px}
+.eui-segmented__opt{font-size:13px; font-weight:var(--efizi-fw-semibold); padding:6px 14px; border-radius:calc(var(--radius) - 3px); color:var(--muted-foreground); cursor:pointer; border:0; background:transparent}
+.eui-segmented__opt--on{background:var(--card); color:var(--foreground); box-shadow:var(--efizi-shadow-xs)}
+
+/* ---------- Chip / tag removível ---------- */
+.eui-chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:var(--efizi-fw-semibold);
+  padding:5px 10px; border-radius:9999px; background:var(--muted); color:var(--foreground)}
+.eui-chip__x{cursor:pointer; opacity:.6; font-weight:700}
+
+/* ---------- Tooltip ---------- */
+.eui-tooltip{position:relative; display:inline-flex}
+.eui-tooltip__bubble{background:var(--foreground); color:var(--background); font-size:12px; font-weight:var(--efizi-fw-semibold);
+  padding:6px 10px; border-radius:var(--radius); white-space:nowrap; position:relative}
+.eui-tooltip__bubble::after{content:""; position:absolute; bottom:-5px; left:16px; border:5px solid transparent; border-top-color:var(--foreground); border-bottom:0}
+
+/* ---------- Breadcrumb ---------- */
+.eui-breadcrumb{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted-foreground)}
+.eui-breadcrumb a{color:var(--muted-foreground); text-decoration:none}
+.eui-breadcrumb a:hover{color:var(--foreground)}
+.eui-breadcrumb__sep{opacity:.5}
+.eui-breadcrumb__current{color:var(--foreground); font-weight:var(--efizi-fw-bold)}
+
+/* ---------- Paginação ---------- */
+.eui-pagination{display:inline-flex; gap:4px}
+.eui-page{min-width:34px; height:34px; padding:0 8px; border-radius:var(--radius); border:1px solid var(--border);
+  background:var(--card); color:var(--foreground); font-size:13.5px; font-weight:var(--efizi-fw-semibold);
+  display:inline-flex; align-items:center; justify-content:center; cursor:pointer}
+.eui-page:hover{background:var(--muted)}
+.eui-page--on{background:var(--primary); color:var(--primary-foreground); border-color:var(--primary)}
+
+/* ---------- Dropdown / menu ---------- */
+.eui-menu{background:var(--popover); border:1px solid var(--border); border-radius:var(--efizi-radius-lg);
+  box-shadow:var(--efizi-shadow-lg); padding:6px; width:210px}
+.eui-menu__item{display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:var(--radius);
+  font-size:14px; color:var(--foreground); cursor:pointer}
+.eui-menu__item:hover{background:var(--muted)}
+.eui-menu__item svg{width:16px; height:16px; opacity:.8}
+.eui-menu__sep{height:1px; background:var(--border); margin:6px 4px}
+.eui-menu__item--danger{color:var(--destructive)}
+
+/* ---------- Modal / dialog ---------- */
+.eui-modal{background:var(--card); border:1px solid var(--border); border-radius:var(--efizi-radius-xl);
+  box-shadow:var(--efizi-shadow-xl); padding:24px; max-width:420px}
+.eui-modal__title{font-size:18px; font-weight:var(--efizi-fw-extrabold); margin:0 0 6px}
+.eui-modal__body{font-size:14px; color:var(--muted-foreground); line-height:1.5; margin:0 0 20px}
+.eui-modal__foot{display:flex; justify-content:flex-end; gap:10px}
+
+/* ---------- Skeleton (loading) ---------- */
+.eui-skeleton{background:linear-gradient(90deg, var(--muted) 25%, var(--secondary) 50%, var(--muted) 75%);
+  background-size:200% 100%; border-radius:6px; height:14px}
+
+/* ---------- Empty state ---------- */
+.eui-empty{text-align:center; padding:36px 20px; color:var(--muted-foreground)}
+.eui-empty__ic{width:48px; height:48px; margin:0 auto 12px; color:var(--muted-foreground); opacity:.6}
+.eui-empty__ic svg{width:100%; height:100%; stroke-width:1.5; fill:none; stroke:currentColor}
+.eui-empty__title{font-size:15px; font-weight:var(--efizi-fw-bold); color:var(--foreground); margin:0 0 4px}
+
+/* ---------- Ícone (helper de tamanho) ----------
+   Padrão Efizi: outline only (fill:none), traço 2px, grid 24×24, mínimo 16px,
+   usa currentColor pra herdar a cor do contexto. */
+.eui-icon{width:24px; height:24px; stroke:currentColor; stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round}
+.eui-icon--sm{width:16px; height:16px}
+.eui-icon--lg{width:32px; height:32px}
+
+/* ---------- Legenda de gráfico + barras (data-viz) ---------- */
+.eui-legend{display:flex; flex-wrap:wrap; gap:14px}
+.eui-legend__item{display:flex; align-items:center; gap:7px; font-size:12.5px; font-weight:var(--efizi-fw-semibold)}
+.eui-legend__sw{width:11px; height:11px; border-radius:3px}
+.eui-bars{display:flex; align-items:flex-end; gap:14px; height:150px; padding-top:8px}
+.eui-bars__col{flex:1; display:flex; flex-direction:column; align-items:center; gap:7px; height:100%; justify-content:flex-end}
+.eui-bars__bar{width:100%; border-radius:6px 6px 0 0}
+.eui-bars__lb{font-size:11px; color:var(--muted-foreground); font-weight:var(--efizi-fw-semibold)}

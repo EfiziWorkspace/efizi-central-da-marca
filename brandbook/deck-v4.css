@@ -1,0 +1,134 @@
+/* ============================================================
+   EFIZI BRANDBOOK · DECK STYLES — v4 (STANDALONE · canônico)
+   ------------------------------------------------------------
+   Identidade oficial Efizi: laranja var(--efizi-orange), peach var(--efizi-peach),
+   Pulse var(--efizi-pulse), cream var(--efizi-cream), ink var(--efizi-ink), tipografia Manrope.
+   Self-contained: importa só deck.css (estrutura de slide) e
+   redefine todos os tokens localmente — não depende de deck-v3.css,
+   então é portátil para qualquer projeto.
+   ============================================================ */
+
+@import url("./deck.css");
+@import url("./efizi-tokens.css");
+
+/* Web font — Manrope (display + corpo). Mono de sistema. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  /* ---------- Type ---------- */
+  --font-sans:    'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---------- Surfaces ---------- */
+  --background: var(--efizi-cream);                   /* cream neutro */
+  --foreground: var(--efizi-ink);
+  --card: #ffffff;
+  --card-foreground: var(--efizi-ink);
+
+  /* ---------- Primary — Efizi Orange ---------- */
+  --primary: var(--efizi-orange);
+  --primary-foreground: #ffffff;
+  --primary-50: var(--efizi-orange-050);
+  --primary-100: var(--efizi-orange-100);
+  --primary-200: var(--efizi-orange-200);
+  --primary-300: var(--efizi-orange-300);
+  --primary-400: var(--efizi-orange-400);
+  --primary-500: var(--efizi-orange-500);       /* base */
+  --primary-600: var(--efizi-orange-600);
+  --primary-700: var(--efizi-orange-700);
+  --primary-800: var(--efizi-orange-800);
+  --primary-900: var(--efizi-orange-900);
+
+  /* ---------- Secondary — Peach ---------- */
+  --secondary: var(--efizi-peach);
+  --secondary-foreground: var(--efizi-ink);
+  --secondary-50:  oklch(0.97 0.02 38);
+  --secondary-100: oklch(0.92 0.05 38);
+  --secondary-300: oklch(0.82 0.11 38);
+  --secondary-500: oklch(0.74 0.16 38);
+  --secondary-700: oklch(0.58 0.15 38);
+  --secondary-900: oklch(0.38 0.10 38);
+
+  /* ---------- Muted / Accent ---------- */
+  --muted: #ECE9E3;
+  --muted-foreground: #353A40;
+  --accent: #ECE9E3;
+  --accent-foreground: var(--efizi-ink);
+
+  --border: #DFE2E6;
+  --input:  #C9CDD3;
+  --ring:   var(--efizi-orange);
+
+  /* ---------- Semantic ---------- */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: #ffffff;
+  --success: oklch(0.46 0.14 155);
+  --success-foreground: #ffffff;
+  --warning: oklch(0.78 0.15 78);
+  --warning-foreground: var(--efizi-ink);
+  --info: #0000EE;
+  --info-foreground: #ffffff;
+
+  /* ---------- Impact ---------- */
+  --impact-yellow: var(--efizi-pulse);                /* Pulse — destaque de oferta */
+  --impact-yellow-fg: var(--efizi-ink);
+  --impact-deal:   var(--efizi-orange);
+  --impact-deal-fg: #ffffff;
+  --impact-ink:    var(--efizi-ink);
+  --impact-ink-fg: var(--efizi-cream);
+  --impact-cream:  var(--efizi-cream);
+
+  /* ---------- Shadows ---------- */
+  --shadow-sm: rgba(0,0,0,.10) 0 4px 8px 0;
+  --shadow-md: rgba(0,0,0,.08) 0 0 8px 0;
+  --shadow-lg: rgba(0,0,0,.30) 0 4px 12px 0;
+  --shadow-impact: 0 12px 28px -6px rgba(255, 64, 0, 0.38);
+
+  /* ---------- Radii ---------- */
+  --radius:      10px;
+  --radius-sm:   8px;
+  --radius-md:   10px;
+  --radius-lg:   50px;
+  --radius-xl:   16px;
+  --radius-2xl:  20px;
+  --radius-pill: 9999px;
+
+  /* ---------- Charts ---------- */
+  --chart-1: var(--efizi-orange);
+  --chart-2: var(--efizi-peach);
+  --chart-3: var(--efizi-pulse);
+  --chart-4: #353A40;
+  --chart-5: #0000EE;
+}
+
+/* ---------- Slide variants ---------- */
+.slide.orange { background: var(--primary); }
+.slide.cream  { background: var(--impact-cream); }
+.slide.teal   { background: var(--secondary); color: var(--efizi-ink); }
+.slide.dark   { background: var(--efizi-ink); }
+
+.slide.teal .chrome-tl,
+.slide.teal .chrome-bl,
+.slide.teal .chrome-br,
+.slide.teal .chrome-tr { color: rgba(13,13,13,.6); }
+
+.slide.dark .section-tag,
+.slide.orange .section-tag { color: var(--impact-yellow); }
+.slide.dark .section-tag::before,
+.slide.orange .section-tag::before { background: var(--impact-yellow); }
+
+/* ---------- Manrope tuning ----------
+   Manrope corre mais larga e topa em 800 (não 900): apertamos o
+   tracking nos displays/headings e firmamos o peso máximo. */
+.display-xl, .display-l, .display-m, .display-s,
+h1, .h1, h2, .h2 {
+  letter-spacing: -0.03em;
+}
+.display-xl, .display-l, .display-m { font-weight: 800; }
+[style*="font-weight:900"], [style*="font-weight: 900"] { font-weight: 800 !important; }
+.body, .body-l { font-weight: 400; }
+
+/* ---------- Cards mais arredondados (estética v4) ---------- */
+.swatch, .type-spec, .do-dont, .logo-tile, .photo-ph { border-radius: 20px; }
+.pill { border-radius: 9999px; }

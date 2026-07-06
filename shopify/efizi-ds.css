@@ -1,0 +1,265 @@
+/* =====================================================================
+   EFIZI · DESIGN SYSTEM — Shopify (Horizon)
+   ---------------------------------------------------------------------
+   Camada de marca para SEÇÕES/BLOCOS CUSTOM da loja Efizi.
+   Namespaced --efizi-* de propósito: NÃO sobrescreve os --color-* que o
+   tema gera a partir dos color_schemes (a Onda 1 já cuidou das cores/fonte
+   nativas). Use estas classes em markup próprio; deixe os componentes
+   nativos do tema (botão de compra, price.liquid, selos) como estão.
+
+   ESTE É UM KIT (Camada 1). Consome a FUNDAÇÃO compartilhada de tokens
+   (../design-system/efizi-tokens.css) — cor, tipo, espaço, sombra vêm de lá.
+   Aqui só ficam os aliases específicos da loja (raios do painel do tema) e
+   as classes de componente. Fonte da verdade visual: shopify/components.html.
+   Valores de raio espelham o painel do [Check] - Rebrand 2026:
+     buttons_radius 8 · inputs_radius 4 · card_corner_radius 8 · badge pill.
+   ===================================================================== */
+
+@import "../design-system/efizi-tokens.css";
+
+:root{
+  /* ---- Aliases da loja → tokens da fundação ---- */
+  --efizi-line:var(--efizi-gray-200);         /* borda sobre cream/branco */
+  --efizi-muted:var(--efizi-gray-600);        /* texto secundário */
+  --efizi-field-border:var(--efizi-gray-400); /* borda de input */
+  --efizi-pix:var(--efizi-teal);              /* = settings.discount_pix_text_color */
+  --efizi-font:var(--efizi-font-sans);
+
+  /* ---- Semânticos de preço (espelham price.liquid) ---- */
+  --efizi-price:var(--efizi-ink);
+  --efizi-price-strike:var(--efizi-muted);
+  --efizi-price-pix:var(--efizi-teal);
+
+  /* ---- Raios da loja (valores REAIS do painel do tema) ---- */
+  --efizi-r-btn:var(--efizi-radius-md);    /* 8 */
+  --efizi-r-input:var(--efizi-radius-xs);  /* 4 */
+  --efizi-r-card:var(--efizi-radius-md);   /* 8 */
+  --efizi-r-badge:var(--efizi-radius-pill);
+
+  /* ---- Sombra do card (= card_shadow do tema) ---- */
+  --efizi-shadow-card:var(--efizi-shadow-md);
+}
+
+/* =====================================================================
+   BOTÕES  — raio 8, sem glow, borda 1.5px
+   Hierarquia de marca: primário laranja · secundário outline laranja · ink
+   ===================================================================== */
+.efizi-btn{
+  font-family:var(--efizi-font); font-weight:var(--efizi-fw-bold);
+  border:1.5px solid transparent; border-radius:var(--efizi-r-btn);
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  line-height:1; cursor:pointer; transition:background .15s,color .15s,border-color .15s;
+  white-space:nowrap;
+}
+.efizi-btn--lg{font-size:16px; padding:16px 28px}
+.efizi-btn--md{font-size:15px; padding:13px 22px}
+.efizi-btn--sm{font-size:13px; padding:9px 16px}
+.efizi-btn--full{width:100%}
+
+.efizi-btn--primary{background:var(--efizi-orange); color:#fff; border-color:var(--efizi-orange)}
+.efizi-btn--primary:hover{background:var(--efizi-orange-600); border-color:var(--efizi-orange-600)}
+
+.efizi-btn--secondary{background:transparent; color:var(--efizi-orange); border-color:var(--efizi-orange)}
+.efizi-btn--secondary:hover{background:var(--efizi-orange-050)}
+
+.efizi-btn--ink{background:var(--efizi-ink); color:#fff; border-color:var(--efizi-ink)}
+.efizi-btn--ink:hover{background:#000}
+
+.efizi-btn[disabled],.efizi-btn:disabled{opacity:.4; cursor:not-allowed}
+.efizi-btn svg{width:1.15em; height:1.15em; stroke-width:2.2}
+
+/* =====================================================================
+   CAMPOS & CONTROLES  — input raio 4, foco laranja
+   ===================================================================== */
+.efizi-label{font-family:var(--efizi-font); font-size:13px; font-weight:var(--efizi-fw-bold); margin-bottom:7px; display:block}
+.efizi-input,.efizi-select{
+  width:100%; font-family:var(--efizi-font); font-size:15px; padding:12px 14px;
+  border:1px solid var(--efizi-field-border); border-radius:var(--efizi-r-input);
+  background:#fff; color:var(--efizi-ink); outline:none;
+}
+.efizi-input::placeholder{color:#A9A39B}
+.efizi-input:focus,.efizi-select:focus{
+  border-color:var(--efizi-orange); box-shadow:0 0 0 3px rgba(255,64,0,.16);
+}
+.efizi-select{
+  appearance:none; padding-right:38px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6660' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center;
+}
+
+/* Stepper de quantidade */
+.efizi-stepper{display:inline-flex; align-items:center; border:1px solid var(--efizi-field-border); border-radius:var(--efizi-r-input); overflow:hidden; background:#fff}
+.efizi-stepper button{width:42px; height:44px; border:0; background:#fff; font-size:19px; font-weight:var(--efizi-fw-bold); color:var(--efizi-ink); cursor:pointer}
+.efizi-stepper button:hover{background:var(--efizi-cream)}
+.efizi-stepper__qty{width:44px; text-align:center; font-size:16px; font-weight:var(--efizi-fw-bold)}
+
+/* =====================================================================
+   SELOS  — pill; cores = color schemes reais do tema
+   Regra: UM selo por card. Amarelo é o grito, use com parcimônia.
+   ===================================================================== */
+.efizi-selo{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--efizi-font);
+  font-weight:var(--efizi-fw-extrabold); font-size:12px; letter-spacing:.02em;
+  padding:6px 12px; line-height:1; border-radius:var(--efizi-r-badge);
+}
+.efizi-selo--oferta  {background:var(--efizi-pulse); color:var(--efizi-ink)}   /* = sale_badge scheme */
+.efizi-selo--desc    {background:var(--efizi-orange); color:#fff}
+.efizi-selo--frete   {background:var(--efizi-ink); color:#fff}
+.efizi-selo--esgotado{background:#C1C1C1; color:var(--efizi-ink)}              /* = sold_out scheme */
+.efizi-selo--estoque {background:#E6F4EC; color:var(--efizi-success)}
+.efizi-selo--estoque .efizi-dot{width:8px; height:8px; border-radius:50%; background:var(--efizi-success)}
+
+/* =====================================================================
+   BLOCO DE PREÇO  — espelha a semântica do price.liquid
+   money · compare_at (de/por) · .pix_discount · .price-installment (até 10×)
+   NÃO fixa valores; os números são dinâmicos do tema.
+   ===================================================================== */
+.efizi-price{display:flex; flex-direction:column; gap:3px; font-family:var(--efizi-font)}
+.efizi-price__from{font-size:13px; color:var(--efizi-muted); font-weight:var(--efizi-fw-semibold)}
+.efizi-price__strike{font-size:15px; color:var(--efizi-price-strike); text-decoration:line-through; font-weight:var(--efizi-fw-semibold)}
+.efizi-price__main{font-size:32px; font-weight:var(--efizi-fw-extrabold); letter-spacing:-.02em; line-height:1; color:var(--efizi-price); display:inline-flex; align-items:baseline; gap:3px}
+.efizi-price__main .efizi-price__cur{font-size:.5em; font-weight:var(--efizi-fw-bold)}
+.efizi-price__main .efizi-price__cents{font-size:.55em}
+.efizi-price__pix{font-size:13px; font-weight:var(--efizi-fw-bold); color:var(--efizi-price-pix)}
+.efizi-price__parc{font-size:13px; color:var(--efizi-muted); font-weight:var(--efizi-fw-semibold)}
+.efizi-price__parc b{color:var(--efizi-ink); font-weight:var(--efizi-fw-extrabold)}
+
+/* =====================================================================
+   CARD DE PRODUTO  — clicável → PDP (sem botão de compra na vitrine)
+   ===================================================================== */
+.efizi-card{
+  background:#fff; border:1px solid var(--efizi-line); border-radius:var(--efizi-r-card);
+  overflow:hidden; box-shadow:var(--efizi-shadow-card);
+  display:flex; flex-direction:column; font-family:var(--efizi-font);
+  color:var(--efizi-ink);              /* card clicável (<a>) não herda azul de link */
+  text-decoration:none;
+  transition:box-shadow .15s, transform .15s;
+}
+.efizi-card__title{color:var(--efizi-ink)}
+.efizi-card:hover{box-shadow:0 8px 22px rgba(10,10,10,.14); transform:translateY(-2px)}
+.efizi-card__media{position:relative; aspect-ratio:1/1; background:var(--efizi-cream); display:grid; place-items:center; padding:12px}
+.efizi-card__selos{position:absolute; left:12px; bottom:12px; display:flex; gap:7px}  /* bottom-left = painel */
+.efizi-card__body{padding:15px 16px 17px; display:flex; flex-direction:column; gap:10px; flex:1}
+.efizi-card__frente{font-size:10px; font-weight:var(--efizi-fw-extrabold); letter-spacing:.08em; text-transform:uppercase; color:var(--efizi-orange)}
+.efizi-card__title{font-size:16px; font-weight:var(--efizi-fw-bold); line-height:1.25; letter-spacing:-.01em; margin:0}
+.efizi-card__title a{color:inherit; text-decoration:none}
+.efizi-card__foot{margin-top:auto; display:flex; flex-direction:column; gap:12px}
+.efizi-card__link{font-size:13px; font-weight:var(--efizi-fw-bold); color:var(--efizi-orange); text-decoration:none; display:inline-flex; align-items:center; gap:6px}
+.efizi-card__link svg{width:15px; height:15px; stroke-width:2.4}
+.efizi-card__link:hover{gap:9px}
+
+/* =====================================================================
+   UTIL — eyebrow / link de marca
+   ===================================================================== */
+.efizi-eyebrow{font-family:var(--efizi-font); font-size:12px; font-weight:var(--efizi-fw-extrabold); letter-spacing:.10em; text-transform:uppercase; color:var(--efizi-orange)}
+.efizi-link{color:var(--efizi-teal); text-decoration:underline; text-underline-offset:2px}
+
+/* =====================================================================
+   TIPOGRAFIA  — escala de marca (sentence case; tracking negativo só em display)
+   ===================================================================== */
+.efizi-display{font-family:var(--efizi-font); font-weight:var(--efizi-fw-extrabold); font-size:clamp(48px,7vw,88px); line-height:1.02; letter-spacing:-.025em}
+.efizi-h1{font-family:var(--efizi-font); font-weight:var(--efizi-fw-extrabold); font-size:clamp(32px,4vw,48px); line-height:1.05; letter-spacing:-.015em}
+.efizi-h2{font-family:var(--efizi-font); font-weight:var(--efizi-fw-bold); font-size:32px; line-height:1.1; letter-spacing:-.01em}
+.efizi-h3{font-family:var(--efizi-font); font-weight:var(--efizi-fw-bold); font-size:24px; line-height:1.2}
+.efizi-h4{font-family:var(--efizi-font); font-weight:var(--efizi-fw-semibold); font-size:20px; line-height:1.25}
+.efizi-body{font-family:var(--efizi-font); font-weight:var(--efizi-fw-regular); font-size:18px; line-height:1.5}
+.efizi-caption{font-family:var(--efizi-font); font-size:14px; line-height:1.4; color:var(--efizi-muted)}
+
+/* =====================================================================
+   CAMPOS — estados extras (erro, disabled, hint) + textarea + radio
+   ===================================================================== */
+.efizi-input--error,.efizi-select--error{border-color:#C4361B; box-shadow:0 0 0 3px rgba(196,54,27,.14)}
+.efizi-input:disabled,.efizi-select:disabled{background:var(--efizi-cream); color:#A9A39B; cursor:not-allowed}
+textarea.efizi-input{min-height:96px; resize:vertical; line-height:1.45}
+.efizi-field__hint{font-family:var(--efizi-font); font-size:12.5px; color:var(--efizi-muted); margin-top:6px}
+.efizi-field__error{font-family:var(--efizi-font); font-size:12.5px; color:#C4361B; font-weight:var(--efizi-fw-semibold); margin-top:6px}
+.efizi-radio{display:inline-flex; align-items:center; gap:10px; font-family:var(--efizi-font); font-size:14px; font-weight:var(--efizi-fw-semibold); cursor:pointer}
+.efizi-radio__dot{width:22px; height:22px; border-radius:50%; border:2px solid var(--efizi-field-border); background:#fff; display:grid; place-items:center}
+.efizi-radio__dot--on{border-color:var(--efizi-orange)}
+.efizi-radio__dot--on::after{content:""; width:11px; height:11px; border-radius:50%; background:var(--efizi-orange)}
+.efizi-check{display:inline-flex; align-items:center; gap:10px; font-family:var(--efizi-font); font-size:14px; font-weight:var(--efizi-fw-semibold); cursor:pointer}
+.efizi-check__box{width:22px; height:22px; border-radius:5px; border:2px solid var(--efizi-field-border); background:#fff; display:grid; place-items:center}
+.efizi-check__box--on{background:var(--efizi-orange); border-color:var(--efizi-orange)}
+.efizi-check__box--on svg{width:14px; height:14px; stroke:#fff; stroke-width:3; fill:none}
+
+/* =====================================================================
+   VARIANT PILLS  — seletor de variante (ex.: capacidade). Painel: pill, borda.
+   ===================================================================== */
+.efizi-pills{display:flex; flex-wrap:wrap; gap:10px}
+.efizi-pill{
+  font-family:var(--efizi-font); font-size:14px; font-weight:var(--efizi-fw-bold);
+  padding:10px 18px; border-radius:var(--efizi-r-badge); border:1.5px solid var(--efizi-field-border);
+  background:#fff; color:var(--efizi-ink); cursor:pointer; transition:.12s; user-select:none;
+}
+.efizi-pill:hover{border-color:var(--efizi-ink)}
+.efizi-pill--selected{border-color:var(--efizi-orange); background:var(--efizi-orange-050); color:var(--efizi-orange-600)}
+.efizi-pill--soldout{color:#A9A39B; text-decoration:line-through; cursor:not-allowed; background:var(--efizi-cream)}
+
+/* =====================================================================
+   RATING  — estrelas (judge.me / component-rating)
+   ===================================================================== */
+.efizi-rating{display:inline-flex; align-items:center; gap:7px; font-family:var(--efizi-font)}
+.efizi-rating__stars{display:inline-flex; gap:2px; color:var(--efizi-pulse)}
+.efizi-rating__stars svg{width:16px; height:16px; fill:currentColor}
+.efizi-rating__count{font-size:13px; color:var(--efizi-muted); font-weight:var(--efizi-fw-semibold)}
+
+/* =====================================================================
+   ALERTAS / MENSAGENS
+   ===================================================================== */
+.efizi-alert{font-family:var(--efizi-font); font-size:14px; font-weight:var(--efizi-fw-semibold);
+  padding:12px 15px; border-radius:var(--efizi-r-input); display:flex; align-items:center; gap:10px; line-height:1.4; border:1px solid transparent}
+.efizi-alert svg{width:18px; height:18px; flex:none}
+.efizi-alert--error  {background:#FDECE8; color:#9E2A16; border-color:#F3C6BC}
+.efizi-alert--success{background:#E6F4EC; color:#146C3B; border-color:#BFE4CD}
+.efizi-alert--info   {background:#E9F3F1; color:#1C6B5E; border-color:#C4E1DB}
+
+/* =====================================================================
+   TRUST / BENEFÍCIO STRIP  — frete, PIX, parcela, garantia
+   ===================================================================== */
+.efizi-trust{display:flex; flex-wrap:wrap; gap:22px}
+.efizi-trust__item{display:flex; align-items:center; gap:10px; font-family:var(--efizi-font); font-size:13.5px; font-weight:var(--efizi-fw-semibold); color:var(--efizi-ink)}
+.efizi-trust__ic{width:34px; height:34px; border-radius:9px; background:var(--efizi-orange-050); color:var(--efizi-orange); display:grid; place-items:center; flex:none}
+.efizi-trust__ic svg{width:18px; height:18px; stroke-width:2; fill:none; stroke:currentColor}
+.efizi-trust__item small{display:block; font-weight:var(--efizi-fw-regular); color:var(--efizi-muted); font-size:12px}
+
+/* =====================================================================
+   PREÇO — estados extras: indisponível p/ região → orçamento
+   (crítico: tema tem preço regionalizado + product_unavailable_text)
+   ===================================================================== */
+.efizi-price--unavailable .efizi-price__main{font-size:22px; color:var(--efizi-muted)}
+.efizi-quote{font-family:var(--efizi-font); display:flex; flex-direction:column; gap:8px}
+.efizi-quote__label{font-size:14px; font-weight:var(--efizi-fw-bold); color:var(--efizi-ink)}
+.efizi-quote__hint{font-size:12.5px; color:var(--efizi-muted)}
+
+/* Botão WhatsApp (B2B — "Vendas para Empresas") */
+.efizi-btn--whats{background:#25D366; color:#0A0A0A; border-color:#25D366}
+.efizi-btn--whats:hover{background:#1FBE5A; border-color:#1FBE5A}
+
+/* =====================================================================
+   CARD HORIZONTAL  (cards-horizontal / related)
+   ===================================================================== */
+.efizi-card--h{flex-direction:row; align-items:stretch}
+.efizi-card--h .efizi-card__media{aspect-ratio:auto; width:38%; min-width:120px}
+.efizi-card--h .efizi-card__body{gap:8px}
+
+/* =====================================================================
+   LINHA DE CARRINHO  (cart drawer)
+   ===================================================================== */
+.efizi-line{display:flex; gap:14px; align-items:center; font-family:var(--efizi-font); padding:14px 0; border-bottom:1px solid var(--efizi-line)}
+.efizi-line__thumb{width:64px; height:64px; border-radius:var(--efizi-r-input); background:var(--efizi-cream); flex:none; display:grid; place-items:center}
+.efizi-line__thumb svg{width:30px; height:30px; opacity:.25}
+.efizi-line__info{flex:1; min-width:0}
+.efizi-line__name{font-size:14px; font-weight:var(--efizi-fw-bold); line-height:1.25; margin:0}
+.efizi-line__meta{font-size:12.5px; color:var(--efizi-muted); margin-top:2px}
+.efizi-line__price{font-size:15px; font-weight:var(--efizi-fw-extrabold); white-space:nowrap}
+
+/* =====================================================================
+   GALERIA (placeholder PDP)
+   ===================================================================== */
+.efizi-gallery{display:flex; flex-direction:column; gap:10px}
+.efizi-gallery__main{aspect-ratio:1/1; background:var(--efizi-cream); border-radius:var(--efizi-r-card); display:grid; place-items:center}
+.efizi-gallery__main svg{width:96px; height:96px; opacity:.18}
+.efizi-gallery__thumbs{display:flex; gap:10px}
+.efizi-gallery__thumb{width:64px; height:64px; border-radius:var(--efizi-r-input); background:var(--efizi-cream); border:1.5px solid transparent; display:grid; place-items:center}
+.efizi-gallery__thumb svg{width:28px; height:28px; opacity:.25}
+.efizi-gallery__thumb--active{border-color:var(--efizi-orange)}

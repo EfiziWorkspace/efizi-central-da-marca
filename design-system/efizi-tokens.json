@@ -1,0 +1,84 @@
+{
+  "$schema": "https://design-tokens.org",
+  "meta": {
+    "brand": "Efizi",
+    "version": "2026.1",
+    "note": "Fonte da verdade dos tokens de marca. Substitui o antigo colors_and_type.css (oklch, marca pré-reposicionamento). Tudo em hex canônico do brandbook 2026."
+  },
+  "color": {
+    "brand": {
+      "orange":  { "value": "#FF4000", "desc": "protagonista: CTA, ênfase, marca (70%)" },
+      "peach":   { "value": "#FE734F", "desc": "apoio quente" },
+      "pulse":   { "value": "#FFD500", "desc": "selo/oferta, o grito (20%)" },
+      "cream":   { "value": "#F5F3EF", "desc": "respiro / institucional" },
+      "ink":     { "value": "#0A0A0A", "desc": "texto e fundos sóbrios (10%)" },
+      "white":   { "value": "#FFFFFF" },
+      "teal":    { "value": "#228474", "desc": "SÓ UI: link, foco, PIX" }
+    },
+    "orange": {
+      "50": "#FFF1EC", "100": "#FFE0D4", "200": "#FFC1A8", "300": "#FF9E78",
+      "400": "#FF6E3C", "500": "#FF4000", "600": "#E43800", "700": "#B82D00",
+      "800": "#8C2200", "900": "#5C1600"
+    },
+    "gray": {
+      "50": "#F7F6F4", "100": "#EEEAE3", "200": "#E4E0DA", "300": "#D2CDC5",
+      "400": "#BEB9B1", "500": "#A9A39B", "600": "#6B6660", "700": "#4A4640",
+      "800": "#2A2723", "900": "#161412"
+    },
+    "status": {
+      "success":   "#1E874B", "successBg": "#E6F4EC",
+      "warning":   "#B7791F", "warningBg": "#FBF1DA",
+      "error":     "#C4361B", "errorBg":   "#FDECE8",
+      "info":      "#1C6B5E", "infoBg":    "#E9F3F1"
+    }
+  },
+  "typography": {
+    "fontFamily": "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700, "extrabold": 800 },
+    "size": {
+      "xs": "12px", "sm": "14px", "base": "16px", "md": "18px", "lg": "20px",
+      "xl": "24px", "2xl": "32px", "3xl": "40px", "4xl": "48px", "5xl": "64px", "6xl": "88px"
+    },
+    "lineHeight": { "tight": 1.05, "snug": 1.2, "base": 1.5 },
+    "tracking": { "tighter": "-0.025em", "tight": "-0.015em", "normal": "0", "wide": "0.10em" },
+    "rules": "sentence case; tracking negativo só em display; corpo sempre 0; corpo mínimo 18px (público 40+); ênfase só em laranja, uma palavra-chave por bloco"
+  },
+  "space": {
+    "1": "4px", "2": "8px", "3": "12px", "4": "16px", "5": "20px", "6": "24px",
+    "8": "32px", "10": "40px", "12": "48px", "16": "64px", "20": "80px", "24": "96px"
+  },
+  "radius": { "xs": "4px", "sm": "6px", "md": "8px", "lg": "12px", "xl": "16px", "pill": "9999px" },
+  "shadow": {
+    "xs": "0 1px 2px rgba(10,10,10,.05)",
+    "sm": "0 1px 3px rgba(10,10,10,.08)",
+    "md": "0 4px 10px rgba(10,10,10,.10)",
+    "lg": "0 10px 24px rgba(10,10,10,.12)",
+    "xl": "0 20px 40px rgba(10,10,10,.16)"
+  },
+  "motion": {
+    "duration": { "fast": "120ms", "base": "180ms", "slow": "300ms" },
+    "ease": "cubic-bezier(.2,.6,.2,1)"
+  },
+  "chart": {
+    "categorical": ["#FF4000", "#228474", "#334155", "#2F6DB4", "#FE734F", "#C99A00", "#7A5AA6", "#6B6660"],
+    "sequential":  ["#FFE0D4", "#FFB08C", "#FF7A45", "#FF4000", "#B82D00"],
+    "diverging":   { "neg": "#C4361B", "mid": "#F5F3EF", "pos": "#228474" },
+    "note": "Amarelo Pulse (#FFD500) NÃO entra como série (baixo contraste sobre branco); use só como destaque pontual."
+  },
+  "semantic": {
+    "light": {
+      "background": "#F7F6F4", "foreground": "#0A0A0A",
+      "card": "#FFFFFF", "primary": "#FF4000", "primaryForeground": "#FFFFFF",
+      "secondary": "#EEEAE3", "muted": "#EEEAE3", "mutedForeground": "#6B6660",
+      "accent": "#FFF1EC", "accentForeground": "#E43800",
+      "border": "#E4E0DA", "input": "#BEB9B1", "ring": "#FF4000", "radius": "8px"
+    },
+    "dark": {
+      "background": "#0A0A0A", "foreground": "#F5F3EF",
+      "card": "#161412", "primary": "#FF4000", "primaryForeground": "#FFFFFF",
+      "secondary": "#2A2723", "muted": "#2A2723", "mutedForeground": "#A9A39B",
+      "accent": "#2A2723", "accentForeground": "#FF9E78",
+      "border": "rgba(245,243,239,.12)", "input": "rgba(245,243,239,.18)", "ring": "#FF4000"
+    }
+  }
+}

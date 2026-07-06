@@ -1,0 +1,242 @@
+/* =====================================================================
+   EFIZI · DESIGN TOKENS — Camada 0 (fundação compartilhada)
+   ---------------------------------------------------------------------
+   FONTE DA VERDADE da marca Efizi para TODAS as superfícies:
+   loja (Shopify), apps e dashboards (React/Next), BI, e-mail, slides.
+   Substitui o antigo colors_and_type.css (que estava em oklch e na marca
+   pré-reposicionamento). Aqui tudo é HEX canônico do brandbook 2026.
+
+   Como consumir:
+   - CSS / qualquer stack: importe este arquivo e use var(--nome).
+   - React/Next (shadcn/Tailwind): os aliases de app (--background,
+     --primary, --card, --sidebar-*, --chart-*, --radius) já seguem a
+     convenção shadcn — dá pra colar no globals.css no lugar do :root atual.
+   - React sem Tailwind: mesmas CSS vars funcionam; ou importe o
+     efizi-tokens.ts / .json.
+   - BI: use a paleta de gráficos (--efizi-chart-*) / o bloco "chart" do JSON.
+
+   Regra de ouro da marca: UMA cor de ênfase por peça. Laranja = tudo;
+   amarelo (Pulse) = só o selo/grito; teal = só link/UI. Nunca amarelo ou
+   teal como cor de fundo de marca.
+   ===================================================================== */
+
+:root {
+  /* ===================================================================
+     1. PRIMITIVAS DE MARCA  (a paleta canônica — não muda entre produtos)
+     =================================================================== */
+  --efizi-orange:      #FF4000;   /* protagonista: CTA, ênfase, marca (70%) */
+  --efizi-orange-050:  #FFF1EC;
+  --efizi-orange-100:  #FFE0D4;
+  --efizi-orange-200:  #FFC1A8;
+  --efizi-orange-300:  #FF9E78;
+  --efizi-orange-400:  #FF6E3C;
+  --efizi-orange-500:  #FF4000;   /* base */
+  --efizi-orange-600:  #E43800;   /* hover/pressed */
+  --efizi-orange-700:  #B82D00;
+  --efizi-orange-800:  #8C2200;
+  --efizi-orange-900:  #5C1600;
+
+  --efizi-peach:       #FE734F;   /* apoio quente (ilustração, gradiente) */
+  --efizi-pulse:       #FFD500;   /* "o grito": selo de oferta (20%) */
+  --efizi-cream:       #F5F3EF;   /* respiro / fundo institucional */
+  --efizi-ink:         #0A0A0A;   /* texto e fundos sóbrios (10%) */
+  --efizi-white:       #FFFFFF;
+  --efizi-teal:        #228474;   /* SÓ UI: link, foco, PIX. Nunca em marca */
+
+  /* Neutros (cinzas de UI — não são "de marca", servem a estrutura) */
+  --efizi-gray-050: #F7F6F4;
+  --efizi-gray-100: #EEEAE3;
+  --efizi-gray-200: #E4E0DA;   /* borda sobre cream/branco */
+  --efizi-gray-300: #D2CDC5;
+  --efizi-gray-400: #BEB9B1;   /* borda de input */
+  --efizi-gray-500: #A9A39B;   /* placeholder */
+  --efizi-gray-600: #6B6660;   /* texto secundário */
+  --efizi-gray-700: #4A4640;
+  --efizi-gray-800: #2A2723;
+  --efizi-gray-900: #161412;
+
+  /* Semânticos de status */
+  --efizi-success:     #1E874B;
+  --efizi-success-bg:  #E6F4EC;
+  --efizi-warning:     #B7791F;
+  --efizi-warning-bg:  #FBF1DA;
+  --efizi-error:       #C4361B;
+  --efizi-error-bg:    #FDECE8;
+  --efizi-info:        #1C6B5E;   /* teal-família */
+  --efizi-info-bg:     #E9F3F1;
+
+  /* ===================================================================
+     2. TIPOGRAFIA  (Manrope — uma família, pesos 400–800)
+     =================================================================== */
+  --efizi-font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --efizi-font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --efizi-fw-regular: 400;
+  --efizi-fw-medium: 500;
+  --efizi-fw-semibold: 600;
+  --efizi-fw-bold: 700;
+  --efizi-fw-extrabold: 800;
+
+  /* Escala de tamanho */
+  --efizi-fs-xs: 12px;
+  --efizi-fs-sm: 14px;
+  --efizi-fs-base: 16px;
+  --efizi-fs-md: 18px;    /* corpo mínimo recomendado (público 40+) */
+  --efizi-fs-lg: 20px;
+  --efizi-fs-xl: 24px;
+  --efizi-fs-2xl: 32px;
+  --efizi-fs-3xl: 40px;
+  --efizi-fs-4xl: 48px;
+  --efizi-fs-5xl: 64px;
+  --efizi-fs-6xl: 88px;   /* display */
+
+  --efizi-lh-tight: 1.05;
+  --efizi-lh-snug: 1.2;
+  --efizi-lh-base: 1.5;
+
+  --efizi-tracking-tighter: -0.025em;  /* só display */
+  --efizi-tracking-tight: -0.015em;    /* headings */
+  --efizi-tracking-normal: 0;          /* corpo sempre 0 */
+  --efizi-tracking-wide: 0.10em;       /* eyebrow/kicker */
+
+  /* ===================================================================
+     3. ESPAÇAMENTO  (baseline 4px)
+     =================================================================== */
+  --efizi-space-1: 4px;   --efizi-space-2: 8px;   --efizi-space-3: 12px;
+  --efizi-space-4: 16px;  --efizi-space-5: 20px;  --efizi-space-6: 24px;
+  --efizi-space-8: 32px;  --efizi-space-10: 40px; --efizi-space-12: 48px;
+  --efizi-space-16: 64px; --efizi-space-20: 80px; --efizi-space-24: 96px;
+
+  /* ===================================================================
+     4. RAIO  (escala; cada superfície escolhe seus aliases)
+     =================================================================== */
+  --efizi-radius-xs: 4px;
+  --efizi-radius-sm: 6px;
+  --efizi-radius-md: 8px;
+  --efizi-radius-lg: 12px;
+  --efizi-radius-xl: 16px;
+  --efizi-radius-pill: 9999px;
+
+  /* ===================================================================
+     5. ELEVAÇÃO
+     =================================================================== */
+  --efizi-shadow-xs: 0 1px 2px rgba(10,10,10,.05);
+  --efizi-shadow-sm: 0 1px 3px rgba(10,10,10,.08);
+  --efizi-shadow-md: 0 4px 10px rgba(10,10,10,.10);
+  --efizi-shadow-lg: 0 10px 24px rgba(10,10,10,.12);
+  --efizi-shadow-xl: 0 20px 40px rgba(10,10,10,.16);
+
+  /* ===================================================================
+     6. MOVIMENTO
+     =================================================================== */
+  --efizi-duration-fast: 120ms;
+  --efizi-duration-base: 180ms;
+  --efizi-duration-slow: 300ms;
+  --efizi-ease: cubic-bezier(.2,.6,.2,1);
+
+  /* ===================================================================
+     7. PALETA DE GRÁFICOS  (BI / data-viz)
+     Categórica: distinguível e legível sobre branco. Amarelo Pulse NÃO
+     entra como cor de série (baixo contraste) — fica só pra destaque.
+     =================================================================== */
+  --efizi-chart-1: #FF4000;   /* laranja marca */
+  --efizi-chart-2: #228474;   /* teal */
+  --efizi-chart-3: #334155;   /* grafite */
+  --efizi-chart-4: #2F6DB4;   /* azul */
+  --efizi-chart-5: #FE734F;   /* peach */
+  --efizi-chart-6: #C99A00;   /* ouro escuro (amarelo legível) */
+  --efizi-chart-7: #7A5AA6;   /* roxo */
+  --efizi-chart-8: #6B6660;   /* cinza quente */
+  /* Sequencial (0%→100%) para heatmaps/intensidade */
+  --efizi-seq-1: #FFE0D4; --efizi-seq-2: #FFB08C; --efizi-seq-3: #FF7A45;
+  --efizi-seq-4: #FF4000; --efizi-seq-5: #B82D00;
+  /* Divergente (negativo ↔ positivo) */
+  --efizi-div-neg: #C4361B; --efizi-div-mid: #F5F3EF; --efizi-div-pos: #228474;
+
+  /* ===================================================================
+     8. ALIASES DE APP  (convenção shadcn/React — modo claro)
+     Mapeiam as primitivas pra papéis semânticos. É este bloco que os
+     meninos de app colam no globals.css no lugar do :root atual.
+     =================================================================== */
+  --background: var(--efizi-gray-050);
+  --foreground: var(--efizi-ink);
+  --card: var(--efizi-white);
+  --card-foreground: var(--efizi-ink);
+  --popover: var(--efizi-white);
+  --popover-foreground: var(--efizi-ink);
+
+  --primary: var(--efizi-orange);
+  --primary-foreground: var(--efizi-white);
+  --secondary: var(--efizi-gray-100);        /* superfície neutra (peach saiu de "secundária") */
+  --secondary-foreground: var(--efizi-ink);
+  --muted: var(--efizi-gray-100);
+  --muted-foreground: var(--efizi-gray-600);
+  --accent: var(--efizi-orange-050);
+  --accent-foreground: var(--efizi-orange-600);
+
+  --destructive: var(--efizi-error);
+  --destructive-foreground: var(--efizi-white);
+  --success: var(--efizi-success);
+  --warning: var(--efizi-warning);
+  --info: var(--efizi-teal);
+
+  --border: var(--efizi-gray-200);
+  --input: var(--efizi-gray-400);
+  --ring: var(--efizi-orange);
+
+  --radius: var(--efizi-radius-md);          /* apps: 8px base (ajustável por produto) */
+
+  /* Sidebar (dashboards) */
+  --sidebar: var(--efizi-white);
+  --sidebar-foreground: var(--efizi-ink);
+  --sidebar-primary: var(--efizi-orange);
+  --sidebar-primary-foreground: var(--efizi-white);
+  --sidebar-accent: var(--efizi-orange-050);
+  --sidebar-accent-foreground: var(--efizi-orange-600);
+  --sidebar-border: var(--efizi-gray-200);
+  --sidebar-ring: var(--efizi-orange);
+
+  /* Charts (aliases shadcn apontando pra paleta de gráficos) */
+  --chart-1: var(--efizi-chart-1);
+  --chart-2: var(--efizi-chart-2);
+  --chart-3: var(--efizi-chart-3);
+  --chart-4: var(--efizi-chart-4);
+  --chart-5: var(--efizi-chart-5);
+}
+
+/* =====================================================================
+   MODO ESCURO  (adicione a classe .dark no <html> ou <body>)
+   Fundo Ink, laranja segue como primária (energia da marca).
+   ===================================================================== */
+.dark {
+  --background: #0A0A0A;
+  --foreground: #F5F3EF;
+  --card: #161412;
+  --card-foreground: #F5F3EF;
+  --popover: #161412;
+  --popover-foreground: #F5F3EF;
+
+  --primary: var(--efizi-orange);
+  --primary-foreground: var(--efizi-white);
+  --secondary: #2A2723;
+  --secondary-foreground: #F5F3EF;
+  --muted: #2A2723;
+  --muted-foreground: #A9A39B;
+  --accent: #2A2723;
+  --accent-foreground: #FF9E78;
+
+  --destructive: #E5533A;
+  --destructive-foreground: #0A0A0A;
+
+  --border: rgba(245,243,239,.12);
+  --input: rgba(245,243,239,.18);
+  --ring: var(--efizi-orange);
+
+  --sidebar: #161412;
+  --sidebar-foreground: #F5F3EF;
+  --sidebar-primary: var(--efizi-orange);
+  --sidebar-primary-foreground: var(--efizi-white);
+  --sidebar-accent: #2A2723;
+  --sidebar-accent-foreground: #FF9E78;
+  --sidebar-border: rgba(245,243,239,.12);
+}

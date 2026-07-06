@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · Carrosséis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../design-system/efizi-tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--efizi-font-sans);color:var(--efizi-ink);background:var(--efizi-cream);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+  @media(max-width:560px){.wrap{padding:0 22px}}
+
+  .top{background:var(--efizi-ink);color:var(--efizi-cream);padding:26px 0}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .back{font-size:13.5px;font-weight:700;color:rgba(245,243,239,.7);display:inline-flex;align-items:center;gap:7px}
+  .back:hover{color:#fff}
+  .back svg{width:15px;height:15px}
+  .top .site{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.5)}
+
+  .head{padding:44px 0 8px}
+  .head .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--efizi-orange);margin:0 0 12px}
+  .head h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0 0 14px}
+  .head p{font-size:17px;line-height:1.55;max-width:660px;margin:0;color:var(--efizi-gray-600)}
+
+  section{padding:36px 0 8px}
+  .sec-head{margin-bottom:22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .sec-head h2{font-size:23px;font-weight:800;letter-spacing:-.02em;margin:0}
+  .sec-head .count{font-size:13px;font-weight:700;color:var(--efizi-gray-500)}
+
+  .carousel{background:var(--efizi-white);border:1px solid var(--efizi-gray-200);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:var(--efizi-shadow-sm)}
+  .carousel .c-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .carousel .c-t{font-size:16px;font-weight:800}
+  .carousel .c-tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--efizi-orange)}
+  .strip{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+  .strip button{flex:0 0 auto;scroll-snap-align:start;padding:0;border:0;background:none;cursor:pointer;position:relative;border-radius:9px;overflow:hidden;line-height:0}
+  .strip img{height:230px;border-radius:9px;border:1px solid var(--efizi-gray-200);display:block;transition:transform .18s}
+  .strip button:hover img{transform:scale(1.03)}
+  .strip button::after{content:"";position:absolute;inset:0;border-radius:9px;background:rgba(10,10,10,0);transition:background .18s}
+  .strip button:hover::after{background:rgba(10,10,10,.12)}
+  .strip .idx{position:absolute;top:8px;left:8px;background:rgba(10,10,10,.62);color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:99px;z-index:1}
+
+  footer{border-top:1px solid var(--efizi-gray-200);margin-top:40px;padding:26px 0 44px;font-size:13px;color:var(--efizi-gray-500)}
+
+  /* ================= LIGHTBOX ================= */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.92);display:none;align-items:center;justify-content:center;
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .lb.on{display:flex}
+  .lb-stage{position:relative;height:100%;width:100%;display:flex;align-items:center;justify-content:center;padding:70px 24px}
+  .lb-img{max-height:100%;max-width:min(560px,92vw);border-radius:12px;box-shadow:0 24px 80px rgba(0,0,0,.5);cursor:pointer;display:block}
+  .lb-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:20px 76px 20px 24px;color:#fff;z-index:2}
+  .lb-title{font-size:14px;font-weight:800}
+  .lb-title .sub{font-weight:600;color:rgba(255,255,255,.55);margin-left:8px}
+  .lb-count{font-size:13px;font-weight:800;letter-spacing:.04em;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:99px}
+  .lb-close{position:absolute;top:16px;right:18px;width:40px;height:40px;border-radius:99px;border:0;cursor:pointer;
+    background:rgba(255,255,255,.14);color:#fff;font-size:20px;display:grid;place-items:center;z-index:3}
+  .lb-close:hover{background:rgba(255,255,255,.26)}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:99px;border:0;cursor:pointer;
+    background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;z-index:2;transition:background .15s}
+  .lb-nav:hover{background:rgba(255,255,255,.3)}
+  .lb-nav svg{width:24px;height:24px}
+  .lb-nav[disabled]{opacity:.25;cursor:default;background:rgba(255,255,255,.14)}
+  .lb-prev{left:18px}
+  .lb-next{right:18px}
+  .lb-hint{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:rgba(255,255,255,.55);font-size:12.5px;font-weight:600}
+  /* dots */
+  .lb-dots{position:absolute;bottom:52px;left:0;right:0;display:flex;gap:7px;justify-content:center;z-index:2}
+  .lb-dots i{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.3);transition:background .15s,width .15s}
+  .lb-dots i.a{background:var(--efizi-orange);width:20px}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../hub.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Central da Marca</a>
+    <span class="site">Efizi · Carrosséis</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <p class="kicker">Produção · Carrosséis</p>
+    <h1>Carrosséis</h1>
+    <p>Exemplos prontos no motor de peças da Efizi (imagem + Manrope real). Clique num slide para abrir e passar adiante, simulando o carrossel no feed.</p>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>Carrosséis validados</h2><span class="count">3 completos · 6 slides cada</span></div>
+
+    <div class="carousel">
+      <div class="c-head"><span class="c-t">Mora onde a rede não chega</span><span class="c-tag">Saneamento</span></div>
+      <div class="strip" data-title="Mora onde a rede não chega" data-sub="Saneamento">
+        <button data-full="../carrossel-proof/CARROSSEL-FINAL/01-capa.png"><span class="idx">1</span><img src="_thumbs/carrossel/san-01-capa.png" alt="Slide 1"></button>
+        <button data-full="../carrossel-proof/CARROSSEL-FINAL/02-dado.png"><span class="idx">2</span><img src="_thumbs/carrossel/san-02-dado.png" alt="Slide 2"></button>
+        <button data-full="../carrossel-proof/CARROSSEL-FINAL/03-contexto.png"><span class="idx">3</span><img src="_thumbs/carrossel/san-03-contexto.png" alt="Slide 3"></button>
+        <button data-full="../carrossel-proof/CARROSSEL-FINAL/04-solucao.png"><span class="idx">4</span><img src="_thumbs/carrossel/san-04-solucao.png" alt="Slide 4"></button>
+        <button data-full="../carrossel-proof/CARROSSEL-FINAL/05-dignidade.png"><span class="idx">5</span><img src="_thumbs/carrossel/san-05-dignidade.png" alt="Slide 5"></button>
+        <button data-full="../carrossel-proof/CARROSSEL-FINAL/06-cta.png"><span class="idx">6</span><img src="_thumbs/carrossel/san-06-cta.png" alt="Slide 6"></button>
+      </div>
+    </div>
+
+    <div class="carousel">
+      <div class="c-head"><span class="c-t">A falta de água virou o maior desafio do agro</span><span class="c-tag">Agro · escassez</span></div>
+      <div class="strip" data-title="A falta de água virou o maior desafio do agro" data-sub="Agro · escassez">
+        <button data-full="../carrossel-proof/AGRO-ESCASSEZ/01-E1.png"><span class="idx">1</span><img src="_thumbs/carrossel/esc-01-E1.png" alt="Slide 1"></button>
+        <button data-full="../carrossel-proof/AGRO-ESCASSEZ/02-E2.png"><span class="idx">2</span><img src="_thumbs/carrossel/esc-02-E2.png" alt="Slide 2"></button>
+        <button data-full="../carrossel-proof/AGRO-ESCASSEZ/03-E3.png"><span class="idx">3</span><img src="_thumbs/carrossel/esc-03-E3.png" alt="Slide 3"></button>
+        <button data-full="../carrossel-proof/AGRO-ESCASSEZ/04-E4.png"><span class="idx">4</span><img src="_thumbs/carrossel/esc-04-E4.png" alt="Slide 4"></button>
+        <button data-full="../carrossel-proof/AGRO-ESCASSEZ/05-E5.png"><span class="idx">5</span><img src="_thumbs/carrossel/esc-05-E5.png" alt="Slide 5"></button>
+        <button data-full="../carrossel-proof/AGRO-ESCASSEZ/06-E6.png"><span class="idx">6</span><img src="_thumbs/carrossel/esc-06-E6.png" alt="Slide 6"></button>
+      </div>
+    </div>
+
+    <div class="carousel">
+      <div class="c-head"><span class="c-t">Sua colheita não pode depender só da chuva</span><span class="c-tag">Agro · reserva</span></div>
+      <div class="strip" data-title="Sua colheita não pode depender só da chuva" data-sub="Agro · reserva">
+        <button data-full="../carrossel-proof/AGRO-LIVRE/01-L1.png"><span class="idx">1</span><img src="_thumbs/carrossel/liv-01-L1.png" alt="Slide 1"></button>
+        <button data-full="../carrossel-proof/AGRO-LIVRE/02-L2.png"><span class="idx">2</span><img src="_thumbs/carrossel/liv-02-L2.png" alt="Slide 2"></button>
+        <button data-full="../carrossel-proof/AGRO-LIVRE/03-L3.png"><span class="idx">3</span><img src="_thumbs/carrossel/liv-03-L3.png" alt="Slide 3"></button>
+        <button data-full="../carrossel-proof/AGRO-LIVRE/04-L4.png"><span class="idx">4</span><img src="_thumbs/carrossel/liv-04-L4.png" alt="Slide 4"></button>
+        <button data-full="../carrossel-proof/AGRO-LIVRE/05-L5.png"><span class="idx">5</span><img src="_thumbs/carrossel/liv-05-L5.png" alt="Slide 5"></button>
+        <button data-full="../carrossel-proof/AGRO-LIVRE/06-L6.png"><span class="idx">6</span><img src="_thumbs/carrossel/liv-06-L6.png" alt="Slide 6"></button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Peças produzidas no motor Efizi (HTML + Manrope real → PNG). Central da Marca · jul/2026.</footer>
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">&times;</button>
+  <div class="lb-top">
+    <div class="lb-title" id="lbTitle"></div>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <div class="lb-stage" id="lbStage">
+    <img class="lb-img" id="lbImg" alt="">
+  </div>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="lb-dots" id="lbDots"></div>
+  <div class="lb-hint">Clique na imagem ou use → para avançar · Esc para fechar</div>
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'), img=document.getElementById('lbImg'),
+      title=document.getElementById('lbTitle'), count=document.getElementById('lbCount'),
+      dots=document.getElementById('lbDots'), prev=document.getElementById('lbPrev'), next=document.getElementById('lbNext');
+  var list=[], i=0, tTitle='', tSub='';
+
+  function render(){
+    img.src=list[i];
+    count.textContent=(i+1)+' / '+list.length;
+    title.innerHTML=tTitle+' <span class="sub">'+tSub+'</span>';
+    prev.disabled=(i===0); next.disabled=(i===list.length-1);
+    var html=''; for(var k=0;k<list.length;k++){html+='<i class="'+(k===i?'a':'')+'"></i>';}
+    dots.innerHTML=html;
+  }
+  function open(items,start,ttl,sub){list=items;i=start;tTitle=ttl;tSub=sub;render();lb.classList.add('on');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('on');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  function go(d){var n=i+d; if(n>=0&&n<list.length){i=n;render();}}
+
+  // wire strips
+  document.querySelectorAll('.strip').forEach(function(strip){
+    var btns=[].slice.call(strip.querySelectorAll('button'));
+    var items=btns.map(function(b){return b.getAttribute('data-full');});
+    btns.forEach(function(b,idx){
+      b.addEventListener('click',function(){open(items,idx,strip.getAttribute('data-title'),strip.getAttribute('data-sub'));});
+    });
+  });
+
+  img.addEventListener('click',function(){ i<list.length-1 ? go(1) : close(); });
+  next.addEventListener('click',function(){go(1);});
+  prev.addEventListener('click',function(){go(-1);});
+  document.getElementById('lbClose').addEventListener('click',close);
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.classList.contains('lb-stage')) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('on'))return;
+    if(e.key==='ArrowRight')go(1);
+    else if(e.key==='ArrowLeft')go(-1);
+    else if(e.key==='Escape')close();
+  });
+})();
+</script>
+</body>
+</html>

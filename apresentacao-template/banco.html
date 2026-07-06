@@ -1,0 +1,101 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Efizi · Banco de imagens (picker)" subtitle="18 fotos no padrão da marca — clique no nome pra copiar o caminho" viewport="1440x1024" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · Banco de imagens da apresentação</title>
+<link rel="stylesheet" href="../brandbook/efizi-tokens.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Manrope',-apple-system,sans-serif; background:var(--efizi-cream,#F5F1E8); color:var(--efizi-ink,#0d0d0d); padding:56px 48px 96px; }
+  header{ max-width:1400px; margin:0 auto 44px; }
+  .tag{ display:inline-flex; align-items:center; gap:10px; font-size:14px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--efizi-orange,#FF4000); }
+  .tag::before{ content:""; width:24px; height:2px; background:var(--efizi-orange,#FF4000); }
+  h1{ font-size:52px; font-weight:800; letter-spacing:-0.03em; margin:16px 0 20px; line-height:1.02; }
+  .lead{ font-size:20px; line-height:1.5; max-width:900px; color:#353A40; }
+  .lead code{ font-family:ui-monospace,Menlo,monospace; background:#fff; border:1px solid #DFE2E6; border-radius:6px; padding:2px 8px; font-size:16px; }
+  .std{ margin-top:24px; display:flex; flex-wrap:wrap; gap:12px; }
+  .std span{ font-size:14px; font-weight:600; background:#fff; border:1px solid #DFE2E6; border-radius:999px; padding:8px 16px; }
+  .grid{ max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:28px; }
+  .card{ background:#fff; border:1px solid #DFE2E6; border-radius:18px; overflow:hidden; display:flex; flex-direction:column; }
+  .card img{ width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#eee; }
+  .meta{ padding:16px 18px 18px; display:flex; flex-direction:column; gap:8px; }
+  .fname{ font-family:ui-monospace,Menlo,monospace; font-size:14px; font-weight:600; color:var(--efizi-orange,#FF4000);
+    background:var(--efizi-cream,#F5F1E8); border:1px solid #DFE2E6; border-radius:8px; padding:8px 12px; cursor:pointer;
+    text-align:left; transition:background .15s; word-break:break-all; }
+  .fname:hover{ background:#fff; }
+  .fname.copied{ background:var(--efizi-orange,#FF4000); color:#fff; border-color:var(--efizi-orange,#FF4000); }
+  .desc{ font-size:15px; line-height:1.45; color:#0d0d0d; font-weight:600; }
+  .uses{ display:flex; flex-wrap:wrap; gap:6px; margin-top:2px; }
+  .uses b{ font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#353A40;
+    background:#ECE9E3; border-radius:6px; padding:4px 9px; }
+  footer{ max-width:1400px; margin:56px auto 0; font-size:15px; color:#353A40; line-height:1.6; border-top:1px solid #DFE2E6; padding-top:24px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">Banco de imagens · apresentações</div>
+  <h1>18 fotos prontas, no padrão da marca.</h1>
+  <p class="lead">Toda capa, abertura de seção e contracapa precisa de foto. Use estas. Clique no nome do arquivo pra <strong>copiar o caminho</strong>, e cole no slide: <code>&lt;img class="bg" src="COLE_AQUI" alt=""&gt;</code> (full-bleed) ou <code>&lt;img class="foto" src="COLE_AQUI"&gt;</code> (split texto+foto).</p>
+  <div class="std">
+    <span>Padrão: institucional golden / claro</span>
+    <span>16:9 · 4096×2294</span>
+    <span>Pessoas reais brasileiras, fora da rede</span>
+    <span>Sem look "varejo" laranja em slide</span>
+  </div>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  Precisa de uma foto nova? Gere no <strong>mesmo padrão</strong> (ver <code>dna/06-PHOTOGRAPHY-DIRECTION.md</code>) e salve em <code>img/banco/</code> com nome descritivo <code>bNN-assunto.jpg</code>. Depois é só aparecer aqui.
+</footer>
+
+<script>
+/* Fonte única da verdade do banco. Para adicionar foto: solte o arquivo em
+   img/banco/ e acrescente uma linha aqui. */
+const BANCO = [
+  ["b01-estrada-amanhecer","Estrada de terra ao amanhecer, névoa dourada.",["Capa","Abertura","Escala"]],
+  ["b02-familia-torneira","Família no quintal; a filha enche o copo na torneira.",["Humano","Manifesto","Serviço"]],
+  ["b04-close-instalacao","Close das mãos conectando o tubo ao biodigestor.",["Detalhe","Produto","Instalação"]],
+  ["b05-time-instaladores","Time Efizi de colete laranja, contraluz golden.",["Contracapa","Time","‘Você é Efizi’"]],
+  ["b06-aperto-porteira","Aperto de mão na porteira, caminhonete laranja.",["Parceria","Canal"]],
+  ["b07-aerea-sitios","Vista aérea dos sítios e da comunidade rural.",["Território","Mercado","Escala"]],
+  ["b08-biodigestor-quintal","Instalação do biodigestor no quintal, casa ao fundo.",["Serviço","Instalação"]],
+  ["b09-descarga-caminhonete","Descarregando o tanque da caminhonete.",["Logística","Produto"]],
+  ["b10-crianca-agua","Avó e criança bebendo água na varanda, golden.",["Emoção","Água","Fecho"]],
+  ["b11-pia-externa","Mulher lavando verduras na pia externa, horta.",["Água p/ consumo","Rotina"]],
+  ["b12-vala-tubos","Instaladores assentando a tubulação na vala.",["Ação","Serviço","Detalhe"]],
+  ["b13-consultoria-prancheta","Consultor Efizi com prancheta orientando a cliente.",["Atendimento","Consultoria","Canal"]],
+  ["b14-pousada-ete","Pousada com reservatórios; solução para empresa.",["B2B","Empresa","Pousada"]],
+  ["b15-cisterna-calha","Cisterna branca ligada à calha, captação de chuva.",["Captação","Cisterna"]],
+  ["b16-filtro-cozinha","Mulher no filtro da cozinha, luz da janela.",["Água p/ consumo","Filtro","Interior"]],
+  ["b17-vale-montanhas","Vale verde e estrada sinuosa entre montanhas.",["Abertura","Território","Claro"]],
+  ["b19-copo-contraluz","Copo d’água erguido no contraluz do pôr do sol.",["Manifesto","Hero água"]],
+  ["b20-comunidade-tarde","Rua da comunidade ao entardecer, crianças brincando.",["Comunidade","Território"]],
+];
+const grid = document.getElementById('grid');
+grid.innerHTML = BANCO.map(([f,desc,uses])=>{
+  const path = `img/banco/${f}.jpg`;
+  return `<div class="card">
+    <img src="${path}" alt="${desc}" loading="lazy">
+    <div class="meta">
+      <button class="fname" data-path="${path}">${f}.jpg</button>
+      <div class="desc">${desc}</div>
+      <div class="uses">${uses.map(u=>`<b>${u}</b>`).join('')}</div>
+    </div>
+  </div>`;
+}).join('');
+grid.addEventListener('click', e=>{
+  const b = e.target.closest('.fname'); if(!b) return;
+  const path = b.getAttribute('data-path');
+  navigator.clipboard && navigator.clipboard.writeText(path);
+  const old = b.textContent; b.classList.add('copied'); b.textContent = '✓ caminho copiado';
+  setTimeout(()=>{ b.classList.remove('copied'); b.textContent = old; }, 1200);
+});
+</script>
+</body>
+</html>

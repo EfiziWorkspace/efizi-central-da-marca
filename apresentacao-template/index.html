@@ -1,0 +1,517 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Efizi · Template de Apresentação" subtitle="Modelo base do time — moldes prontos + banco de fotos · calibrado para TV" viewport="1920x1080" -->
+<!-- ============================================================================
+     EFIZI · TEMPLATE DE APRESENTAÇÃO (modelo do time)
+     ----------------------------------------------------------------------------
+     COMO USAR
+     1. Duplique esta pasta inteira (ex.: copie `apresentacao-template/` para
+        `minha-apresentacao/`). Assim o banco de fotos (img/banco/) viaja junto.
+     2. Cada <section class="slide"> abaixo é UM MOLDE pronto. Copie o bloco que
+        combina com o que você quer dizer, cole na ordem certa e troque o texto.
+     3. Apague os moldes que não usar. A numeração do rodapé se ajusta sozinha.
+     4. Edite as notas do apresentador no bloco JSON lá embaixo (uma por slide).
+
+     CONTROLES AO APRESENTAR
+       ← →  ou  Espaço / PgUp-PgDn ....... navegar        F ... tela cheia
+       Home / End ....................... primeiro / último N ... notas do apresentador
+       R ................................ voltar pro slide 1
+       Imprimir (Cmd/Ctrl+P) → PDF ...... 1 slide por página, limpo
+
+     ────────────────────────────────────────────────────────────────────────────
+     ⚑ IMAGENS — LEIA ANTES DE MEXER NAS CAPAS E ABERTURAS
+     ────────────────────────────────────────────────────────────────────────────
+     Capa, aberturas de seção e contracapa PRECISAM de foto. Slide de foto sem
+     imagem fica sem alma. Use SEMPRE o banco pronto em `img/banco/` (18 fotos no
+     padrão da marca). Para ver todas com nome e melhor uso, abra `banco.html`.
+
+     Como colocar uma foto num slide .photo:
+        troque   <div class="bg ph"></div>
+        por      <img class="bg" src="img/banco/b01-estrada-amanhecer.jpg" alt="">
+     (a classe .ph é só o placeholder gradiente; o <img class="bg"> é a foto real.)
+
+     O PADRÃO da foto Efizi (não fuja dele):
+       • Institucional golden (golden hour, quente, DOF raso) OU institucional
+         claro (céu azul, limpo). É o registro do banco todo.
+       • NÃO usar look "varejo" (fundo laranja de oferta) em foto de slide.
+       • 16:9, pessoas reais brasileiras, cenário "fora da rede" (sítio, chácara,
+         comunidade, obra). Deixe área de respiro pra headline.
+       • Precisa de foto nova? Gere no MESMO padrão (ver dna/06-PHOTOGRAPHY-DIRECTION)
+         e salve em img/banco/ com nome descritivo (bNN-assunto.jpg).
+
+     ────────────────────────────────────────────────────────────────────────────
+     VARIANTES DE FUNDO (classe na <section>)
+       .slide          branco/cream  — conteúdo padrão      .slide.orange  laranja — capa, virada
+       .slide.cream    creme         — respiro/seções calmas .slide.dark    escuro — números, tensão
+       .slide.photo    foto full-bleed — capa, abertura, fecho
+
+     TIPOGRAFIA (classes prontas, já calibradas p/ TV)
+       .display-l .display-m .display-s  frases-título (grande→menor)
+       .h1 .h2  títulos de bloco   ·   .body-l .body-s  corpo/apoio
+       .section-tag  etiqueta (traço + CAPS)   ·   .callout  frase-chave c/ barra laranja
+       destaque: <em style="font-style:normal;color:var(--primary)">palavra</em>
+
+     COR: use tokens, nunca hex solto —
+       var(--primary) laranja · var(--impact-yellow) pulse · var(--muted-foreground)
+       var(--border) · var(--foreground) · #fff
+
+     Copy Efizi: sem travessão "—" no texto (soa a IA). Use ponto, dois-pontos ou vírgula.
+     ============================================================================ -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Efizi · Template de Apresentação</title>
+<link rel="stylesheet" href="../brandbook/deck-v4.css">
+<script src="../deck-stage.js" defer></script>
+<style>
+  /* ---- Calibragem TV: tipografia um pouco maior no deck todo. Ajuste à vontade. ---- */
+  .slide .body-l   { font-size: 28px; line-height: 1.45; }
+  .slide .body-s   { font-size: 17px; }
+  .slide .h2       { font-size: 42px; }
+  .slide .callout  { font-size: 30px; line-height: 1.4; }
+  .slide .section-tag { font-size: 16px; }
+
+  /* ---- Slide de foto full-bleed (capa / abertura / contracapa) ---- */
+  .slide.photo { color: #fff; }
+  .slide.photo .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .slide.photo .scrim { position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(10,10,10,.10) 30%, rgba(10,10,10,.72) 100%); }
+  .slide.photo .slide-pad { position: relative; z-index: 2; justify-content: flex-end; }
+  .slide.photo .chrome-tl, .slide.photo .chrome-br { color: rgba(255,255,255,.85); z-index: 2; }
+  /* placeholder enquanto não há foto — TROQUE por <img class="bg" src="img/banco/...jpg"> */
+  .slide.photo .bg.ph { background: linear-gradient(135deg, var(--primary) 0%, #7a1f00 55%, #0a0a0a 100%); }
+  .slide.photo .bg.ph::after { content:"⚑ troque por uma foto de img/banco/ (veja banco.html)";
+    position:absolute; left:120px; bottom:120px; font:800 15px/1 Manrope; letter-spacing:.12em;
+    text-transform:uppercase; color:rgba(255,255,255,.7); }
+
+  .ato-tag { display: inline-flex; align-self: flex-start; align-items: center; gap: 14px;
+    font-size: 20px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--impact-yellow); margin-bottom: 36px; }
+  .ato-tag::before { content: ""; width: 32px; height: 3px; background: var(--impact-yellow); }
+
+  /* ---- Split texto + foto ---- */
+  .split-photo { display: grid; grid-template-columns: 1.05fr .95fr; gap: 72px; flex: 1; align-items: stretch; }
+  .split-photo .foto { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+  .split-photo .foto.ph { background: linear-gradient(135deg, var(--secondary), var(--muted)); }
+
+  /* ---- Card de pilar / camada / onda ---- */
+  .t-card { background:#fff; border:1px solid var(--border); border-radius:24px;
+    padding:44px 40px; display:flex; flex-direction:column; gap:20px; height:100%; }
+  .t-card.current { border:4px solid var(--primary); box-shadow:var(--shadow-impact); }
+  .t-card .tag-num { font-size:14px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted-foreground); }
+  .t-card .nome { font-size:38px; font-weight:800; letter-spacing:-0.01em; color:var(--primary); }
+  .t-card .periodo { display:inline-flex; align-self:flex-start; padding:10px 20px; border-radius:999px;
+    background:var(--muted); font-size:19px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+  .t-card.current .periodo { background:var(--primary); color:#fff; }
+
+  .stat-big { font-size:170px; font-weight:800; letter-spacing:-0.03em; line-height:1; color:var(--primary); }
+  .fase-num { width:76px; height:76px; border-radius:99px; background:var(--primary); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:34px; font-weight:800; flex:none; }
+  .list-row { display:flex; align-items:baseline; gap:40px; padding:18px 0; border-bottom:1px solid var(--border); }
+  .list-row .n { font-family:var(--font-mono); font-size:26px; font-weight:800; color:var(--primary); min-width:56px; }
+
+  /* ---- Motion sutil: conteúdo do slide ativo sobe e aparece em cascata. Fotos ficam estáticas. ---- */
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes deckRise{ from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *{ animation:deckRise .62s cubic-bezier(.2,.75,.25,1) backwards; }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *:nth-child(1){ animation-delay:.05s; }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *:nth-child(2){ animation-delay:.13s; }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *:nth-child(3){ animation-delay:.21s; }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *:nth-child(4){ animation-delay:.29s; }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *:nth-child(5){ animation-delay:.37s; }
+    .slide:not(.photo)[data-deck-active] .slide-pad > *:nth-child(6){ animation-delay:.45s; }
+  }
+</style>
+</head>
+<body>
+
+<deck-stage>
+
+<!-- ████████████████████████████████████████████████████████████████████████
+     CAPAS · 3 OPÇÕES  (use UMA, apague as outras duas)
+     ████████████████████████████████████████████████████████████████████████ -->
+
+<!-- ─── CAPA A · laranja sólido (mais gráfica, sem foto) ─────────────────── -->
+<section class="slide orange" data-screen-label="Capa A laranja">
+  <div class="chrome-tl">Efizi · Nome da apresentação</div>
+  <div class="chrome-tr">Mês de 2026</div>
+  <div class="slide-pad" style="justify-content:flex-end;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:80px;">
+      <div>
+        <div style="font-size:24px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-bottom:32px;">Kicker / tema</div>
+        <h1 class="display-l" style="color:#fff; max-width:1400px;">Título principal.<br><em style="font-style:normal; color:var(--impact-yellow);">A ideia-chave em destaque.</em></h1>
+        <div style="margin-top:48px; font-size:28px; line-height:1.4; max-width:900px; opacity:.92;">Uma linha de subtítulo explicando do que se trata e por que importa agora.</div>
+      </div>
+      <img src="../assets/efizi-logo-on-orange.svg" height="88" alt="Efizi">
+    </div>
+  </div>
+  <div class="chrome-br">01 / NN</div>
+</section>
+
+<!-- ─── CAPA B · foto full-bleed (mais emocional) ──────────────────────────
+     ⚑ Toda capa-foto PRECISA de imagem no padrão. Aqui: b01 (estrada ao
+     amanhecer, muito respiro pra headline). Troque por outra de img/banco/. -->
+<section class="slide photo" data-screen-label="Capa B foto">
+  <img class="bg" src="img/banco/b01-estrada-amanhecer.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(180deg, rgba(10,10,10,.15) 20%, rgba(10,10,10,.78) 100%);"></div>
+  <div class="chrome-tl">Efizi · Nome da apresentação</div>
+  <div class="chrome-tr">Mês de 2026</div>
+  <div class="slide-pad">
+    <div style="font-size:22px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:var(--impact-yellow); margin-bottom:28px;">Kicker / tema</div>
+    <h1 class="display-l" style="color:#fff; max-width:1500px;">Título principal sobre a foto.</h1>
+    <div style="margin-top:40px; font-size:30px; line-height:1.4; max-width:1000px; color:rgba(255,255,255,.92);">Uma linha de subtítulo.</div>
+    <img src="../assets/efizi-logo-white.svg" height="64" alt="Efizi" style="margin-top:56px; align-self:flex-start;">
+  </div>
+  <div class="chrome-br">01 / NN</div>
+</section>
+
+<!-- ─── CAPA C · creme minimalista (sóbria, para público externo) ────────── -->
+<section class="slide cream" data-screen-label="Capa C creme">
+  <div class="chrome-tl">Efizi · Nome da apresentação</div>
+  <div class="chrome-tr">Mês de 2026</div>
+  <div class="slide-pad" style="justify-content:center;">
+    <img src="../assets/efizi-logo.svg" height="72" alt="Efizi" style="align-self:flex-start; margin-bottom:56px;">
+    <div class="section-tag">Kicker / tema</div>
+    <h1 class="display-l" style="margin-top:24px; max-width:1500px;">Título principal, <em style="font-style:normal; color:var(--primary);">destaque</em> aqui.</h1>
+    <div class="body-l" style="margin-top:40px; max-width:1000px; color:var(--muted-foreground);">Uma linha de subtítulo explicando o contexto.</div>
+  </div>
+  <div class="chrome-br">01 / NN</div>
+</section>
+
+<!-- ████████████████████████████████████████████████████████████████████████
+     CONTEÚDO · moldes (copie os que precisar, na ordem que quiser)
+     ████████████████████████████████████████████████████████████████████████ -->
+
+<!-- MOLDE · AGENDA / ROTEIRO (lista numerada) ─────────────────────────────── -->
+<section class="slide cream" data-screen-label="Agenda">
+  <div class="chrome-tl">Efizi · Nome da apresentação</div>
+  <div class="slide-pad">
+    <div class="section-tag">O roteiro de hoje</div>
+    <h2 class="display-s" style="margin:20px 0 0;">Frase que resume o encontro.</h2>
+    <div style="display:flex; flex-direction:column; justify-content:center; flex:1;">
+      <div class="list-row"><span class="n">1</span><span class="h2" style="min-width:420px;">Primeira seção</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha do que ela cobre</span></div>
+      <div class="list-row"><span class="n">2</span><span class="h2" style="min-width:420px;">Segunda seção</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha do que ela cobre</span></div>
+      <div class="list-row"><span class="n">3</span><span class="h2" style="min-width:420px;">Terceira seção</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha do que ela cobre</span></div>
+      <div class="list-row"><span class="n">4</span><span class="h2" style="min-width:420px;">Quarta seção</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha do que ela cobre</span></div>
+    </div>
+    <div class="callout" style="max-width:1600px;">Feche a agenda com a <strong>promessa do encontro</strong>: o que cada um sai sabendo no fim.</div>
+  </div>
+  <div class="chrome-br">02 / NN</div>
+</section>
+
+<!-- MOLDE · ABERTURA DE SEÇÃO (foto full-bleed) ─────────────────────────────
+     ⚑ Abertura de ato/seção PRECISA de foto no padrão. Aqui: b07 (aérea dos
+     sítios, passa escala/território). Troque por outra de img/banco/. -->
+<section class="slide photo" data-screen-label="Abertura de seção">
+  <img class="bg" src="img/banco/b07-aerea-sitios.jpg" alt="">
+  <div class="scrim"></div>
+  <div class="chrome-tl">Efizi · Nome da apresentação</div>
+  <div class="slide-pad">
+    <div class="ato-tag">Seção 1 · Nome da seção</div>
+    <div class="display-l" style="max-width:1500px;">Uma frase-manchete que abre o tema.</div>
+  </div>
+  <div class="chrome-br">03 / NN</div>
+</section>
+
+<!-- MOLDE · DUAS COLUNAS (antes/depois, dois pontos de vista) ─────────────── -->
+<section class="slide" data-screen-label="Duas colunas">
+  <div class="chrome-tl">Seção 1 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">Etiqueta da comparação</div>
+    <div class="split-2" style="margin-top:64px; align-items:center;">
+      <div>
+        <div class="body-s" style="letter-spacing:.14em; text-transform:uppercase; font-weight:800; margin-bottom:28px;">Lado A</div>
+        <div class="display-s" style="color:var(--muted-foreground);">Como era / o ponto de partida em uma frase.</div>
+        <div class="body-l" style="color:var(--muted-foreground); margin-top:32px;">Uma linha de apoio.</div>
+      </div>
+      <div>
+        <div class="body-s" style="letter-spacing:.14em; text-transform:uppercase; font-weight:800; margin-bottom:28px; color:var(--primary);">Lado B</div>
+        <div class="display-s">Como fica / o destino, com <em style="font-style:normal; color:var(--primary);">palavra-chave</em>.</div>
+        <div class="body-l" style="margin-top:32px;">Uma linha de apoio.</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:32px; max-width:1600px;">A conclusão da comparação em uma frase, com o <strong>termo importante</strong> em negrito.</div>
+  </div>
+  <div class="chrome-br">04 / NN</div>
+</section>
+
+<!-- MOLDE · NÚMEROS (fundo escuro, 3 estatísticas grandes) ────────────────── -->
+<section class="slide dark" data-screen-label="Números">
+  <div class="chrome-tl">Seção 1 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">Por que isso importa</div>
+    <h2 class="display-s" style="margin:20px 0 80px; max-width:1600px;">Uma frase que enquadra os números.</h2>
+    <div class="split-3" style="flex:1; gap:64px; align-content:center;">
+      <div><div class="stat-big">00M</div><div class="body-l" style="margin-top:24px; color:rgba(255,255,255,.85);">O que esse número significa, em uma linha.</div></div>
+      <div><div class="stat-big">00%</div><div class="body-l" style="margin-top:24px; color:rgba(255,255,255,.85);">O que esse número significa, em uma linha.</div></div>
+      <div><div class="stat-big">00M</div><div class="body-l" style="margin-top:24px; color:rgba(255,255,255,.85);">O que esse número significa, em uma linha.</div></div>
+    </div>
+    <div class="callout" style="max-width:1650px; color:#fff;">A leitura dos números: o que eles provam, com o <strong>ponto central</strong> destacado.</div>
+  </div>
+  <div class="chrome-br">05 / NN</div>
+</section>
+
+<!-- MOLDE · CITAÇÃO / MANIFESTO (frase grande centralizada, sem foto) ───────
+     Funciona em .cream (calmo) ou .orange (impacto). Momento de pausa. -->
+<section class="slide cream" data-screen-label="Citação">
+  <div class="chrome-tl">Seção 2 · Nome da seção</div>
+  <div class="slide-pad" style="justify-content:center;">
+    <div class="section-tag" style="margin-bottom:56px;">Etiqueta (ex.: Missão / Manifesto)</div>
+    <div class="display-m" style="max-width:1700px;">A frase fundacional, dita devagar. O que ela afirma vem <em style="font-style:normal; color:var(--primary);">com uma palavra pintada</em>.</div>
+    <div class="body-l" style="margin-top:56px; max-width:1200px; color:var(--muted-foreground); font-size:32px;">Uma linha de reforço, opcional.</div>
+  </div>
+  <div class="chrome-br">06 / NN</div>
+</section>
+
+<!-- MOLDE · DECLARAÇÃO SOBRE FOTO (frase forte sobre imagem, centralizada) ──
+     Variante emocional da citação. ⚑ PRECISA de foto no padrão. Aqui: b19
+     (copo d'água no contraluz). Troque por outra de img/banco/. -->
+<section class="slide photo" data-screen-label="Declaração sobre foto">
+  <img class="bg" src="img/banco/b19-copo-contraluz.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(180deg, rgba(10,10,10,.35), rgba(10,10,10,.62));"></div>
+  <div class="chrome-tl">Seção 2 · Nome da seção</div>
+  <div class="slide-pad" style="justify-content:center;">
+    <div class="ato-tag">Manifesto</div>
+    <div class="display-m" style="max-width:1650px; color:#fff;">A afirmação que emociona, com <em style="font-style:normal; color:var(--impact-yellow);">a palavra que fica</em>.</div>
+  </div>
+  <div class="chrome-br">07 / NN</div>
+</section>
+
+<!-- MOLDE · GRID DE 6 (valores, princípios, benefícios) ───────────────────── -->
+<section class="slide" data-screen-label="Grid de 6">
+  <div class="chrome-tl">Seção 2 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">Etiqueta do grupo</div>
+    <h2 class="display-s" style="margin:20px 0 0;">Frase-título do conjunto.</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:64px 80px; flex:1; align-content:center;">
+      <div><div class="h2" style="margin-bottom:16px; color:var(--primary);">Item um</div><div class="body-l" style="color:var(--muted-foreground);">Descrição curta em uma ou duas linhas.</div></div>
+      <div><div class="h2" style="margin-bottom:16px; color:var(--primary);">Item dois</div><div class="body-l" style="color:var(--muted-foreground);">Descrição curta em uma ou duas linhas.</div></div>
+      <div><div class="h2" style="margin-bottom:16px; color:var(--primary);">Item três</div><div class="body-l" style="color:var(--muted-foreground);">Descrição curta em uma ou duas linhas.</div></div>
+      <div><div class="h2" style="margin-bottom:16px; color:var(--primary);">Item quatro</div><div class="body-l" style="color:var(--muted-foreground);">Descrição curta em uma ou duas linhas.</div></div>
+      <div><div class="h2" style="margin-bottom:16px; color:var(--primary);">Item cinco</div><div class="body-l" style="color:var(--muted-foreground);">Descrição curta em uma ou duas linhas.</div></div>
+      <div><div class="h2" style="margin-bottom:16px; color:var(--primary);">Item seis</div><div class="body-l" style="color:var(--muted-foreground);">Descrição curta em uma ou duas linhas.</div></div>
+    </div>
+  </div>
+  <div class="chrome-br">08 / NN</div>
+</section>
+
+<!-- MOLDE · TRÊS PILARES / CAMADAS (cards). Card em foco = classe .current ─── -->
+<section class="slide cream" data-screen-label="Três pilares">
+  <div class="chrome-tl">Seção 3 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">Etiqueta do modelo</div>
+    <h2 class="display-s" style="margin:20px 0 0; max-width:1560px;">Como as partes se conectam.</h2>
+    <div class="split-3" style="flex:1; align-content:center; align-items:stretch; gap:40px; padding:56px 0;">
+      <div class="t-card">
+        <div class="tag-num">Pilar 1</div><div class="nome">Nome</div>
+        <div class="body-l" style="color:var(--muted-foreground);">O que é esse pilar, em duas linhas.</div>
+        <div class="body-s" style="margin-top:auto; color:var(--foreground); font-weight:700;">Na prática: exemplo concreto.</div>
+      </div>
+      <div class="t-card">
+        <div class="tag-num">Pilar 2</div><div class="nome">Nome</div>
+        <div class="body-l" style="color:var(--muted-foreground);">O que é esse pilar, em duas linhas.</div>
+        <div class="body-s" style="margin-top:auto; color:var(--foreground); font-weight:700;">Na prática: exemplo concreto.</div>
+      </div>
+      <div class="t-card">
+        <div class="tag-num">Pilar 3</div><div class="nome">Nome</div>
+        <div class="body-l" style="color:var(--muted-foreground);">O que é esse pilar, em duas linhas.</div>
+        <div class="body-s" style="margin-top:auto; color:var(--foreground); font-weight:700;">Na prática: exemplo concreto.</div>
+      </div>
+    </div>
+    <div class="callout" style="max-width:1600px;">A frase que amarra os três em uma ideia só.</div>
+  </div>
+  <div class="chrome-br">09 / NN</div>
+</section>
+
+<!-- MOLDE · LISTA NUMERADA LONGA (frentes, etapas, itens de escopo) ───────── -->
+<section class="slide" data-screen-label="Lista numerada">
+  <div class="chrome-tl">Seção 3 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">Etiqueta da lista</div>
+    <h2 class="display-s" style="margin:20px 0 0;">Frase-título da lista.</h2>
+    <div style="display:flex; flex-direction:column; justify-content:center; flex:1;">
+      <div class="list-row"><span class="n">1</span><span class="h2" style="min-width:700px;">Item principal <span class="pill" style="background:var(--primary); color:#fff; margin-left:16px; font-size:18px;">destaque</span></span><span class="body-l" style="color:var(--muted-foreground);">Uma linha explicando</span></div>
+      <div class="list-row"><span class="n">2</span><span class="h2" style="min-width:700px;">Segundo item</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha explicando</span></div>
+      <div class="list-row"><span class="n">3</span><span class="h2" style="min-width:700px;">Terceiro item</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha explicando</span></div>
+      <div class="list-row"><span class="n">4</span><span class="h2" style="min-width:700px;">Quarto item</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha explicando</span></div>
+      <div class="list-row"><span class="n">5</span><span class="h2" style="min-width:700px;">Quinto item</span><span class="body-l" style="color:var(--muted-foreground);">Uma linha explicando</span></div>
+    </div>
+    <div class="body-l" style="max-width:1780px; margin-top:8px;">Uma frase de fechamento com o <strong>ponto que amarra</strong> a lista.</div>
+  </div>
+  <div class="chrome-br">10 / NN</div>
+</section>
+
+<!-- MOLDE · TEXTO + FOTO (split) ────────────────────────────────────────────
+     ⚑ Use foto do banco na coluna da direita. Aqui: b12 (instalação, ação).
+     Troque <img class="foto"> por outra de img/banco/. -->
+<section class="slide" data-screen-label="Texto + foto">
+  <div class="chrome-tl">Seção 3 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="split-photo">
+      <div style="display:flex; flex-direction:column; justify-content:center;">
+        <div class="section-tag">Etiqueta</div>
+        <h2 class="display-s" style="margin:24px 0 56px;">Título do bloco, <em style="font-style:normal; color:var(--primary);">com destaque</em>.</h2>
+        <div class="h2" style="margin-bottom:16px;">Subtítulo A</div>
+        <div class="body-l" style="color:var(--muted-foreground); margin-bottom:44px;">Parágrafo explicando o primeiro ponto que a foto ilustra.</div>
+        <div class="h2" style="margin-bottom:16px;">Subtítulo B</div>
+        <div class="body-l" style="color:var(--muted-foreground);">Parágrafo explicando o segundo ponto.</div>
+      </div>
+      <img class="foto" src="img/banco/b12-vala-tubos.jpg" alt="Instaladores assentando a tubulação">
+    </div>
+  </div>
+  <div class="chrome-br">11 / NN</div>
+</section>
+
+<!-- MOLDE · FASES / PASSOS (3 bolinhas numeradas) ─────────────────────────── -->
+<section class="slide" data-screen-label="Fases">
+  <div class="chrome-tl">Seção 4 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">Etiqueta do processo</div>
+    <h2 class="display-s" style="margin:20px 0 24px;">Como acontece, <em style="font-style:normal; color:var(--primary);">passo a passo</em>.</h2>
+    <div class="body-l" style="max-width:1720px; color:var(--muted-foreground);">Um parágrafo de contexto antes dos passos, se precisar.</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:64px; margin-top:auto; padding-top:52px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><div class="fase-num">1</div><div class="h2">Primeiro passo</div><div class="body-l" style="color:var(--muted-foreground);">O que acontece nessa etapa.</div></div>
+      <div style="display:flex; flex-direction:column; gap:16px;"><div class="fase-num">2</div><div class="h2">Segundo passo</div><div class="body-l" style="color:var(--muted-foreground);">O que acontece nessa etapa.</div></div>
+      <div style="display:flex; flex-direction:column; gap:16px;"><div class="fase-num">3</div><div class="h2">Terceiro passo</div><div class="body-l" style="color:var(--muted-foreground);">O que acontece nessa etapa.</div></div>
+    </div>
+  </div>
+  <div class="chrome-br">12 / NN</div>
+</section>
+
+<!-- MOLDE · TIMELINE / ONDAS (4 cards, um em foco) ────────────────────────── -->
+<section class="slide cream" data-screen-label="Timeline">
+  <div class="chrome-tl">Seção 4 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">As fases no tempo</div>
+    <h2 class="display-s" style="margin:20px 0 48px;">Onde chegamos, e quando.</h2>
+    <div class="split-4" style="gap:32px; align-items:stretch;">
+      <div class="t-card current">
+        <div class="periodo">Período 1</div><div class="nome" style="color:var(--foreground);">1 · Nome</div>
+        <div style="font-size:20px; font-weight:800; color:var(--primary);">A promessa dessa fase.</div>
+        <div class="body-l" style="color:var(--muted-foreground); flex:1;">O que entra aqui.</div>
+        <div class="pill" style="background:var(--primary); color:#fff; align-self:flex-start; font-size:18px; padding:10px 20px;">estamos aqui</div>
+      </div>
+      <div class="t-card">
+        <div class="periodo">Período 2</div><div class="nome" style="color:var(--foreground);">2 · Nome</div>
+        <div style="font-size:20px; font-weight:800; color:var(--primary);">A promessa dessa fase.</div>
+        <div class="body-l" style="color:var(--muted-foreground); flex:1;">O que entra aqui.</div>
+      </div>
+      <div class="t-card">
+        <div class="periodo">Período 3</div><div class="nome" style="color:var(--foreground);">3 · Nome</div>
+        <div style="font-size:20px; font-weight:800; color:var(--primary);">A promessa dessa fase.</div>
+        <div class="body-l" style="color:var(--muted-foreground); flex:1;">O que entra aqui.</div>
+      </div>
+      <div class="t-card">
+        <div class="periodo">Período 4</div><div class="nome" style="color:var(--foreground);">4 · Nome</div>
+        <div style="font-size:20px; font-weight:800; color:var(--primary);">A promessa dessa fase.</div>
+        <div class="body-l" style="color:var(--muted-foreground); flex:1;">O que entra aqui.</div>
+      </div>
+    </div>
+  </div>
+  <div class="chrome-br">13 / NN</div>
+</section>
+
+<!-- MOLDE · O QUE MUDA PRA CADA ÁREA (grid 2×2 de responsabilidades) ──────── -->
+<section class="slide" data-screen-label="O que muda">
+  <div class="chrome-tl">Seção 4 · Nome da seção</div>
+  <div class="slide-pad">
+    <div class="section-tag">O que muda para cada área</div>
+    <h2 class="display-s" style="margin:20px 0 0;">Todo mundo tem um pedaço disso.</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px 96px; flex:1; align-content:center;">
+      <div><div class="h2" style="margin-bottom:16px;">Área A</div><div class="body-l" style="color:var(--muted-foreground);">O que essa área passa a fazer diferente.</div></div>
+      <div><div class="h2" style="margin-bottom:16px;">Área B</div><div class="body-l" style="color:var(--muted-foreground);">O que essa área passa a fazer diferente.</div></div>
+      <div><div class="h2" style="margin-bottom:16px;">Área C</div><div class="body-l" style="color:var(--muted-foreground);">O que essa área passa a fazer diferente.</div></div>
+      <div><div class="h2" style="margin-bottom:16px;">Área D</div><div class="body-l" style="color:var(--muted-foreground);">O que essa área passa a fazer diferente.</div></div>
+    </div>
+    <div class="callout" style="max-width:1650px;">Próximos passos: <strong>a ação concreta</strong> que sai desta reunião.</div>
+  </div>
+  <div class="chrome-br">14 / NN</div>
+</section>
+
+<!-- MOLDE · CONTRACAPA / FECHO (foto full-bleed) ────────────────────────────
+     ⚑ Fecho PRECISA de foto no padrão. Aqui: b05 (time Efizi, golden).
+     Troque por outra de img/banco/ (b10 criança-água e b20 comunidade também fecham bem). -->
+<section class="slide photo" data-screen-label="Contracapa">
+  <img class="bg" src="img/banco/b05-time-instaladores.jpg" alt="">
+  <div class="scrim" style="background:linear-gradient(90deg, rgba(10,10,10,.82) 0%, rgba(10,10,10,.52) 48%, rgba(10,10,10,.12) 100%), linear-gradient(0deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,0) 52%);"></div>
+  <div class="chrome-tl">Efizi · Nome da apresentação</div>
+  <div class="slide-pad">
+    <div class="display-l" style="max-width:1600px;">A frase de fecho, com <em style="font-style:normal; color:var(--impact-yellow);">a ideia que fica</em>.</div>
+    <div class="body-l" style="margin-top:48px; color:rgba(255,255,255,.92); font-size:32px;">Uma linha final, opcional.</div>
+    <img src="../assets/efizi-logo-white.svg" height="72" alt="Efizi" style="margin-top:72px; align-self:flex-start;">
+  </div>
+  <div class="chrome-br">15 / NN</div>
+</section>
+
+</deck-stage>
+
+<!-- ████████████████████████████████████████████████████████████████████████
+     NOTAS DO APRESENTADOR — uma string por slide, na MESMA ORDEM.
+     ⚠ Contando as 3 capas. Quando apagar as capas que não usar, apague também
+     as notas correspondentes pra manter o alinhamento. Tecla N mostra/esconde.
+     ████████████████████████████████████████████████████████████████████████ -->
+<script type="application/json" id="speaker-notes">
+[
+"Capa A (laranja). Deixe no ar alguns segundos antes de começar.",
+"Capa B (foto). Alternativa emocional; use uma foto do banco.",
+"Capa C (creme). Alternativa sóbria para público externo.",
+"Agenda. Diga a promessa: o que cada um sai sabendo no fim.",
+"Abertura de seção. Deixe a foto respirar, uma frase só.",
+"Duas colunas. Contraste o antes e o depois.",
+"Números. Os dados provam o tamanho; leia devagar.",
+"Citação. Momento de pausa, pode respirar.",
+"Declaração sobre foto. Frase forte sobre a imagem, sem pressa.",
+"Grid de 6. Não precisa ler todos; destaque dois ou três.",
+"Três pilares. Mostre como um puxa o outro.",
+"Lista numerada. Passe com ritmo, o fechamento amarra.",
+"Texto + foto. A imagem ilustra o que você fala.",
+"Fases. Enfatize o gatilho de cada passo.",
+"Timeline. Card em foco = onde estamos agora.",
+"O que muda. Aterrisse por área, cada um tem um pedaço.",
+"Contracapa. Fecho emocional e agradecimento."
+]
+</script>
+
+<!-- ████████████████████████████████████████████████████████████████████████
+     Numeração automática do rodapé + notas (N) + tela cheia (F) + reset (R).
+     Não precisa mexer aqui.
+     ████████████████████████████████████████████████████████████████████████ -->
+<script>
+(function(){
+  function ready(fn){
+    if(window.customElements && customElements.whenDefined){ customElements.whenDefined('deck-stage').then(function(){ setTimeout(fn,0); }); }
+    else { window.addEventListener('load', fn); }
+  }
+  ready(function(){
+    var stage=document.querySelector('deck-stage');
+    if(!stage) return;
+    var slides=[].slice.call(stage.children).filter(function(el){ return el.matches && el.matches('section.slide'); });
+    var total=slides.length;
+    slides.forEach(function(s,i){ var br=s.querySelector('.chrome-br'); if(br) br.textContent=('0'+(i+1)).slice(-2)+' / '+total; });
+    var notes=[]; try{ notes=JSON.parse((document.getElementById('speaker-notes')||{}).textContent||'[]'); }catch(e){}
+    var panel=document.createElement('div');
+    panel.setAttribute('data-noncommentable','');
+    panel.style.cssText='position:fixed;left:24px;bottom:24px;max-width:520px;z-index:2147483200;'+
+      'background:rgba(10,10,10,.92);color:#fff;font:600 16px/1.55 Manrope,-apple-system,sans-serif;'+
+      'padding:16px 20px;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.45);display:none;';
+    document.body.appendChild(panel);
+    var visible=false;
+    function render(){ var i=stage.index;
+      panel.innerHTML='<div style="font:800 12px/1 Manrope;letter-spacing:.14em;text-transform:uppercase;color:#FF6A3D;margin-bottom:8px;">Nota · slide '+(i+1)+' / '+total+'</div>'+(notes[i]||'—'); }
+    stage.addEventListener('slidechange', function(){ if(visible) render(); });
+    function toggleFullscreen(){ var el=document.documentElement; var fsEl=document.fullscreenElement||document.webkitFullscreenElement;
+      if(!fsEl){ (el.requestFullscreen||el.webkitRequestFullscreen||function(){}).call(el); }
+      else { (document.exitFullscreen||document.webkitExitFullscreen||function(){}).call(document); } }
+    window.addEventListener('keydown', function(e){
+      if(e.metaKey||e.ctrlKey||e.altKey) return;
+      var t=e.target; if(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      var k=e.key;
+      if(k==='n'||k==='N'){ visible=!visible; panel.style.display=visible?'block':'none'; if(visible) render(); }
+      else if(k==='r'||k==='R'){ stage.reset(); }
+      else if(k==='f'||k==='F'){ e.preventDefault(); toggleFullscreen(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

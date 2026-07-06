@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · Kit de App/Dashboard — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="efizi-app.css">
+<style>
+body{margin:0;font-family:'Manrope',sans-serif;background:var(--background);color:var(--foreground);padding:44px 40px 80px}
+.wrap{max-width:1180px;margin:0 auto}
+.doc-kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}
+.doc-title{font-size:40px;font-weight:800;letter-spacing:-.02em;margin:8px 0 6px}
+.doc-sub{font-size:16px;color:var(--muted-foreground);max-width:700px;line-height:1.5;margin:0}
+section{margin-top:40px}
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec-num{font-size:12px;font-weight:800;color:var(--primary-foreground);background:var(--foreground);width:26px;height:26px;border-radius:9999px;display:grid;place-items:center}
+.sec-name{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.sec-hint{font-size:13px;color:var(--muted-foreground);margin-left:auto}
+.gallery{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 24px}
+.sub{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted-foreground);margin:0 0 12px}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.col{display:flex;flex-direction:column;gap:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.divider{height:1px;background:var(--border);margin:20px 0}
+.stack-lg{display:flex;flex-direction:column;gap:22px}
+.block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+/* foundation demos */
+.swatch{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.swatch .c{height:56px}.swatch .m{padding:8px 10px}
+.swatch .n{font-size:12px;font-weight:700}.swatch .v{font-size:10.5px;color:var(--muted-foreground);font-family:var(--efizi-font-mono)}
+.type-row{display:flex;align-items:baseline;gap:16px;padding:8px 0;border-bottom:1px dashed var(--border)}
+.type-row .tm{font-size:11px;color:var(--muted-foreground);font-weight:600;width:120px;flex:none}
+.space-row{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--muted-foreground)}
+.space-row .bar{height:16px;background:var(--primary);border-radius:3px}
+.radiobox{height:64px;background:var(--accent);border:1.5px solid var(--primary);display:grid;place-items:end center;padding-bottom:6px;font-size:11px;font-weight:700;color:var(--accent-foreground)}
+.shadowbox{height:70px;background:var(--card);border-radius:10px;display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted-foreground);border:1px solid var(--border)}
+.iconset{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.iconcell{aspect-ratio:1;border:1px solid var(--border);border-radius:10px;display:grid;place-items:center;color:var(--foreground)}
+.hint{font-size:12.5px;color:var(--muted-foreground);margin:12px 0 0;line-height:1.5}
+.cap{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:9px}
+/* dashboard */
+.pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center}
+</style>
+</head>
+<body class="eui">
+<div class="wrap">
+
+  <header>
+    <div class="doc-kicker">Efizi · Design System — App / Dashboard</div>
+    <h1 class="doc-title">Kit de app — completo</h1>
+    <p class="doc-sub">Fundações + componentes + padrões, consumindo os tokens da marca. React/Next, com ou sem Tailwind. Modo escuro via classe <code>.dark</code>. Cada bloco abaixo é o que o time implementa como componente.</p>
+  </header>
+
+  <!-- ===================== FUNDAÇÕES ===================== -->
+  <section>
+    <div class="sec-label"><span class="sec-num">1</span><span class="sec-name">Fundações</span><span class="sec-hint">os tokens que tudo herda</span></div>
+
+    <div class="gallery stack-lg">
+
+      <div>
+        <p class="sub">Cores semânticas (mudam no dark automaticamente)</p>
+        <div class="grid4">
+          <div class="swatch"><div class="c" style="background:var(--primary)"></div><div class="m"><div class="n">primary</div><div class="v">#FF4000</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--foreground)"></div><div class="m"><div class="n">foreground</div><div class="v">texto</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--muted)"></div><div class="m"><div class="n">muted</div><div class="v">superfície</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--accent);border-bottom:1px solid var(--border)"></div><div class="m"><div class="n">accent</div><div class="v">wash laranja</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--efizi-success)"></div><div class="m"><div class="n">success</div><div class="v">#1E874B</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--efizi-warning)"></div><div class="m"><div class="n">warning</div><div class="v">#B7791F</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--efizi-error)"></div><div class="m"><div class="n">destructive</div><div class="v">#C4361B</div></div></div>
+          <div class="swatch"><div class="c" style="background:var(--efizi-teal)"></div><div class="m"><div class="n">info / link</div><div class="v">#228474</div></div></div>
+        </div>
+        <p class="sub" style="margin-top:16px">Paleta de gráficos (BI)</p>
+        <div class="row" style="gap:8px">
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--chart-1)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--chart-2)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--chart-3)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--chart-4)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--efizi-chart-5)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--efizi-chart-6)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--efizi-chart-7)"></span>
+          <span style="width:40px;height:24px;border-radius:5px;background:var(--efizi-chart-8)"></span>
+          <span class="hint" style="margin:0 0 0 8px">amarelo Pulse não entra como série (some no branco)</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid2">
+        <div>
+          <p class="sub">Tipografia — Manrope</p>
+          <div class="type-row"><span class="tm">28 · 800</span><span class="eui-h eui-h--xl">Título de página</span></div>
+          <div class="type-row"><span class="tm">22 · 800</span><span class="eui-h eui-h--lg">Título de seção</span></div>
+          <div class="type-row"><span class="tm">18 · 800</span><span class="eui-h eui-h--md">Subtítulo</span></div>
+          <div class="type-row"><span class="tm">14 · 400</span><span style="font-size:14px">Corpo — leitura padrão da interface.</span></div>
+          <div class="type-row" style="border:0"><span class="tm">12 · 600</span><span class="eui-muted" style="font-size:12px;font-weight:600">Auxiliar / legenda</span></div>
+        </div>
+        <div>
+          <p class="sub">Espaçamento — baseline 4px</p>
+          <div class="col" style="gap:9px">
+            <div class="space-row"><span class="bar" style="width:4px"></span>4 · xs</div>
+            <div class="space-row"><span class="bar" style="width:8px"></span>8 · sm</div>
+            <div class="space-row"><span class="bar" style="width:12px"></span>12</div>
+            <div class="space-row"><span class="bar" style="width:16px"></span>16 · base</div>
+            <div class="space-row"><span class="bar" style="width:24px"></span>24 · lg</div>
+            <div class="space-row"><span class="bar" style="width:32px"></span>32 · xl</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid2">
+        <div>
+          <p class="sub">Raio & bordas</p>
+          <div class="grid4">
+            <div class="radiobox" style="border-radius:4px">4 · xs</div>
+            <div class="radiobox" style="border-radius:6px">6 · sm</div>
+            <div class="radiobox" style="border-radius:8px">8 · md</div>
+            <div class="radiobox" style="border-radius:12px">12 · lg</div>
+          </div>
+          <p class="hint">Borda padrão: <b>1px</b> em <code>--border</code>. Inputs e cards usam a mesma. Pills e avatares usam raio total (9999px).</p>
+        </div>
+        <div>
+          <p class="sub">Elevação</p>
+          <div class="grid3">
+            <div class="shadowbox" style="box-shadow:var(--efizi-shadow-xs)">xs</div>
+            <div class="shadowbox" style="box-shadow:var(--efizi-shadow-sm)">sm</div>
+            <div class="shadowbox" style="box-shadow:var(--efizi-shadow-md)">md</div>
+            <div class="shadowbox" style="box-shadow:var(--efizi-shadow-lg)">lg</div>
+            <div class="shadowbox" style="box-shadow:var(--efizi-shadow-xl)">xl</div>
+          </div>
+          <p class="hint">Sombra suave e curta — nada pesado. Cards usam sm/md; menus e modais, lg/xl.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <p class="sub">Iconografia</p>
+        <div class="iconset">
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 4a3 3 0 010 8"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M4 7h16v13H4zM4 7l3-4h10l3 4M9 12h6"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1l2-1.6-2-3.4-2.4 1a7 7 0 00-1.7-1L14.5 3h-5l-.3 2.6a7 7 0 00-1.7 1l-2.4-1-2 3.4 2 1.6a7 7 0 000 2l-2 1.6 2 3.4 2.4-1a7 7 0 001.7 1L9.5 21h5l.3-2.6a7 7 0 001.7-1l2.4 1 2-3.4-2-1.6a7 7 0 00.1-1z"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></div>
+          <div class="iconcell"><svg class="eui-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+        </div>
+        <p class="hint"><b>Padrão:</b> outline only (<code>fill:none</code>), traço <b>2px</b> constante, grid <b>24×24</b>, cantos arredondados, mínimo 16px. Sempre <code>currentColor</code> pra herdar a cor do contexto (classe <code>.eui-icon</code>). Biblioteca sugerida: <b>Lucide</b> (mesmo estilo).</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== COMPONENTES ===================== -->
+  <section>
+    <div class="sec-label"><span class="sec-num">2</span><span class="sec-name">Componentes</span><span class="sec-hint">os blocos de UI</span></div>
+    <div class="gallery stack-lg">
+
+      <div><p class="sub">Botões</p><div class="row">
+        <button class="eui-btn eui-btn--primary">Salvar</button>
+        <button class="eui-btn eui-btn--secondary">Cancelar</button>
+        <button class="eui-btn eui-btn--ghost">Ver detalhes</button>
+        <button class="eui-btn eui-btn--destructive">Excluir</button>
+        <button class="eui-btn eui-btn--primary"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Novo</button>
+        <button class="eui-btn eui-btn--icon eui-btn--ghost"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/></svg></button>
+        <button class="eui-btn eui-btn--primary" disabled>Salvando…</button>
+      </div></div>
+
+      <div class="divider"></div>
+
+      <div class="grid3">
+        <div class="col"><p class="sub">Campos & estados</p>
+          <label class="eui-label">Padrão</label><input class="eui-input" placeholder="Digite…">
+          <label class="eui-label" style="margin-top:8px">Erro</label><input class="eui-input eui-input--error" value="joao@"><div class="eui-hint" style="color:var(--efizi-error)">E-mail inválido.</div>
+          <label class="eui-label" style="margin-top:8px">Bloqueado</label><input class="eui-input" value="Somente leitura" disabled>
+          <label class="eui-label" style="margin-top:8px">Seleção</label><select class="eui-select"><option>Interior de SP</option><option>Sul de MG</option></select>
+          <label class="eui-label" style="margin-top:8px">Texto longo</label><textarea class="eui-textarea" placeholder="Observações…"></textarea>
+        </div>
+        <div class="col"><p class="sub">Seleção</p>
+          <div class="cap">Radio</div>
+          <label class="eui-radio"><span class="eui-radio__dot eui-radio__dot--on"></span>Entrega</label>
+          <label class="eui-radio"><span class="eui-radio__dot"></span>Retirar na loja</label>
+          <label class="eui-radio"><span class="eui-radio__dot"></span>Agendar visita</label>
+          <div class="cap" style="margin-top:14px">Checkbox & switch</div>
+          <label class="eui-check"><span class="eui-check__box eui-check__box--on"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Instalação inclusa</label>
+          <label class="eui-check"><span class="eui-check__box"></span>Retirar na loja</label>
+          <span class="row" style="gap:8px;margin-top:6px"><span class="eui-switch eui-switch--on"></span><span style="font-size:14px">Notificações</span></span>
+          <div class="cap" style="margin-top:14px">Segmented</div>
+          <div class="eui-segmented"><button class="eui-segmented__opt eui-segmented__opt--on">Dia</button><button class="eui-segmented__opt">Semana</button><button class="eui-segmented__opt">Mês</button></div>
+        </div>
+        <div class="col"><p class="sub">Status & feedback</p>
+          <div class="cap">Badges</div>
+          <div class="row" style="gap:8px">
+            <span class="eui-badge eui-badge--success"><span class="dot"></span>Pago</span>
+            <span class="eui-badge eui-badge--warning"><span class="dot"></span>Pendente</span>
+            <span class="eui-badge eui-badge--error"><span class="dot"></span>Erro</span>
+            <span class="eui-badge eui-badge--brand">Novo</span>
+            <span class="eui-badge eui-badge--neutral">Rascunho</span>
+          </div>
+          <div class="cap" style="margin-top:14px">Chips</div>
+          <div class="row" style="gap:8px"><span class="eui-chip">Esgoto <span class="eui-chip__x">×</span></span><span class="eui-chip">Interior SP <span class="eui-chip__x">×</span></span></div>
+          <div class="cap" style="margin-top:14px">Progresso</div>
+          <div class="eui-progress"><div class="eui-progress__bar" style="width:72%"></div></div>
+          <div class="cap" style="margin-top:14px">Skeleton (loading)</div>
+          <div class="col" style="gap:7px"><div class="eui-skeleton" style="width:80%"></div><div class="eui-skeleton" style="width:60%"></div><div class="eui-skeleton" style="width:70%"></div></div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid3">
+        <div class="eui-alert eui-alert--success"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Parceiro aprovado com sucesso.</div>
+        <div class="eui-alert eui-alert--info"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>3 pedidos aguardam atribuição.</div>
+        <div class="eui-alert eui-alert--error"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Falha ao sincronizar estoque.</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid3" style="align-items:start">
+        <div><p class="sub">Navegação</p>
+          <div class="eui-breadcrumb"><a href="#">Início</a><span class="eui-breadcrumb__sep">/</span><a href="#">Pedidos</a><span class="eui-breadcrumb__sep">/</span><span class="eui-breadcrumb__current">#10482</span></div>
+          <div class="eui-tabs" style="margin-top:14px"><span class="eui-tab eui-tab--active">Todos</span><span class="eui-tab">Ativos</span><span class="eui-tab">Arquivados</span></div>
+          <div class="eui-pagination" style="margin-top:14px"><span class="eui-page">‹</span><span class="eui-page eui-page--on">1</span><span class="eui-page">2</span><span class="eui-page">3</span><span class="eui-page">›</span></div>
+          <div style="margin-top:16px"><div class="cap">Tooltip</div>
+            <span class="eui-tooltip"><span class="eui-tooltip__bubble">Sincroniza a cada 5 min</span></span></div>
+        </div>
+        <div><p class="sub">Menu (dropdown)</p>
+          <div class="eui-menu">
+            <div class="eui-menu__item"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M12 20h9M16 3l5 5L8 21H3v-5z"/></svg>Editar</div>
+            <div class="eui-menu__item"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Exportar</div>
+            <div class="eui-menu__sep"></div>
+            <div class="eui-menu__item eui-menu__item--danger"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>Excluir</div>
+          </div>
+        </div>
+        <div><p class="sub">Modal & empty state</p>
+          <div class="eui-modal" style="max-width:none">
+            <h3 class="eui-modal__title">Excluir parceiro?</h3>
+            <p class="eui-modal__body">Essa ação não pode ser desfeita. O histórico de instalações será mantido.</p>
+            <div class="eui-modal__foot"><button class="eui-btn eui-btn--ghost eui-btn--sm">Cancelar</button><button class="eui-btn eui-btn--destructive eui-btn--sm">Excluir</button></div>
+          </div>
+          <div class="eui-empty" style="padding:20px 12px">
+            <div class="eui-empty__ic"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4zM4 7l3-4h10l3 4"/></svg></div>
+            <p class="eui-empty__title">Nenhum pedido ainda</p>
+            <div style="font-size:12.5px">Quando entrar o primeiro, aparece aqui.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PADRÃO: DASHBOARD ===================== -->
+  <section>
+    <div class="sec-label"><span class="sec-num">3</span><span class="sec-name">Padrão — dashboard navegável</span><span class="sec-hint">clique nos itens do menu</span></div>
+    <div class="eui-shell">
+      <aside class="eui-sidebar">
+        <div class="eui-sidebar__brand"><span class="eui-sidebar__logo"></span> Efizi</div>
+        <a class="eui-nav eui-nav--active" data-screen="overview" data-title="Visão geral"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Visão geral</a>
+        <a class="eui-nav" data-screen="vendas" data-title="Vendas"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>Vendas</a>
+        <a class="eui-nav" data-screen="parceiros" data-title="Parceiros"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 4a3 3 0 010 8M21 20a6 6 0 00-4-5.7"/></svg>Parceiros</a>
+        <div class="eui-nav__group">Operação</div>
+        <a class="eui-nav" data-screen="pedidos" data-title="Pedidos"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>Pedidos</a>
+        <a class="eui-nav" data-screen="estoque" data-title="Estoque"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M4 7h16v13H4zM4 7l3-4h10l3 4"/></svg>Estoque</a>
+        <a class="eui-nav" data-screen="rede" data-title="Rede credenciada"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Rede credenciada</a>
+      </aside>
+      <div>
+        <div class="eui-topbar">
+          <div class="col" style="gap:2px"><span class="eui-eyebrow" id="screen-eyebrow">Visão geral</span><span class="eui-h eui-h--lg" id="screen-title">Visão geral</span></div>
+          <div class="row" style="gap:12px"><input class="eui-input" placeholder="Buscar…" style="width:200px"><div class="eui-avatar">GL</div></div>
+        </div>
+        <div class="eui-main">
+
+          <div class="screen" data-screen="overview">
+            <div class="grid4" style="margin-bottom:16px">
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Receita (mês)</span><span class="eui-stat__value">R$ 284k</span><span class="eui-delta eui-delta--up"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>+12,4%</span></div></div>
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Pedidos</span><span class="eui-stat__value">1.842</span><span class="eui-delta eui-delta--up"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>+5,1%</span></div></div>
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Ticket médio</span><span class="eui-stat__value">R$ 154</span><span class="eui-delta eui-delta--down"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M7 7l10 10M15 17H7V9"/></svg>-2,0%</span></div></div>
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Instaladores</span><span class="eui-stat__value">312</span><span class="eui-delta eui-delta--up"><svg class="eui-icon eui-icon--sm" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>+18</span></div></div>
+            </div>
+            <div class="eui-card">
+              <div class="eui-card__head"><span class="eui-h eui-h--md">Receita por frente</span>
+                <div class="eui-legend"><span class="eui-legend__item"><span class="eui-legend__sw" style="background:var(--chart-1)"></span>Esgoto</span><span class="eui-legend__item"><span class="eui-legend__sw" style="background:var(--chart-2)"></span>Água</span><span class="eui-legend__item"><span class="eui-legend__sw" style="background:var(--chart-4)"></span>Captação</span></div></div>
+              <div class="eui-bars">
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:62%;background:var(--chart-1)"></div><span class="eui-bars__lb">Jan</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:74%;background:var(--chart-1)"></div><span class="eui-bars__lb">Fev</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:58%;background:var(--chart-2)"></div><span class="eui-bars__lb">Mar</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:88%;background:var(--chart-1)"></div><span class="eui-bars__lb">Abr</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:70%;background:var(--chart-4)"></div><span class="eui-bars__lb">Mai</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:96%;background:var(--chart-1)"></div><span class="eui-bars__lb">Jun</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen" data-screen="vendas" hidden>
+            <div class="grid3" style="margin-bottom:16px">
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Faturamento (ano)</span><span class="eui-stat__value">R$ 2,9M</span><span class="eui-delta eui-delta--up">+21%</span></div></div>
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Conversão</span><span class="eui-stat__value">3,4%</span><span class="eui-delta eui-delta--up">+0,3pp</span></div></div>
+              <div class="eui-card"><div class="eui-stat"><span class="eui-stat__label">Abandono</span><span class="eui-stat__value">28%</span><span class="eui-delta eui-delta--down">-4pp</span></div></div>
+            </div>
+            <div class="eui-card"><div class="eui-card__head"><span class="eui-h eui-h--md">Vendas por mês</span></div>
+              <div class="eui-bars">
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:40%;background:var(--chart-1)"></div><span class="eui-bars__lb">Jan</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:55%;background:var(--chart-1)"></div><span class="eui-bars__lb">Fev</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:68%;background:var(--chart-1)"></div><span class="eui-bars__lb">Mar</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:80%;background:var(--chart-1)"></div><span class="eui-bars__lb">Abr</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:92%;background:var(--chart-1)"></div><span class="eui-bars__lb">Mai</span></div>
+                <div class="eui-bars__col"><div class="eui-bars__bar" style="height:100%;background:var(--chart-1)"></div><span class="eui-bars__lb">Jun</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen" data-screen="parceiros" hidden>
+            <div class="row" style="justify-content:space-between;margin-bottom:14px">
+              <div class="eui-tabs" style="border:0"><span class="eui-tab eui-tab--active">Todos</span><span class="eui-tab">Pleno</span><span class="eui-tab">Afiliado</span></div>
+              <button class="eui-btn eui-btn--primary eui-btn--sm">+ Novo parceiro</button>
+            </div>
+            <div class="eui-card" style="padding:0;overflow:hidden"><table class="eui-table">
+              <thead><tr><th>Parceiro</th><th>Cidade</th><th>Nível</th><th>Instalações</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="eui-table__name">João Instalações</td><td>Piracicaba · SP</td><td><span class="eui-badge eui-badge--success">Pleno</span></td><td>142</td><td><span class="eui-badge eui-badge--success"><span class="dot"></span>Ativo</span></td></tr>
+                <tr><td class="eui-table__name">HidroTec</td><td>Pouso Alegre · MG</td><td><span class="eui-badge eui-badge--brand">Afiliado</span></td><td>63</td><td><span class="eui-badge eui-badge--success"><span class="dot"></span>Ativo</span></td></tr>
+                <tr><td class="eui-table__name">Carlos Saneamento</td><td>Bauru · SP</td><td><span class="eui-badge eui-badge--neutral">Indicação</span></td><td>8</td><td><span class="eui-badge eui-badge--warning"><span class="dot"></span>Em análise</span></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div class="screen" data-screen="pedidos" hidden>
+            <div class="eui-tabs" style="margin-bottom:14px"><span class="eui-tab eui-tab--active">Todos</span><span class="eui-tab">Pendentes</span><span class="eui-tab">Concluídos</span></div>
+            <div class="eui-card" style="padding:0;overflow:hidden"><table class="eui-table">
+              <thead><tr><th>Pedido</th><th>Cliente</th><th>Frente</th><th>Status</th><th>Valor</th></tr></thead>
+              <tbody>
+                <tr><td class="eui-table__name">#10482</td><td>Sítio Boa Vista</td><td>Esgoto</td><td><span class="eui-badge eui-badge--success"><span class="dot"></span>Pago</span></td><td>R$ 1.499,00</td></tr>
+                <tr><td class="eui-table__name">#10481</td><td>Chácara Recanto</td><td>Água</td><td><span class="eui-badge eui-badge--warning"><span class="dot"></span>Aguardando</span></td><td>R$ 899,00</td></tr>
+                <tr><td class="eui-table__name">#10480</td><td>Pousada do Lago</td><td>Captação</td><td><span class="eui-badge eui-badge--brand"><span class="dot"></span>Em rota</span></td><td>R$ 2.290,00</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div class="screen" data-screen="estoque" hidden>
+            <div class="eui-card" style="padding:0;overflow:hidden"><table class="eui-table">
+              <thead><tr><th>Produto</th><th>Frente</th><th>Nível</th><th>Qtd.</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="eui-table__name">Biodigestor 1300 L</td><td>Esgoto</td><td style="width:200px"><div class="eui-progress"><div class="eui-progress__bar" style="width:82%"></div></div></td><td>164</td><td><span class="eui-badge eui-badge--success">OK</span></td></tr>
+                <tr><td class="eui-table__name">Filtro osmose reversa</td><td>Água</td><td><div class="eui-progress"><div class="eui-progress__bar" style="width:34%;background:var(--efizi-warning)"></div></div></td><td>41</td><td><span class="eui-badge eui-badge--warning">Baixo</span></td></tr>
+                <tr><td class="eui-table__name">Cisterna 5000 L</td><td>Captação</td><td><div class="eui-progress"><div class="eui-progress__bar" style="width:9%;background:var(--efizi-error)"></div></div></td><td>6</td><td><span class="eui-badge eui-badge--error">Crítico</span></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div class="screen" data-screen="rede" hidden>
+            <div class="pcards">
+              <div class="pc"><div class="eui-avatar">JI</div><div><div style="font-weight:800;font-size:14px">João Instalações</div><div class="eui-muted" style="font-size:12.5px">Piracicaba · SP · ★ 4,9</div></div></div>
+              <div class="pc"><div class="eui-avatar">HT</div><div><div style="font-weight:800;font-size:14px">HidroTec</div><div class="eui-muted" style="font-size:12.5px">Pouso Alegre · MG · ★ 4,7</div></div></div>
+              <div class="pc"><div class="eui-avatar">RA</div><div><div style="font-weight:800;font-size:14px">Rural Água</div><div class="eui-muted" style="font-size:12.5px">Uberaba · MG · ★ 4,5</div></div></div>
+              <div class="pc"><div class="eui-avatar">AM</div><div><div style="font-weight:800;font-size:14px">Água Mais</div><div class="eui-muted" style="font-size:12.5px">Londrina · PR · ★ 4,8</div></div></div>
+              <div class="pc"><div class="eui-avatar">EF</div><div><div style="font-weight:800;font-size:14px">EcoFossa</div><div class="eui-muted" style="font-size:12.5px">Goiânia · GO · ★ 4,6</div></div></div>
+              <div class="pc"><div class="eui-avatar">CS</div><div><div style="font-weight:800;font-size:14px">Carlos Saneamento</div><div class="eui-muted" style="font-size:12.5px">Bauru · SP · ★ 4,2</div></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <p class="hint">Tudo consome <code>efizi-app.css</code> → <code>efizi-tokens.css</code>. Modo escuro: classe <code>.dark</code> no topo. As mesmas classes viram componentes React (ou mapeiam pro shadcn).</p>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.eui-nav[data-screen]').forEach(function(nav){
+    nav.addEventListener('click', function(e){
+      e.preventDefault();
+      document.querySelectorAll('.eui-nav').forEach(function(n){ n.classList.remove('eui-nav--active'); });
+      nav.classList.add('eui-nav--active');
+      var id = nav.getAttribute('data-screen');
+      document.querySelectorAll('.screen').forEach(function(s){ s.hidden = (s.getAttribute('data-screen') !== id); });
+      var title = nav.getAttribute('data-title');
+      document.getElementById('screen-title').textContent = title;
+      document.getElementById('screen-eyebrow').textContent = title;
+    });
+  });
+  document.querySelectorAll('.eui-tabs').forEach(function(group){
+    group.querySelectorAll('.eui-tab').forEach(function(tab){
+      tab.addEventListener('click', function(){
+        group.querySelectorAll('.eui-tab').forEach(function(t){ t.classList.remove('eui-tab--active'); });
+        tab.classList.add('eui-tab--active');
+      });
+    });
+  });
+</script>
+</body>
+</html>

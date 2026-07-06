@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · Design System Shopify — Stress test v4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- dogfooding: a folha consome o CSS de produção -->
+<link rel="stylesheet" href="efizi-ds.css">
+<style>
+/* ===== scaffolding da folha (NÃO faz parte do DS) ===== */
+*{box-sizing:border-box}
+body{margin:0;font-family:'Manrope',sans-serif;color:#0A0A0A;background:#F5F3EF;padding:52px 44px 80px}
+.wrap{max-width:1200px;margin:0 auto}
+.doc-kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#FF4000}
+.doc-title{font-size:44px;font-weight:800;letter-spacing:-.02em;line-height:1.04;margin:8px 0 6px}
+.doc-sub{font-size:16px;color:#6B6660;max-width:700px;line-height:1.5;margin:0}
+.realbanner{margin:20px 0 6px;background:#fff;border:1px solid #E4E0DA;border-left:4px solid #FF4000;border-radius:8px;padding:12px 18px;font-size:13px;line-height:1.55}
+.realbanner b{color:#FF4000}
+section{margin-top:38px}
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec-num{font-size:12px;font-weight:800;color:#fff;background:#0A0A0A;width:26px;height:26px;border-radius:9999px;display:grid;place-items:center}
+.sec-name{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.sec-hint{font-size:13px;color:#6B6660;margin-left:auto}
+.panel{background:#fff;border:1px solid #E4E0DA;border-radius:12px;box-shadow:0 4px 10px rgba(10,10,10,.06);padding:24px 26px}
+.panel--dark{background:#0A0A0A;border-color:#0A0A0A}
+.row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.col{display:flex;flex-direction:column;gap:8px}
+.cap{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6B6660;margin-bottom:10px}
+.stack-lg{display:flex;flex-direction:column;gap:22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.divider{height:1px;background:#EEEAE3;margin:20px 0}
+.subcap{font-size:12px;font-weight:800;color:#0A0A0A;margin:0 0 10px}
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sw{border-radius:10px;overflow:hidden;border:1px solid #E4E0DA}
+.sw .chip{height:66px}.sw .meta{padding:8px 10px;background:#fff}
+.sw .nm{font-size:12.5px;font-weight:700}.sw .hx{font-size:10.5px;color:#6B6660;font-weight:600}
+.duos{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.duo{border-radius:10px;overflow:hidden;border:1px solid #E4E0DA;width:150px;font-size:11px;font-weight:700}
+.duo .bar{height:40px;display:flex}.duo .bar span{flex:1}.duo .lb{padding:6px 9px;background:#fff;color:#6B6660}
+.type-row{display:flex;align-items:baseline;gap:16px;padding:9px 0;border-bottom:1px dashed #EEEAE3}
+.type-row .t-meta{font-size:11px;color:#6B6660;font-weight:600;width:150px;flex:none}
+.token-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tok{background:#fff;border:1px solid #E4E0DA;border-radius:10px;padding:14px}
+.tok .demo{height:52px;background:#F5F3EF;border:1px solid #E4E0DA;margin-bottom:9px}
+.tok .nm{font-size:12px;font-weight:700}.tok .vl{font-size:11px;color:#6B6660}
+.note{font-size:12.5px;color:#6B6660;margin:12px 0 0;line-height:1.5}
+.pdp{display:grid;grid-template-columns:0.9fr 1.1fr;gap:34px;align-items:start}
+.pdp .stack{display:flex;flex-direction:column;gap:16px}
+.qtyrow{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.drawer{max-width:420px;background:#fff;border:1px solid #E4E0DA;border-radius:12px;box-shadow:0 4px 10px rgba(10,10,10,.06);padding:8px 20px 20px}
+.drawer h4{font-size:14px;font-weight:800;margin:16px 0 0}
+.ico{display:inline-flex}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="doc-kicker">Efizi · Design System — Shopify</div>
+    <h1 class="doc-title">Stress test — v4</h1>
+    <p class="doc-sub">Todos os componentes exercitados em estados reais, consumindo <code>efizi-ds.css</code> (dogfooding). Inclui os cenários difíceis do tema: preço regionalizado, orçamento, esgotado, variant pills e uma PDP montada.</p>
+  </header>
+  <div class="realbanner"><b>Fiel ao tema [Check] - Rebrand 2026:</b> botão 8px sem sombra · input 4px · card 8px · variant pill · PIX teal #228474 · parcelamento até 10× · selo amarelo/ink pill bottom-left · card clicável → PDP · estado "indisponível p/ região → solicite orçamento".</div>
+
+  <!-- ============ FUNDAÇÕES ============ -->
+
+  <!-- 1 PALETA -->
+  <section>
+    <div class="sec-label"><span class="sec-num">1</span><span class="sec-name">Paleta & duos</span><span class="sec-hint">uma ênfase por peça</span></div>
+    <div class="panel">
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#FF4000"></div><div class="meta"><div class="nm">Orange 70%</div><div class="hx">#FF4000</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FE734F"></div><div class="meta"><div class="nm">Peach apoio</div><div class="hx">#FE734F</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FFD500"></div><div class="meta"><div class="nm">Pulse 20%</div><div class="hx">#FFD500</div></div></div>
+        <div class="sw"><div class="chip" style="background:#0A0A0A"></div><div class="meta"><div class="nm">Ink 10%</div><div class="hx">#0A0A0A</div></div></div>
+        <div class="sw"><div class="chip" style="background:#F5F3EF;border-bottom:1px solid #E4E0DA"></div><div class="meta"><div class="nm">Cream</div><div class="hx">#F5F3EF</div></div></div>
+        <div class="sw"><div class="chip" style="background:#228474"></div><div class="meta"><div class="nm">Teal · só UI</div><div class="hx">#228474</div></div></div>
+      </div>
+      <div class="duos">
+        <div class="duo"><div class="bar"><span style="background:#FF4000"></span><span style="background:#FFD500"></span></div><div class="lb">laranja + amarelo · principal</div></div>
+        <div class="duo"><div class="bar"><span style="background:#0A0A0A"></span><span style="background:#FFD500"></span></div><div class="lb">preto + amarelo · selo</div></div>
+        <div class="duo"><div class="bar"><span style="background:#F5F3EF"></span><span style="background:#FF4000"></span></div><div class="lb">cream + laranja · institucional</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 TIPOGRAFIA -->
+  <section>
+    <div class="sec-label"><span class="sec-num">2</span><span class="sec-name">Tipografia — Manrope</span><span class="sec-hint">sentence case · ênfase só em laranja, uma palavra por bloco</span></div>
+    <div class="panel">
+      <div class="type-row"><span class="t-meta">Display · 800 · −2.5%</span><span class="efizi-display">Saneamento fora da rede</span></div>
+      <div class="type-row"><span class="t-meta">H1 · 800 · −1.5%</span><span class="efizi-h1">O <span style="color:#FF4000">único</span> que não precisa ser enterrado</span></div>
+      <div class="type-row"><span class="t-meta">H2 · 700 · −1%</span><span class="efizi-h2">Cuide do seu esgoto</span></div>
+      <div class="type-row"><span class="t-meta">H3 · 700</span><span class="efizi-h3">Instalação em um dia</span></div>
+      <div class="type-row"><span class="t-meta">H4 · 600</span><span class="efizi-h4">Rede credenciada de instaladores</span></div>
+      <div class="type-row"><span class="t-meta">Eyebrow · 800 · caps</span><span class="efizi-eyebrow">Frente 1 · esgoto on-site</span></div>
+      <div class="type-row"><span class="t-meta">Body · 400 · 18px</span><span class="efizi-body" style="max-width:520px">Corpo a 18px porque boa parte do público tem 40+. Linha de 1.5, tracking zero, leitura confortável no celular.</span></div>
+      <div class="type-row" style="border:0"><span class="t-meta">Caption · 14px</span><span class="efizi-caption">Detalhe técnico, nota de rodapé, aviso legal.</span></div>
+    </div>
+  </section>
+
+  <!-- 3 FUNDAÇÕES: raio, bordas, espaço, ícones -->
+  <section>
+    <div class="sec-label"><span class="sec-num">3</span><span class="sec-name">Medida, elevação & ícones</span><span class="sec-hint">raio/borda = valores reais do painel do tema</span></div>
+    <div class="panel">
+      <div class="cap">Raio, borda & sombra</div>
+      <div class="token-grid">
+        <div class="tok"><div class="demo" style="border-radius:8px"></div><div class="nm">Botão / card</div><div class="vl">raio 8px</div></div>
+        <div class="tok"><div class="demo" style="border-radius:4px"></div><div class="nm">Input</div><div class="vl">raio 4px</div></div>
+        <div class="tok"><div class="demo" style="border-radius:9999px"></div><div class="nm">Pill / selo</div><div class="vl">9999px</div></div>
+        <div class="tok"><div class="demo" style="border-radius:8px;border:1px solid #BEB9B1;background:#fff"></div><div class="nm">Borda</div><div class="vl">1px sólida</div></div>
+        <div class="tok"><div class="demo" style="border-radius:8px;box-shadow:0 4px 10px rgba(10,10,10,.10);border-color:transparent;background:#fff"></div><div class="nm">Sombra card</div><div class="vl">op .10 / blur 10</div></div>
+      </div>
+
+      <div style="height:1px;background:#EEEAE3;margin:22px 0"></div>
+
+      <div class="cap">Espaçamento — baseline 4px</div>
+      <div style="display:flex;flex-direction:column;gap:9px;max-width:420px">
+        <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:#6B6660"><span style="height:16px;width:4px;background:#FF4000;border-radius:3px"></span>4 · xs</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:#6B6660"><span style="height:16px;width:8px;background:#FF4000;border-radius:3px"></span>8 · sm</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:#6B6660"><span style="height:16px;width:16px;background:#FF4000;border-radius:3px"></span>16 · base</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:#6B6660"><span style="height:16px;width:24px;background:#FF4000;border-radius:3px"></span>24 · gutter da vitrine (tema)</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:#6B6660"><span style="height:16px;width:32px;background:#FF4000;border-radius:3px"></span>32 · xl</div>
+      </div>
+
+      <div style="height:1px;background:#EEEAE3;margin:22px 0"></div>
+
+      <div class="cap">Iconografia</div>
+      <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:10px;max-width:640px">
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v13H4zM4 7l3-4h10l3 4M9 12h6"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7M6 19a2 2 0 100-4 2 2 0 000 4zm11 0a2 2 0 100-4 2 2 0 000 4z"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4-3 6-7 8-4-2-7-4-7-8V6z"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-2 7H7L5 3H2M6 21a1 1 0 100-2 1 1 0 000 2zm11 0a1 1 0 100-2 1 1 0 000 2z"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 6l1 13h8l1-13M10 10v6M14 10v6"/></svg></div>
+        <div style="aspect-ratio:1;border:1px solid #E4E0DA;border-radius:10px;display:grid;place-items:center;color:#0A0A0A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <p class="note"><b>Padrão:</b> outline only (<code>fill:none</code>), traço <b>2px</b>, grid <b>24×24</b>, cantos arredondados, mínimo 16px, <code>currentColor</code>. Mesmo estilo do kit de app (biblioteca sugerida: Lucide) — um traço só de ícone em toda a marca.</p>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTES ============ -->
+
+  <!-- 4 BOTOES -->
+  <section>
+    <div class="sec-label"><span class="sec-num">4</span><span class="sec-name">Botões</span><span class="sec-hint">todas variações + estados</span></div>
+    <div class="panel">
+      <div class="stack-lg">
+        <div><div class="cap">Hierarquia</div><div class="row">
+          <button class="efizi-btn efizi-btn--primary efizi-btn--md">Adicionar ao carrinho</button>
+          <button class="efizi-btn efizi-btn--secondary efizi-btn--md">Comprar agora</button>
+          <button class="efizi-btn efizi-btn--ink efizi-btn--md">Solicite orçamento</button>
+          <button class="efizi-btn efizi-btn--whats efizi-btn--md"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.4 5 5.1-1.3A10 10 0 1012 2zm0 2a8 8 0 11-4.2 14.8l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 0112 4z"/></svg>Vendas para empresas</button>
+        </div></div>
+        <div><div class="cap">Tamanhos + ícone + full-width</div><div class="row">
+          <button class="efizi-btn efizi-btn--primary efizi-btn--lg">Adicionar</button>
+          <button class="efizi-btn efizi-btn--primary efizi-btn--md">Adicionar ao carrinho
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <button class="efizi-btn efizi-btn--primary efizi-btn--sm">Adicionar</button>
+          <button class="efizi-btn efizi-btn--primary efizi-btn--md" disabled>Indisponível</button>
+        </div></div>
+        <div style="max-width:360px"><div class="cap">Full-width (contexto card / PDP)</div>
+          <button class="efizi-btn efizi-btn--primary efizi-btn--md efizi-btn--full">Adicionar ao carrinho</button></div>
+      </div>
+    </div>
+    <div class="panel panel--dark" style="margin-top:16px">
+      <div class="cap" style="color:#fff">Sobre fundo escuro (negativo)</div>
+      <div class="row">
+        <button class="efizi-btn efizi-btn--primary efizi-btn--md">Adicionar ao carrinho</button>
+        <button class="efizi-btn efizi-btn--md" style="background:#fff;color:#0A0A0A;border-color:#fff">Ver produto</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 CAMPOS -->
+  <section>
+    <div class="sec-label"><span class="sec-num">5</span><span class="sec-name">Campos & controles</span><span class="sec-hint">default · foco · erro · disabled</span></div>
+    <div class="panel">
+      <div class="grid3">
+        <div><label class="efizi-label">CEP de entrega</label><input class="efizi-input" placeholder="00000-000"><div class="efizi-field__hint">Calcula frete e disponibilidade na sua região.</div></div>
+        <div><label class="efizi-label">CEP (erro)</label><input class="efizi-input efizi-input--error" value="0000"><div class="efizi-field__error">CEP incompleto.</div></div>
+        <div><label class="efizi-label">CEP (bloqueado)</label><input class="efizi-input" value="13560-000" disabled></div>
+        <div><label class="efizi-label">Capacidade</label><select class="efizi-select"><option>Biodigestor 1300 L</option><option>Biodigestor 2500 L</option></select></div>
+        <div><label class="efizi-label">Mensagem</label><textarea class="efizi-input" placeholder="Conte sobre a propriedade (nº de pessoas, uso)…"></textarea></div>
+        <div class="col">
+          <label class="efizi-label">Quantidade</label>
+          <div class="efizi-stepper"><button>−</button><span class="efizi-stepper__qty">1</span><button>+</button></div>
+          <div style="margin-top:8px" class="col">
+            <label class="efizi-check"><span class="efizi-check__box efizi-check__box--on"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>Instalação inclusa</label>
+            <label class="efizi-radio"><span class="efizi-radio__dot efizi-radio__dot--on"></span>Entrega</label>
+            <label class="efizi-radio"><span class="efizi-radio__dot"></span>Retirar na loja</label>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="subcap">Variant pills — seletor de capacidade</div>
+      <div class="efizi-pills">
+        <span class="efizi-pill">600 L</span>
+        <span class="efizi-pill efizi-pill--selected">1300 L</span>
+        <span class="efizi-pill">2500 L</span>
+        <span class="efizi-pill efizi-pill--soldout">5000 L</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 SELOS + RATING -->
+  <section>
+    <div class="sec-label"><span class="sec-num">6</span><span class="sec-name">Selos & rating</span><span class="sec-hint">um selo por card · cores = schemes reais</span></div>
+    <div class="panel">
+      <div class="row" style="gap:12px">
+        <span class="efizi-selo efizi-selo--oferta">OFERTA</span>
+        <span class="efizi-selo efizi-selo--desc">−20%</span>
+        <span class="efizi-selo efizi-selo--frete">FRETE GRÁTIS</span>
+        <span class="efizi-selo efizi-selo--estoque"><span class="efizi-dot"></span>Em estoque</span>
+        <span class="efizi-selo efizi-selo--esgotado">Esgotado</span>
+      </div>
+      <div class="divider"></div>
+      <div class="efizi-rating">
+        <span class="efizi-rating__stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24" style="color:#E4E0DA"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+        </span>
+        <span class="efizi-rating__count">4,6 · 128 avaliações</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 ALERTAS + TRUST -->
+  <section>
+    <div class="sec-label"><span class="sec-num">7</span><span class="sec-name">Alertas & trust strip</span><span class="sec-hint">mensagens do fluxo de compra</span></div>
+    <div class="grid2">
+      <div class="panel col" style="gap:12px">
+        <div class="efizi-alert efizi-alert--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>Adicionado ao carrinho.</div>
+        <div class="efizi-alert efizi-alert--error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 8v5M12 16h.01"/><circle cx="12" cy="12" r="9"/></svg>Selecione uma capacidade antes de continuar.</div>
+        <div class="efizi-alert efizi-alert--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 11v5M12 8h.01"/><circle cx="12" cy="12" r="9"/></svg>Este produto não atende sua região — solicite orçamento.</div>
+      </div>
+      <div class="panel">
+        <div class="efizi-trust">
+          <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7M6 19a2 2 0 100-4 2 2 0 000 4zm11 0a2 2 0 100-4 2 2 0 000 4z"/></svg></span>Frete grátis<small>regiões selecionadas</small></div>
+          <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 10h18"/></svg></span>Até 10×<small>sem juros</small></div>
+          <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span>5% no PIX<small>desconto à vista</small></div>
+          <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4-3 6-7 8-4-2-7-4-7-8V6z"/></svg></span>Garantia<small>do fabricante</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 PRECO — todos os cenarios -->
+  <section>
+    <div class="sec-label"><span class="sec-num">8</span><span class="sec-name">Bloco de preço — todos os cenários</span><span class="sec-hint">money · de/por · PIX · parcela · orçamento · esgotado</span></div>
+    <div class="panel">
+      <div class="grid3" style="gap:26px">
+        <div class="col"><div class="cap">Simples</div>
+          <div class="efizi-price"><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>329<span class="efizi-price__cents">,90</span></span><span class="efizi-price__parc">até <b>10×</b> de R$ 32,99</span></div></div>
+        <div class="col"><div class="cap">De/por + PIX + parcela</div>
+          <div class="efizi-price"><span class="efizi-price__strike">R$ 1.899,00</span><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>1.499<span class="efizi-price__cents">,00</span></span><span class="efizi-price__pix">5% de desconto no PIX</span><span class="efizi-price__parc">ou até <b>10×</b> de R$ 149,90 sem juros</span></div></div>
+        <div class="col"><div class="cap">A partir de</div>
+          <div class="efizi-price"><span class="efizi-price__from">a partir de</span><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>2.290<span class="efizi-price__cents">,00</span></span><span class="efizi-price__parc">até <b>10×</b> de R$ 229,00</span></div></div>
+        <div class="col"><div class="cap">Esgotado</div>
+          <div class="efizi-price efizi-price--unavailable"><span class="efizi-price__main">Esgotado</span></div>
+          <span class="efizi-selo efizi-selo--esgotado" style="align-self:flex-start">Esgotado</span></div>
+        <div class="col"><div class="cap">Indisponível p/ região → orçamento</div>
+          <div class="efizi-quote"><span class="efizi-quote__label">Indisponível para sua região</span><span class="efizi-quote__hint">Atendemos sob projeto. Fale com um especialista.</span><button class="efizi-btn efizi-btn--ink efizi-btn--sm" style="align-self:flex-start">Solicite orçamento</button></div></div>
+        <div class="col"><div class="cap">Destaque (card_price_highlight)</div>
+          <div class="efizi-price" style="background:#FFF7D6;border-radius:8px;padding:12px 14px;align-self:flex-start"><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>899<span class="efizi-price__cents">,00</span></span><span class="efizi-price__pix">5% no PIX</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPOSICOES ============ -->
+
+  <!-- 9 CARD GRID -->
+  <section>
+    <div class="sec-label"><span class="sec-num">9</span><span class="sec-name">Card de produto — vitrine</span><span class="sec-hint">clicável → PDP</span></div>
+    <div class="grid3">
+
+      <a class="efizi-card" href="#" style="text-decoration:none">
+        <div class="efizi-card__media"><div class="efizi-card__selos"><span class="efizi-selo efizi-selo--oferta">OFERTA</span></div>
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5" style="opacity:.2"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <div class="efizi-card__body"><span class="efizi-card__frente">Frente 1 · Esgoto on-site</span>
+          <h3 class="efizi-card__title">Biodigestor Efizi 1300 L com filtro anaeróbio</h3>
+          <div class="efizi-card__foot"><div class="efizi-price"><span class="efizi-price__strike">R$ 1.899,00</span><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>1.499<span class="efizi-price__cents">,00</span></span><span class="efizi-price__pix">5% no PIX</span><span class="efizi-price__parc">até 10× de R$ 149,90</span></div>
+          <span class="efizi-card__link">Ver produto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </div>
+      </a>
+
+      <a class="efizi-card" href="#" style="text-decoration:none">
+        <div class="efizi-card__media"><div class="efizi-card__selos"><span class="efizi-selo efizi-selo--frete">FRETE GRÁTIS</span></div>
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5" style="opacity:.2"><path d="M4 7h16v13H4zM4 7l3-4h10l3 4M9 12h6"/></svg></div>
+        <div class="efizi-card__body"><span class="efizi-card__frente">Frente 2 · Água para consumo</span>
+          <h3 class="efizi-card__title">Filtro de osmose reversa para poço artesiano</h3>
+          <div class="efizi-card__foot"><div class="efizi-price"><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>899<span class="efizi-price__cents">,00</span></span><span class="efizi-price__pix">5% no PIX</span><span class="efizi-price__parc">até 10× de R$ 89,90</span></div>
+          <span class="efizi-card__link">Ver produto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </div>
+      </a>
+
+      <a class="efizi-card" href="#" style="text-decoration:none">
+        <div class="efizi-card__media"><div class="efizi-card__selos"><span class="efizi-selo efizi-selo--esgotado">Esgotado</span></div>
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5" style="opacity:.2"><path d="M12 3c5 4 7 7 7 10a7 7 0 01-14 0c0-3 2-6 7-10z"/></svg></div>
+        <div class="efizi-card__body"><span class="efizi-card__frente">Frente 3 · Captação</span>
+          <h3 class="efizi-card__title">Cisterna 5000 L + kit de primeira água</h3>
+          <div class="efizi-card__foot"><div class="efizi-price"><span class="efizi-price__from">a partir de</span><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>2.290<span class="efizi-price__cents">,00</span></span><span class="efizi-price__parc">até 10× de R$ 229,00</span></div>
+          <span class="efizi-card__link">Solicite orçamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="margin-top:20px" class="subcap">Card horizontal (relacionados / lista)</div>
+    <div class="grid2">
+      <a class="efizi-card efizi-card--h" href="#" style="text-decoration:none">
+        <div class="efizi-card__media"><div class="efizi-card__selos"><span class="efizi-selo efizi-selo--desc">−15%</span></div>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5" style="opacity:.2"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <div class="efizi-card__body"><span class="efizi-card__frente">Frente 1 · Complementar</span>
+          <h3 class="efizi-card__title">Caixa de gordura 40 L</h3>
+          <div class="efizi-card__foot"><div class="efizi-price"><span class="efizi-price__strike">R$ 219,00</span><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>186<span class="efizi-price__cents">,15</span></span><span class="efizi-price__pix">5% no PIX</span></div></div>
+        </div>
+      </a>
+      <a class="efizi-card efizi-card--h" href="#" style="text-decoration:none">
+        <div class="efizi-card__media">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5" style="opacity:.2"><path d="M4 7h16v13H4z"/></svg></div>
+        <div class="efizi-card__body"><span class="efizi-card__frente">Frente 2 · Recorrência</span>
+          <h3 class="efizi-card__title">Refil filtrante (par)</h3>
+          <div class="efizi-card__foot"><div class="efizi-price"><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>149<span class="efizi-price__cents">,00</span></span><span class="efizi-price__parc">assinar e economizar</span></div></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 10 MINI-PDP -->
+  <section>
+    <div class="sec-label"><span class="sec-num">10</span><span class="sec-name">Página de produto (composição)</span><span class="sec-hint">o sistema inteiro junto</span></div>
+    <div class="panel">
+      <div class="pdp">
+        <div class="efizi-gallery">
+          <div class="efizi-gallery__main"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+          <div class="efizi-gallery__thumbs">
+            <div class="efizi-gallery__thumb efizi-gallery__thumb--active"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+            <div class="efizi-gallery__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5"><path d="M4 7h16v13H4z"/></svg></div>
+            <div class="efizi-gallery__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div><span class="efizi-eyebrow">Frente 1 · esgoto on-site</span>
+            <h2 class="efizi-h1" style="margin:6px 0 0">Biodigestor Efizi 1300 L</h2></div>
+          <div class="row" style="gap:12px">
+            <span class="efizi-selo efizi-selo--oferta">OFERTA</span>
+            <div class="efizi-rating"><span class="efizi-rating__stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" style="color:#E4E0DA"><path d="M12 2l3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span>
+              <span class="efizi-rating__count">4,6 · 128</span></div>
+          </div>
+          <div class="efizi-price"><span class="efizi-price__strike">R$ 1.899,00</span><span class="efizi-price__main"><span class="efizi-price__cur">R$</span>1.499<span class="efizi-price__cents">,00</span></span><span class="efizi-price__pix">5% de desconto no PIX</span><span class="efizi-price__parc">ou até <b>10×</b> de R$ 149,90 sem juros</span></div>
+          <div><div class="efizi-label">Capacidade</div>
+            <div class="efizi-pills"><span class="efizi-pill">600 L</span><span class="efizi-pill efizi-pill--selected">1300 L</span><span class="efizi-pill">2500 L</span><span class="efizi-pill efizi-pill--soldout">5000 L</span></div></div>
+          <div class="qtyrow">
+            <div class="col"><label class="efizi-label">Qtd.</label><div class="efizi-stepper"><button>−</button><span class="efizi-stepper__qty">1</span><button>+</button></div></div>
+            <button class="efizi-btn efizi-btn--primary efizi-btn--md" style="flex:1;min-width:220px">Adicionar ao carrinho
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <button class="efizi-btn efizi-btn--whats efizi-btn--md efizi-btn--full"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.4 5 5.1-1.3A10 10 0 1012 2z"/></svg>Comprar pelo WhatsApp (empresas)</button>
+          <div class="divider"></div>
+          <div class="efizi-trust">
+            <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7M6 19a2 2 0 100-4 2 2 0 000 4zm11 0a2 2 0 100-4 2 2 0 000 4z"/></svg></span>Frete grátis</div>
+            <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span>5% no PIX</div>
+            <div class="efizi-trust__item"><span class="efizi-trust__ic"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 3l7 3v6c0 4-3 6-7 8-4-2-7-4-7-8V6z"/></svg></span>Garantia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 CARRINHO -->
+  <section>
+    <div class="sec-label"><span class="sec-num">11</span><span class="sec-name">Carrinho (drawer)</span><span class="sec-hint">linha de item + resumo</span></div>
+    <div class="drawer">
+      <h4>Seu carrinho</h4>
+      <div class="efizi-line">
+        <div class="efizi-line__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5"><path d="M12 2s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <div class="efizi-line__info"><p class="efizi-line__name">Biodigestor Efizi 1300 L</p><div class="efizi-line__meta">Capacidade: 1300 L · Instalação inclusa</div>
+          <div class="efizi-stepper" style="margin-top:8px;transform:scale(.85);transform-origin:left"><button>−</button><span class="efizi-stepper__qty">1</span><button>+</button></div></div>
+        <div class="efizi-line__price">R$ 1.499,00</div>
+      </div>
+      <div class="efizi-line">
+        <div class="efizi-line__thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.5"><path d="M4 7h16v13H4z"/></svg></div>
+        <div class="efizi-line__info"><p class="efizi-line__name">Caixa de gordura 40 L</p><div class="efizi-line__meta">Complementar</div></div>
+        <div class="efizi-line__price">R$ 186,15</div>
+      </div>
+      <div class="row" style="justify-content:space-between;margin:16px 0 6px">
+        <span class="efizi-body" style="font-weight:700">Subtotal</span>
+        <span class="efizi-price__main" style="font-size:22px"><span class="efizi-price__cur">R$</span>1.685<span class="efizi-price__cents">,15</span></span>
+      </div>
+      <div class="efizi-price__pix" style="margin-bottom:14px">R$ 1.600,89 no PIX (5% off)</div>
+      <button class="efizi-btn efizi-btn--primary efizi-btn--md efizi-btn--full">Finalizar compra</button>
+    </div>
+  </section>
+
+  <p class="note">Tudo nesta folha usa as classes do <code>efizi-ds.css</code>. Ícones e imagens são placeholders (SVG). Nada aqui está no tema ainda — é o palco de revisão antes de subir.</p>
+
+</div>
+</body>
+</html>
