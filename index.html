@@ -3,357 +3,86 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Efizi · Central da Marca</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Central da Marca Efizi · Acesso</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="design-system/efizi-tokens.css">
 <style>
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:var(--efizi-font-sans);color:var(--efizi-ink);
-    background:var(--efizi-cream);-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 40px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Manrope',sans-serif;color:#F5F3EF;background:#0A0A0A;-webkit-font-smoothing:antialiased;overflow:hidden}
+  .stage{position:relative;width:100vw;height:100vh;min-height:640px;overflow:hidden}
+  .bg{position:absolute;inset:0;background:url('v08-nano-web.jpg') center/cover no-repeat}
+  /* vinheta geral + escurece esquerda (pro painel) e topo (pra logo) sem cobrir o notebook à direita */
+  .scrim{position:absolute;inset:0;background:
+    linear-gradient(90deg, rgba(10,10,10,.82) 0%, rgba(10,10,10,.55) 24%, rgba(10,10,10,0) 48%, rgba(10,10,10,0) 78%, rgba(10,10,10,.25) 100%),
+    linear-gradient(180deg, rgba(10,10,10,.5) 0%, rgba(10,10,10,0) 24%, rgba(10,10,10,0) 66%, rgba(10,10,10,.42) 100%)}
 
-  /* ---------- HERO ---------- */
-  .hero{background:var(--efizi-ink);color:var(--efizi-cream);padding:56px 0 52px;position:relative;overflow:hidden}
-  .hero::after{content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;
-    background:radial-gradient(circle,rgba(255,64,0,.30),transparent 68%);pointer-events:none}
-  .hero .wrap{position:relative;z-index:1}
-  .hero .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:56px}
-  .hero .topbar img{height:30px}
-  .hero .topbar .ver{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55)}
-  .hero .topbar .topright{display:flex;align-items:center;gap:18px}
-  .hero .topbar .logout{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:rgba(245,243,239,.75);
-    text-decoration:none;border:1px solid rgba(245,243,239,.22);border-radius:99px;padding:7px 14px;transition:background .15s,color .15s,border-color .15s}
-  .hero .topbar .logout:hover{background:rgba(245,243,239,.1);color:#fff;border-color:rgba(245,243,239,.4)}
-  .hero .topbar .logout svg{width:15px;height:15px}
-  @media(max-width:560px){.hero .topbar .ver{display:none}}
-  .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--efizi-orange);margin:0 0 14px}
-  .hero h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.0;margin:0 0 18px;max-width:820px}
-  .hero h1 em{font-style:normal;color:var(--efizi-orange)}
-  .hero p{font-size:18px;line-height:1.55;max-width:600px;margin:0;color:#CFC9C0}
-  .palette{display:flex;gap:5px;margin-top:38px;max-width:600px}
-  .palette span{height:44px;flex:1;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(245,243,239,.16)}
-  .livenote{margin-top:30px;display:inline-flex;align-items:flex-start;gap:11px;padding:12px 18px;border-radius:14px;
-    background:rgba(245,243,239,.07);border:1px solid rgba(245,243,239,.14);font-size:13.5px;line-height:1.45;color:#CFC9C0;max-width:640px}
-  .livenote .dot{width:9px;height:9px;margin-top:4px;border-radius:99px;background:var(--efizi-success);flex-shrink:0;animation:livepulse 2s infinite}
-  .livenote strong{color:#fff;font-weight:700}
-  @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(30,135,75,.55)}70%{box-shadow:0 0 0 8px rgba(30,135,75,0)}100%{box-shadow:0 0 0 0 rgba(30,135,75,0)}}
+  .brand{position:absolute;top:clamp(30px,5vh,50px);left:clamp(34px,6vw,68px);display:flex;align-items:center;gap:13px;z-index:3;
+    text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  .brand img{height:32px}
+  .brand .div{width:1px;height:20px;background:rgba(245,243,239,.35)}
+  .brand .t{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,243,239,.82)}
 
-  /* ---------- NAV STICKY ---------- */
-  .nav{position:sticky;top:0;z-index:20;background:rgba(245,243,239,.86);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--efizi-gray-200)}
-  .nav .wrap{display:flex;gap:6px;padding-top:12px;padding-bottom:12px;overflow-x:auto}
-  .nav a{font-size:13.5px;font-weight:700;color:var(--efizi-gray-600);padding:7px 14px;border-radius:99px;white-space:nowrap}
-  .nav a:hover{background:var(--efizi-white);color:var(--efizi-ink)}
+  .panel{position:absolute;top:50%;left:clamp(28px,5vw,72px);transform:translateY(-50%);z-index:3;
+    width:min(452px,86vw);padding:38px 38px 32px;border-radius:26px;
+    background:rgba(12,11,10,.60);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(245,243,239,.14);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#FF4000;margin-bottom:18px;
+    display:inline-flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"";width:22px;height:2px;background:#FF4000;display:inline-block}
+  h1{font-size:clamp(32px,3.4vw,44px);font-weight:800;line-height:1.02;letter-spacing:-.03em;margin-bottom:16px;overflow-wrap:break-word}
+  .sub{overflow-wrap:break-word}
+  h1 em{font-style:normal;color:#FF4000}
+  .sub{font-size:15px;line-height:1.55;color:#CFC9C0;margin-bottom:22px}
+  .inside{display:flex;flex-wrap:wrap;gap:7px 16px;margin-bottom:30px}
+  .inside span{font-size:13px;font-weight:600;color:#E4E0DA;display:inline-flex;align-items:center;gap:7px}
+  .inside span::before{content:"";width:6px;height:6px;border-radius:99px;background:#FFD500;flex-shrink:0}
+  .btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;background:#fff;color:#0A0A0A;font-size:15.5px;font-weight:800;
+    padding:15px 24px;border-radius:14px;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 10px 34px rgba(0,0,0,.4)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(0,0,0,.5)}
+  .btn svg{width:19px;height:19px}
+  .foot{margin-top:18px;font-size:12px;color:rgba(245,243,239,.6);display:flex;align-items:center;gap:8px;justify-content:center}
+  .foot .dot{width:7px;height:7px;border-radius:99px;background:#1E874B}
 
-  main{padding:14px 0 40px}
-  section{padding-top:46px}
-  .sec-head{margin-bottom:22px}
-  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--efizi-orange);margin:0 0 6px}
-  .sec-head h2{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0}
-  .sec-head p{font-size:15px;color:var(--efizi-gray-600);margin:6px 0 0;max-width:640px;line-height:1.5}
-
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  @media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:0 24px}}
-
-  .card{position:relative;background:var(--efizi-white);border:1px solid var(--efizi-gray-200);border-radius:18px;overflow:hidden;
-    display:flex;flex-direction:column;box-shadow:var(--efizi-shadow-sm);
-    transition:box-shadow .2s ease,transform .2s ease}
-  .card .stretch{position:absolute;inset:0;z-index:1}
-  .card .actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .card .dl{position:relative;z-index:2;font-size:12.5px;font-weight:800;color:var(--efizi-orange);display:inline-flex;
-    align-items:center;gap:6px;border:1.5px solid var(--efizi-orange);padding:6px 13px;border-radius:99px;transition:background .15s,color .15s}
-  .card .dl:hover{background:var(--efizi-orange);color:#fff}
-  .card:hover{box-shadow:var(--efizi-shadow-xl);transform:translateY(-4px)}
-  .card .thumb{height:158px;overflow:hidden;background:var(--efizi-gray-100);border-bottom:1px solid var(--efizi-gray-200);
-    display:grid;place-items:center;position:relative}
-  .card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
-  /* tiles gerados por css (sem imagem) */
-  .tile{width:100%;height:100%;display:grid;place-items:center;color:#fff;position:relative}
-  .tile .big{font-size:52px;font-weight:800;letter-spacing:-.03em}
-  .tile.ink{background:var(--efizi-ink)}
-  .tile.ink .big{color:var(--efizi-cream)}
-  .tile.orange{background:var(--efizi-orange)}
-  .tile.grad{background:linear-gradient(135deg,#FF4000,#B82D00)}
-
-  .card .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
-  .card .tag{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--efizi-orange);margin:0 0 8px}
-  .card h3{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:0 0 6px}
-  .card .desc{font-size:14px;line-height:1.5;color:var(--efizi-gray-600);margin:0 0 18px;flex:1}
-  .card .go{font-size:14px;font-weight:800;color:var(--efizi-ink);display:inline-flex;align-items:center;gap:7px}
-  .card .go svg{width:16px;height:16px;transition:transform .2s}
-  .card:hover .go svg{transform:translateX(4px)}
-  .card .go.ext{color:var(--efizi-gray-600)}
-  .badge-ext{position:absolute;top:12px;right:12px;background:rgba(10,10,10,.7);color:#fff;font-size:10px;
-    font-weight:800;letter-spacing:.06em;padding:5px 9px;border-radius:99px}
-
-  /* ---------- RECURSOS EXTERNOS (linha slim) ---------- */
-  .links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:560px){.links{grid-template-columns:1fr}}
-  .link{background:var(--efizi-white);border:1px solid var(--efizi-gray-200);border-radius:14px;padding:18px 20px;
-    display:flex;align-items:center;justify-content:space-between;gap:12px;transition:border-color .2s,box-shadow .2s}
-  .link:hover{border-color:var(--efizi-orange);box-shadow:var(--efizi-shadow-md)}
-  .link .l-t{font-size:15px;font-weight:800}
-  .link .l-s{font-size:12.5px;color:var(--efizi-gray-500);margin-top:2px}
-  .link svg{width:18px;height:18px;color:var(--efizi-gray-400);flex-shrink:0}
-
-  footer{border-top:1px solid var(--efizi-gray-200);margin-top:56px;padding:30px 0 48px}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
-  footer .f-note{font-size:13px;color:var(--efizi-gray-500);line-height:1.5}
-  footer img{height:20px;opacity:.5}
-  .card .upd{margin-top:13px;padding-top:11px;border-top:1px solid var(--efizi-gray-100);font-size:11.5px;color:var(--efizi-gray-500);display:flex;align-items:center;gap:6px}
-  .card .upd b{font-weight:700;color:var(--efizi-gray-700)}
-  .card .upd::before{content:"";width:6px;height:6px;border-radius:99px;background:var(--efizi-success);flex-shrink:0}
+  @media(max-width:760px){
+    body{overflow:auto}
+    .stage{height:auto;min-height:100vh;display:flex;flex-direction:column}
+    .bg{height:46vh;position:relative;inset:auto}
+    .scrim{height:46vh;background:linear-gradient(180deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,0) 40%,rgba(10,10,10,.7) 100%)}
+    .panel{position:relative;top:auto;right:auto;transform:none;width:100%;border-radius:0;min-height:54vh;padding:34px 24px 30px;
+      display:flex;flex-direction:column;justify-content:center;backdrop-filter:none;background:#0A0A0A;border:0;box-shadow:none}
+    h1{font-size:30px}
+    .btn{justify-content:flex-start}
+  }
 </style>
 </head>
 <body>
+<div class="stage">
+  <div class="bg"></div>
+  <div class="scrim"></div>
 
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-  <div class="wrap">
-    <div class="topbar">
-      <img src="design-system/logo/efizi-logo-white.svg" alt="Efizi">
-      <div class="topright">
-        <span class="ver">Central da Marca · 2026</span>
-        <a class="logout" href="https://marca.efizi.app/cdn-cgi/access/logout" title="Encerrar a sessão do Access">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          Sair
-        </a>
-      </div>
-    </div>
-    <p class="kicker">Marketing · Efizi</p>
-    <h1>Tudo da marca Efizi, <em>num lugar só.</em></h1>
-    <p>O ponto de partida do time: manual de marca, logos, design system, templates e peças. Sempre a versão oficial, sempre atualizada.</p>
-    <div class="palette">
-      <span style="background:#FF4000"></span>
-      <span style="background:#FFD500"></span>
-      <span style="background:#0A0A0A"></span>
-      <span style="background:#F5F3EF"></span>
-      <span style="background:#1E874B"></span>
-    </div>
-    <div class="livenote"><span class="dot"></span><span>Documento vivo, sempre atualizado aqui. Não guarde cópias no PC, volte sempre nesta página pela versão mais recente. <strong>Última atualização: 07/07/2026 às 08h46</strong></span></div>
+  <div class="brand">
+    <img src="efizi-logo-white.svg" alt="Efizi">
+    <span class="div"></span>
+    <span class="t">Central da Marca</span>
   </div>
-</header>
 
-<!-- ===================== NAV ===================== -->
-<nav class="nav">
-  <div class="wrap">
-    <a href="#fundamentos">Fundamentos</a>
-    <a href="#design-system">Design System</a>
-    <a href="#producao">Produção</a>
-    <a href="#externos">Recursos externos</a>
+  <div class="panel">
+    <p class="eyebrow">Acesso do time · Efizi</p>
+    <h1>A marca Efizi, inteira, <em>num lugar só.</em></h1>
+    <p class="sub">Tudo que o marketing precisa pra criar na cara da marca, sempre na versão oficial e atualizada.</p>
+    <div class="inside">
+      <span>Manual de marca</span>
+      <span>Design system</span>
+      <span>Logos</span>
+      <span>Peças &amp; carrosséis</span>
+      <span>Templates</span>
+      <span>E-mails</span>
+    </div>
+    <a class="btn" href="https://marca.efizi.app/app/">
+      <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.2 13.2 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.1 5.3-4.6 7l7.1 5.5c4.2-3.9 6.6-9.6 6.6-16.5z"/><path fill="#FBBC05" d="M10.4 28.7c-.5-1.4-.8-2.9-.8-4.7s.3-3.3.8-4.7l-7.8-6.1C1 16.4 0 20 0 24s1 7.6 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.6-2.1 15.4-5.6l-7.1-5.5c-2 1.4-4.6 2.2-8.3 2.2-6.4 0-11.8-3.7-13.6-9l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+      Entrar com Google
+    </a>
+    <div class="foot"><span class="dot"></span> Acesso restrito · contas @efizi.com.br</div>
   </div>
-</nav>
-
-<main>
-  <!-- ===================== FUNDAMENTOS ===================== -->
-  <section id="fundamentos">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">01 · Fundamentos</p>
-        <h2>A base da marca</h2>
-        <p>Quem somos, como falamos e como nos apresentamos. Consulte antes de criar qualquer coisa.</p>
-      </div>
-      <div class="grid">
-
-        <a class="card" href="brandbook/index-v4.html">
-          <div class="thumb"><img src="hub-assets/thumb-brandbook.png" alt="Manual de Marca"></div>
-          <div class="body">
-            <p class="tag">Brandbook · 43 slides</p>
-            <h3>Manual de Marca</h3>
-            <p class="desc">Posicionamento, valores, tom de voz, cores, tipografia e regras de uso das imagens e peças.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>06/07/2026 às 11h37</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="https://app.notion.com/p/3909ffe29af1817e9f48faf785af6fdb" target="_blank" rel="noopener">
-          <div class="thumb"><div class="tile grad"><span class="big">DNA</span></div><span class="badge-ext">NOTION ↗</span></div>
-          <div class="body">
-            <p class="tag">Estratégia criativa</p>
-            <h3>DNA Criativo</h3>
-            <p class="desc">O cérebro da marca: estratégia, frentes de produto, público, motor de imagem e anti-padrões.</p>
-            <span class="go ext">Abrir no Notion <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>30/06/2026 às 19h25</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="design-system/logo/versoes-logo.html">
-          <div class="thumb"><img src="hub-assets/thumb-logos.png" alt="Logos e símbolo"></div>
-          <div class="body">
-            <p class="tag">Identidade</p>
-            <h3>Logos &amp; Símbolo</h3>
-            <p class="desc">Todas as versões do logotipo e do símbolo, em que fundo usar cada uma, com download em SVG.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>02/07/2026 às 10h47</b></div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== DESIGN SYSTEM ===================== -->
-  <section id="design-system">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">02 · Design System</p>
-        <h2>Componentes e tokens</h2>
-        <p>Os blocos de construção para tela: cores semânticas, tipografia e componentes prontos para loja e app.</p>
-      </div>
-      <div class="grid">
-
-        <a class="card" href="design-system/app-components.html">
-          <div class="thumb"><img src="hub-assets/thumb-app.png" alt="Kit de app"></div>
-          <div class="body">
-            <p class="tag">React / Next</p>
-            <h3>Kit de App / Dashboard</h3>
-            <p class="desc">Botões, campos, tabelas, KPIs, navegação e mais. Modo claro e escuro, framework-agnóstico.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>01/07/2026 às 08h29</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="shopify/components.html">
-          <div class="thumb"><img src="hub-assets/thumb-shopify.png" alt="Componentes da loja"></div>
-          <div class="body">
-            <p class="tag">Shopify · Horizon</p>
-            <h3>Componentes da Loja</h3>
-            <p class="desc">Botões, cards de produto, preço e PIX, badges e selos, no padrão da loja Efizi.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>01/07/2026 às 08h34</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="design-system/app-components.html">
-          <div class="thumb"><img src="hub-assets/thumb-tokens.png" alt="Tokens"></div>
-          <div class="body">
-            <p class="tag">CSS · TS · JSON</p>
-            <h3>Tokens &amp; Fundações</h3>
-            <p class="desc">A fonte única de cores, espaçamento e tipografia. Um arquivo, todas as superfícies.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>01/07/2026 às 07h59</b></div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PRODUÇÃO ===================== -->
-  <section id="producao">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">03 · Produção</p>
-        <h2>Para criar no dia a dia</h2>
-        <p>Moldes e referências para o time montar deck, post e campanha sem sair da marca.</p>
-      </div>
-      <div class="grid">
-
-        <div class="card">
-          <a class="stretch" href="apresentacao-template/index.html" aria-label="Abrir moldes de apresentação"></a>
-          <div class="thumb"><img src="hub-assets/thumb-template.png" alt="Templates de apresentação"></div>
-          <div class="body">
-            <p class="tag">Decks do time</p>
-            <h3>Templates de Apresentação</h3>
-            <p class="desc">Moldes de slide na marca + banco de fotos. Também em PowerPoint editável (Manrope nativo, abre no Google Slides).</p>
-            <div class="actions">
-              <span class="go">Abrir moldes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-              <a class="dl" href="apresentacao-template/Efizi-Template-Apresentacao.pptx" download><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar .pptx</a>
-              <a class="dl" href="https://docs.google.com/presentation/d/13WxOszIDjr1tSgtpOVtYA3NXgkxQyf2qesesXkqOGRE/copy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M8 3h6l4 4v14H8zM14 3v4h4M10.5 13.5l1.5 1.5 3-3.5"/></svg> Google Slides</a>
-            </div>
-            <div class="upd">Atualizado <b>03/07/2026 às 12h05</b></div>
-          </div>
-        </div>
-
-        <a class="card" href="pecas/">
-          <div class="thumb"><img src="hub-assets/thumb-pecas.png" alt="Peças e carrosséis"></div>
-          <div class="body">
-            <p class="tag">Feed · Stories</p>
-            <h3>Peças &amp; Carrosséis</h3>
-            <p class="desc">Exemplos prontos de feed, story e carrossel, no motor de peças da Efizi (Manrope real).</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>06/07/2026 às 11h05</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="playbook/">
-          <div class="thumb"><div class="tile ink"><span class="big">Play</span></div></div>
-          <div class="body">
-            <p class="tag">Fotografia · Formatos</p>
-            <h3>Playbook</h3>
-            <p class="desc">Direção de fotografia e formatos sociais: como enquadrar, que lente e que medida por canal.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          
-            <div class="upd">Atualizado <b>30/06/2026 às 14h41</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="shopify/notifications/">
-          <div class="thumb"><img src="hub-assets/thumb-emails.png" alt="E-mails transacionais"></div>
-          <div class="body">
-            <p class="tag">Shopify · Notificações</p>
-            <h3>E-mails transacionais</h3>
-            <p class="desc">O kit de 12 notificações da loja na marca: pedido confirmado, enviado, entregue, reembolso, senha e mais.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <div class="upd">Atualizado <b>06/07/2026 às 21h22</b></div>
-          </div>
-        </a>
-
-        <a class="card" href="email-html/">
-          <div class="thumb"><img src="hub-assets/thumb-email-mkt.png" alt="E-mail marketing"></div>
-          <div class="body">
-            <p class="tag">Campanhas · Ciclo de vida</p>
-            <h3>E-mail marketing</h3>
-            <p class="desc">Exemplos de campanha e automação na marca: Biodigestor (3 looks), boas-vindas e voltou ao estoque.</p>
-            <span class="go">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <div class="upd">Atualizado <b>06/07/2026 às 21h22</b></div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== EXTERNOS ===================== -->
-  <section id="externos">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">04 · Recursos externos</p>
-        <h2>Fora daqui</h2>
-        <p>As fontes vivas que alimentam esse hub.</p>
-      </div>
-      <div class="links">
-        <a class="link" href="https://app.notion.com/p/3909ffe29af1817e9f48faf785af6fdb" target="_blank" rel="noopener">
-          <div><div class="l-t">DNA no Notion</div><div class="l-s">Estratégia criativa completa</div></div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-        </a>
-        <a class="link" href="https://efizi.com.br" target="_blank" rel="noopener">
-          <div><div class="l-t">Site Efizi</div><div class="l-s">A marca no ar</div></div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="f-note">Central da Marca Efizi · a porta de entrada do time de marketing.<br>Mantida em <code>efizi-manual-de-marca</code>. Última revisão: jul/2026.</div>
-    <img src="design-system/logo/efizi-logo-ink.svg" alt="Efizi">
-  </div>
-</footer>
-
+</div>
 </body>
 </html>
