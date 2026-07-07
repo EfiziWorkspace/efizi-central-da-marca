@@ -24,6 +24,12 @@
   .hero .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:56px}
   .hero .topbar img{height:30px}
   .hero .topbar .ver{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.55)}
+  .hero .topbar .topright{display:flex;align-items:center;gap:18px}
+  .hero .topbar .logout{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:rgba(245,243,239,.75);
+    text-decoration:none;border:1px solid rgba(245,243,239,.22);border-radius:99px;padding:7px 14px;transition:background .15s,color .15s,border-color .15s}
+  .hero .topbar .logout:hover{background:rgba(245,243,239,.1);color:#fff;border-color:rgba(245,243,239,.4)}
+  .hero .topbar .logout svg{width:15px;height:15px}
+  @media(max-width:560px){.hero .topbar .ver{display:none}}
   .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--efizi-orange);margin:0 0 14px}
   .hero h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1.0;margin:0 0 18px;max-width:820px}
   .hero h1 em{font-style:normal;color:var(--efizi-orange)}
@@ -111,7 +117,13 @@
   <div class="wrap">
     <div class="topbar">
       <img src="design-system/logo/efizi-logo-white.svg" alt="Efizi">
-      <span class="ver">Central da Marca · 2026</span>
+      <div class="topright">
+        <span class="ver">Central da Marca · 2026</span>
+        <a class="logout" href="https://marca.efizi.app/cdn-cgi/access/logout" title="Encerrar a sessão do Access">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sair
+        </a>
+      </div>
     </div>
     <p class="kicker">Marketing · Efizi</p>
     <h1>Tudo da marca Efizi, <em>num lugar só.</em></h1>
@@ -123,7 +135,7 @@
       <span style="background:#F5F3EF"></span>
       <span style="background:#1E874B"></span>
     </div>
-    <div class="livenote"><span class="dot"></span><span>Documento vivo, sempre atualizado aqui. Não guarde cópias no PC, volte sempre nesta página pela versão mais recente. <strong>Última atualização: 07/07/2026 às 08h18</strong></span></div>
+    <div class="livenote"><span class="dot"></span><span>Documento vivo, sempre atualizado aqui. Não guarde cópias no PC, volte sempre nesta página pela versão mais recente. <strong>Última atualização: 07/07/2026 às 08h37</strong></span></div>
   </div>
 </header>
 

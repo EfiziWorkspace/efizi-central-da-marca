@@ -1,0 +1,138 @@
+<!--
+  Efizi · ALERTA INTERNO (BI) — Guarda de Preço por Região
+  Disparado pelo n8n quando um pedido tem sub-cobrança (preço abaixo do regional).
+  Troque os tokens {{ ... }} pelas expressões do n8n (ex.: {{ $json.order_number }}).
+  Tokens: order_number, status_label, preco_esperado, preco_cobrado, diferenca,
+          cep, estado, regiao_id, pagamento, reembolso, admin_url
+-->
+<!doctype html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Guarda de Preço · Alerta</title>
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<![endif]-->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  body{margin:0;padding:0;width:100%!important;background:#F5F3EF;}
+  table{border-collapse:collapse;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{text-decoration:none;}
+  .mono{font-family:'SF Mono','Roboto Mono',Menlo,Consolas,monospace;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .card-px{padding-left:22px!important;padding-right:22px!important;}
+    .h1{font-size:30px!important;line-height:1.08!important;}
+    .stackcol{display:block!important;width:100%!important;padding:0 0 14px 0!important;}
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#F5F3EF;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;font-size:1px;line-height:1px;color:#F5F3EF;">Sub-cobrança no pedido {{ order_number }}. Diferença de {{ diferenca }}. Cancelado e reembolsado.&#8203;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;">
+<tr><td align="center" style="padding:0;">
+
+<table role="presentation" class="container" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:560px;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- HEADER -->
+  <tr><td align="center" style="padding:28px 32px 22px 32px;">
+    <img src="https://cdn.shopify.com/s/files/1/0593/9894/6914/files/efizi-logo-orange.png?v=1783116148" width="84" alt="Efizi" style="width:84px;height:auto;margin:0 auto;">
+  </td></tr>
+
+  <!-- CARD PRINCIPAL -->
+  <tr><td style="padding:0 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:18px;overflow:hidden;">
+
+      <!-- Faixa superior -->
+      <tr><td class="card-px" style="padding:32px 36px 0 36px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td valign="middle" style="font-size:12px;font-weight:800;letter-spacing:2px;color:#FF4000;text-transform:uppercase;">&#9888;&nbsp; Guarda de Preço · Alerta</td>
+          <td valign="middle" align="right">
+            <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+              <td style="background:#E6F4EC;border-radius:9999px;padding:6px 12px;font-size:11px;font-weight:800;letter-spacing:.5px;color:#1E874B;text-transform:uppercase;white-space:nowrap;">&#10003; {{ status_label }}</td>
+            </tr></table>
+          </td>
+        </tr></table>
+        <h1 class="h1" style="margin:16px 0 0 0;font-size:34px;line-height:1.08;font-weight:800;letter-spacing:-1px;color:#0A0A0A;">Sub-cobrança no pedido <span style="color:#FF4000;">#{{ order_number }}</span>.</h1>
+        <p style="margin:14px 0 0 0;font-size:16px;line-height:1.55;color:#6B6660;font-weight:500;">O valor cobrado ficou <strong style="color:#0A0A0A;">abaixo do preço regional</strong> esperado. O sistema cancelou e reembolsou o pedido automaticamente.</p>
+      </td></tr>
+
+      <!-- COMPARATIVO DE PREÇO -->
+      <tr><td class="card-px" style="padding:24px 36px 0 36px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0A;border-radius:14px;"><tr>
+          <td style="padding:22px 28px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:6px 0;font-size:12px;font-weight:700;letter-spacing:.5px;color:#8C8880;text-transform:uppercase;">Preço esperado</td>
+                <td align="right" class="mono" style="padding:6px 0;font-size:17px;font-weight:700;color:#B8B4AE;text-decoration:line-through;white-space:nowrap;">{{ preco_esperado }}</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0;font-size:12px;font-weight:700;letter-spacing:.5px;color:#8C8880;text-transform:uppercase;">Preço cobrado</td>
+                <td align="right" class="mono" style="padding:6px 0;font-size:17px;font-weight:700;color:#F5F3EF;white-space:nowrap;">{{ preco_cobrado }}</td>
+              </tr>
+              <tr><td colspan="2" style="padding:12px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid #2A2A28;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+              <tr>
+                <td valign="middle" style="padding:12px 0 0 0;font-size:13px;font-weight:800;letter-spacing:.5px;color:#FFD500;text-transform:uppercase;">Diferença</td>
+                <td align="right" valign="middle" class="mono" style="padding:12px 0 0 0;font-size:26px;font-weight:800;letter-spacing:-.5px;color:#FFD500;white-space:nowrap;">&minus;{{ diferenca }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr></table>
+      </td></tr>
+
+      <!-- DADOS DO PEDIDO -->
+      <tr><td class="card-px" style="padding:26px 36px 0 36px;">
+        <p style="margin:0 0 6px 0;font-size:12px;font-weight:800;letter-spacing:2px;color:#0A0A0A;text-transform:uppercase;">Detalhes</p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;">
+          <tr>
+            <td width="42%" style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#6B6660;">CEP</td>
+            <td align="right" class="mono" style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#0A0A0A;font-weight:700;">{{ cep }}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#6B6660;">Estado</td>
+            <td align="right" style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#0A0A0A;font-weight:700;">{{ estado }}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#6B6660;">Região (ID)</td>
+            <td align="right" class="mono" style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#0A0A0A;font-weight:700;">#{{ regiao_id }}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 0;border-bottom:1px solid #EDE9E3;color:#6B6660;">Pagamento</td>
+            <td align="right" style="padding:12px 0;border-bottom:1px solid #EDE9E3;"><span class="mono" style="background:#F5F3EF;border-radius:6px;padding:3px 8px;font-size:13px;font-weight:700;color:#4A4640;">{{ pagamento }}</span></td>
+          </tr>
+          <tr>
+            <td style="padding:12px 0;color:#6B6660;">Reembolso</td>
+            <td align="right" style="padding:12px 0;color:#1E874B;font-weight:700;">{{ reembolso }}</td>
+          </tr>
+        </table>
+      </td></tr>
+
+      <!-- CTA -->
+      <tr><td class="card-px" align="left" style="padding:28px 36px 34px 36px;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td align="center" style="background:#FF4000;border-radius:9999px;">
+            <a href="{{ admin_url }}" style="display:inline-block;padding:15px 34px;font-size:16px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Abrir pedido no Shopify Admin &rarr;</a>
+          </td>
+        </tr></table>
+      </td></tr>
+
+    </table>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td align="center" style="padding:26px 40px 40px 40px;">
+    <p style="margin:0;font-size:12px;line-height:1.6;color:#9A968F;">Enviado automaticamente pelo n8n · <strong style="color:#6B6660;">Guarda de Preço Efizi</strong></p>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>
