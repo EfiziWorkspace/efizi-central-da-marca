@@ -1,8 +1,6 @@
 <!--
-  Efizi · Notificação transacional — CARRINHO ABANDONADO (Abandoned checkout)
-  Onde colar: Admin Shopify → Configurações → Notificações → Checkout abandonado → Editar código
-  Variáveis: {{ url }} (link de recuperação), {{ line_items }}, {{ customer }}.
-  Sem trilha de progresso (ainda não é um pedido).
+  Efizi · Carrinho abandonado — VERSÃO SEM LISTA DE PRODUTOS (Caminho 1)
+  Pra Shopify Messaging (não reconhece line_items). Usa só {{ url }} e {{ customer.first_name }}.
 -->
 <!doctype html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -51,65 +49,33 @@
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:18px;overflow:hidden;">
 
       <!-- Faixa de status -->
-      <tr><td class="card-px" style="padding:34px 40px 0 40px;">
+      <tr><td class="card-px" style="padding:36px 40px 0 40px;">
         <p style="margin:0;font-size:13px;font-weight:800;letter-spacing:2px;color:#FF4000;text-transform:uppercase;">Seu carrinho tá te esperando</p>
-        <h1 class="h1" style="margin:12px 0 0 0;font-size:38px;line-height:1.05;font-weight:800;letter-spacing:-1px;color:#0A0A0A;">Você <span class="em" style="color:#FF4000;">esqueceu</span> uns itens, {{ customer.first_name | default: 'tudo certo' }}.</h1>
-        <p style="margin:16px 0 0 0;font-size:18px;line-height:1.55;color:#6B6660;font-weight:500;">A gente guardou seu carrinho. É só voltar e finalizar em poucos cliques, do jeitinho que você deixou.</p>
+        <h1 class="h1" style="margin:12px 0 0 0;font-size:40px;line-height:1.03;font-weight:800;letter-spacing:-1.5px;color:#0A0A0A;">Você <span class="em" style="color:#FF4000;">esqueceu</span> uns itens, {{ customer.first_name | default: 'tudo certo' }}.</h1>
+        <p style="margin:18px 0 0 0;font-size:18px;line-height:1.55;color:#6B6660;font-weight:500;">A gente guardou seu carrinho pra você. É só voltar e finalizar em poucos cliques, do jeitinho que você deixou.</p>
       </td></tr>
 
       <!-- CTA voltar -->
-      <tr><td class="card-px" align="left" style="padding:26px 40px 0 40px;">
+      <tr><td class="card-px" align="left" style="padding:28px 40px 0 40px;">
         <table role="presentation" cellpadding="0" cellspacing="0"><tr>
           <td align="center" style="background:#FF4000;border-radius:9999px;">
-            <a href="{{ url }}" style="display:inline-block;padding:16px 38px;font-size:17px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Voltar pro meu carrinho &rarr;</a>
+            <a href="{{ url }}" style="display:inline-block;padding:17px 44px;font-size:17px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Voltar pro meu carrinho &rarr;</a>
           </td>
         </tr></table>
       </td></tr>
 
       <!-- EMPURRÃO PIX -->
-      <tr><td class="card-px" style="padding:22px 40px 0 40px;">
+      <tr><td class="card-px" style="padding:24px 40px 0 40px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0A;border-radius:12px;"><tr>
-          <td style="padding:18px 22px;">
-            <p style="margin:0;font-size:16px;font-weight:800;line-height:1.35;color:#F5F3EF;">Fecha no PIX e leve <span style="color:#FFD500;">5% off</span>.</p>
+          <td style="padding:20px 24px;">
+            <p style="margin:0;font-size:17px;font-weight:800;line-height:1.35;color:#F5F3EF;">Fecha no PIX e leve <span style="color:#FFD500;">5% off</span>.</p>
             <p style="margin:5px 0 0 0;font-size:14px;line-height:1.45;color:#B8B4AE;">Ou parcele em até 10x sem juros no cartão.</p>
           </td>
         </tr></table>
       </td></tr>
 
-      <!-- DIVIDER -->
-      <tr><td class="card-px" style="padding:30px 40px 0 40px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid #E4E0DA;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
-
-      <!-- ITENS DO CARRINHO -->
-      <tr><td class="card-px" style="padding:30px 40px 0 40px;">
-        <p style="margin:0 0 18px 0;font-size:13px;font-weight:800;letter-spacing:2px;color:#0A0A0A;text-transform:uppercase;">No seu carrinho</p>
-
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-          {% for line in line_items %}
-          <tr>
-            <td valign="top" width="64" style="padding:0 16px 20px 0;">
-              {% if line.image %}
-                <img src="{{ line.image | img_url: 'compact_cropped' }}" width="64" height="64" alt="{{ line.title | escape }}" style="width:64px;height:64px;border-radius:10px;border:1px solid #E4E0DA;object-fit:cover;">
-              {% else %}
-                <table role="presentation" width="64" cellpadding="0" cellspacing="0"><tr><td width="64" height="64" style="width:64px;height:64px;background:#F5F3EF;border-radius:10px;border:1px solid #E4E0DA;">&nbsp;</td></tr></table>
-              {% endif %}
-            </td>
-            <td valign="top" style="padding:0 12px 20px 0;">
-              <div style="font-size:16px;font-weight:700;line-height:1.35;color:#0A0A0A;">{{ line.title }}</div>
-              {% if line.variant.title != 'Default Title' %}
-                <div style="margin-top:3px;font-size:14px;color:#6B6660;">{{ line.variant.title }}</div>
-              {% endif %}
-              <div style="margin-top:6px;font-size:14px;color:#9A968F;">Qtd: {{ line.quantity }}</div>
-            </td>
-            <td valign="top" align="right" style="padding:0 0 20px 0;white-space:nowrap;">
-              <div style="font-size:16px;font-weight:700;color:#0A0A0A;">{{ line.line_price | money }}</div>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
-      </td></tr>
-
       <!-- AJUDA -->
-      <tr><td class="card-px" style="padding:14px 40px 34px 40px;">
+      <tr><td class="card-px" style="padding:30px 40px 34px 40px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;border-radius:14px;"><tr>
           <td align="center" style="padding:28px 24px;">
             <p style="margin:0;font-size:17px;line-height:1.4;color:#0A0A0A;font-weight:800;">Ficou com alguma dúvida antes de fechar?</p>

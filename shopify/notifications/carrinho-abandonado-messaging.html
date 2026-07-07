@@ -1,8 +1,7 @@
 <!--
-  Efizi · Notificação transacional — CARRINHO ABANDONADO (Abandoned checkout)
-  Onde colar: Admin Shopify → Configurações → Notificações → Checkout abandonado → Editar código
-  Variáveis: {{ url }} (link de recuperação), {{ line_items }}, {{ customer }}.
-  Sem trilha de progresso (ainda não é um pedido).
+  Efizi · Carrinho abandonado — SHOPIFY MESSAGING (custom Liquid)
+  Variáveis do Messaging: abandoned_checkout.line_items (image_url, product_title, variant_title, quantity),
+  abandoned_checkout.url (link do carrinho), customer.first_name, unsubscribe_url (obrigatório).
 -->
 <!doctype html>
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -61,7 +60,7 @@
       <tr><td class="card-px" align="left" style="padding:26px 40px 0 40px;">
         <table role="presentation" cellpadding="0" cellspacing="0"><tr>
           <td align="center" style="background:#FF4000;border-radius:9999px;">
-            <a href="{{ url }}" style="display:inline-block;padding:16px 38px;font-size:17px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Voltar pro meu carrinho &rarr;</a>
+            <a href="{{ abandoned_checkout.url }}" style="display:inline-block;padding:16px 38px;font-size:17px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Voltar pro meu carrinho &rarr;</a>
           </td>
         </tr></table>
       </td></tr>
@@ -84,24 +83,21 @@
         <p style="margin:0 0 18px 0;font-size:13px;font-weight:800;letter-spacing:2px;color:#0A0A0A;text-transform:uppercase;">No seu carrinho</p>
 
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-          {% for line in line_items %}
+          {% for line in abandoned_checkout.line_items limit: 5 %}
           <tr>
             <td valign="top" width="64" style="padding:0 16px 20px 0;">
-              {% if line.image %}
-                <img src="{{ line.image | img_url: 'compact_cropped' }}" width="64" height="64" alt="{{ line.title | escape }}" style="width:64px;height:64px;border-radius:10px;border:1px solid #E4E0DA;object-fit:cover;">
+              {% if line.image_url %}
+                <img src="{{ line.image_url }}" width="64" height="64" alt="{{ line.product_title }}" style="width:64px;height:64px;border-radius:10px;border:1px solid #E4E0DA;object-fit:cover;">
               {% else %}
                 <table role="presentation" width="64" cellpadding="0" cellspacing="0"><tr><td width="64" height="64" style="width:64px;height:64px;background:#F5F3EF;border-radius:10px;border:1px solid #E4E0DA;">&nbsp;</td></tr></table>
               {% endif %}
             </td>
-            <td valign="top" style="padding:0 12px 20px 0;">
-              <div style="font-size:16px;font-weight:700;line-height:1.35;color:#0A0A0A;">{{ line.title }}</div>
-              {% if line.variant.title != 'Default Title' %}
-                <div style="margin-top:3px;font-size:14px;color:#6B6660;">{{ line.variant.title }}</div>
+            <td valign="top" style="padding:0 0 20px 0;">
+              <div style="font-size:16px;font-weight:700;line-height:1.35;color:#0A0A0A;">{{ line.product_title }}</div>
+              {% if line.variant_title and line.variant_title != 'Default Title' %}
+                <div style="margin-top:3px;font-size:14px;color:#6B6660;">{{ line.variant_title }}</div>
               {% endif %}
               <div style="margin-top:6px;font-size:14px;color:#9A968F;">Qtd: {{ line.quantity }}</div>
-            </td>
-            <td valign="top" align="right" style="padding:0 0 20px 0;white-space:nowrap;">
-              <div style="font-size:16px;font-weight:700;color:#0A0A0A;">{{ line.line_price | money }}</div>
             </td>
           </tr>
           {% endfor %}
@@ -133,6 +129,7 @@
   <tr><td class="px" align="center" style="padding:34px 40px 40px 40px;">
     <img src="https://cdn.shopify.com/s/files/1/0593/9894/6914/files/efizi-logo-orange.png?v=1783116148" width="72" alt="{{ shop.name }}" style="width:72px;height:auto;margin:0 auto 14px;">
     <p style="margin:0;font-size:13px;line-height:1.6;color:#9A968F;">O maior e-commerce de tratamento de água e esgoto do Brasil<br><a href="{{ shop.url }}" style="color:#9A968F;text-decoration:underline;">{{ shop.domain }}</a></p>
+    <p style="margin:14px 0 0 0;font-size:12px;line-height:1.5;color:#B8B4AE;"><a href="{{ unsubscribe_url }}" style="color:#B8B4AE;text-decoration:underline;">Cancelar inscrição</a></p>
   </td></tr>
 
 </table>
