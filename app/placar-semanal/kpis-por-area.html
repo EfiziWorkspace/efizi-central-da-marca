@@ -27,7 +27,7 @@
   .kpi-line { display:flex; align-items:baseline; gap:36px; padding:30px 0; border-bottom:1px solid rgba(255,255,255,.14); }
   .kpi-line:last-child { border-bottom:none; }
   .kpi-line .nome { font-size:66px; font-weight:800; letter-spacing:-0.02em; line-height:1.06; color:#fff; }
-  .kpi-line .alvo { font-size:30px; font-weight:800; color:var(--impact-yellow); white-space:nowrap; }
+  .kpi-line .alvo { font-size:30px; font-weight:800; color:var(--impact-yellow); max-width:620px; line-height:1.25; }
   .kpi-line .pill-mes { display:inline-flex; align-self:center; padding:8px 18px; border-radius:999px;
     background:rgba(255,255,255,.14); color:rgba(255,255,255,.85); font-size:17px; font-weight:800;
     letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
@@ -66,17 +66,18 @@
   <div class="chrome-br">01 / NN</div>
 </section>
 
-<!-- ─── 1 · GENTE (Ivna) ──────────────────────────────────────────────────── -->
-<section class="slide dark" data-screen-label="Gente">
+<!-- ─── 1 · GENTE & CULTURA (Ivna) ────────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Gente & Cultura">
   <div class="chrome-tl">Placar · KPIs por área</div>
   <div class="slide-pad">
-    <div class="section-tag">Área 1 · Gente</div>
-    <div class="area-head"><div class="area">Gente</div><div class="dono">Ivna</div></div>
+    <div class="section-tag">Área 1 · Gente &amp; Cultura</div>
+    <div class="area-head"><div class="area">Gente &amp; Cultura</div><div class="dono">Ivna</div></div>
     <div class="kpis">
-      <div class="kpi-line"><span class="nome">3 contratações até 31/ago</span><span class="alvo">Controller · Coord. Entrega · Coord. Marketplace</span></div>
-      <div class="kpi-line"><span class="nome">Planos de desenvolvimento do dia 25</span><span class="alvo">100% dos líderes</span></div>
+      <div class="kpi-line"><span class="nome">Plano de ação da semana e do mês</span><span class="alvo">o que Gente entrega, com data</span></div>
+      <div class="kpi-line"><span class="nome">Planos de desenvolvimento do dia 25</span><span class="alvo">quantos líderes enviaram no prazo?</span></div>
+      <div class="kpi-line"><span class="nome">Rodada PDI IA-first</span><span class="alvo">cada líder fala o seu, ao vivo</span></div>
     </div>
-    <div class="rodape-mensal">No painel mensal: <strong>horas devolvidas pela IA (manchete da empresa)</strong> · assiduidade e pontualidade · % participação no PDI</div>
+    <div class="rodape-mensal">No painel mensal: <strong>horas devolvidas pela IA (manchete da empresa)</strong> · assiduidade e pontualidade · contratações ficam no 1:1 com o Gui</div>
   </div>
   <div class="chrome-br">02 / NN</div>
 </section>
@@ -88,11 +89,12 @@
     <div class="section-tag">Área 2 · Controladoria e Finanças</div>
     <div class="area-head"><div class="area">Controladoria e Finanças</div><div class="dono">Cris</div></div>
     <div class="kpis">
-      <div class="kpi-line"><span class="nome">Caixa + projeção de 4 semanas</span></div>
-      <div class="kpi-line"><span class="nome">Vencidos com ação de cobrança</span><span class="alvo">100% deles</span></div>
+      <div class="kpi-line"><span class="nome">Vencidos com ação de cobrança</span><span class="alvo">quanto a recuperar? marketplaces · estornos de pedido entregue · Fortlev (devoluções não retiradas)</span></div>
       <div class="kpi-line"><span class="nome">Juros e multa da semana</span><span class="alvo">R$ 0</span></div>
+      <div class="kpi-line"><span class="nome">Margem de contribuição</span><span class="alvo">como está? qual a meta da empresa? e por categoria?</span></div>
+      <div class="kpi-line"><span class="nome">Frete pago × receita de frete</span><span class="alvo">qual o %?</span></div>
     </div>
-    <div class="rodape-mensal">No painel mensal: DRE no prazo · <strong>margem de contribuição por categoria</strong> · chargeback · inadimplência · ciclo de caixa · caça-vazamentos</div>
+    <div class="rodape-mensal">Fica pro 1:1: <strong>caixa + projeção de 4 semanas</strong> · No painel mensal: DRE no prazo · chargeback · inadimplência · ciclo de caixa</div>
   </div>
   <div class="chrome-br">03 / NN</div>
 </section>
@@ -119,9 +121,9 @@
     <div class="section-tag">Área 4 · Marca e Demanda</div>
     <div class="area-head"><div class="area">Marca e Demanda</div><div class="dono">Jeferson</div></div>
     <div class="kpis">
-      <div class="kpi-line"><span class="nome">Acessos + conversão da loja</span></div>
-      <div class="kpi-line"><span class="nome">Catálogo publicado e calculando frete</span><span class="alvo">100%</span></div>
-      <div class="kpi-line"><span class="nome">Produtos com preço certo</span><span class="alvo">% no positivo, sem MC negativa</span></div>
+      <div class="kpi-line"><span class="nome">Acessos + conversão da loja</span><span class="alvo">quantos?</span></div>
+      <div class="kpi-line"><span class="nome">Catálogo publicado e calculando frete</span><span class="alvo">quantos %?</span></div>
+      <div class="kpi-line"><span class="nome">Produtos com preço certo</span><span class="alvo">quantos no negativo?</span></div>
     </div>
     <div class="rodape-mensal">No painel mensal: ROAS · CAC · retenção (recompra e reativação) · engajamento nas redes</div>
   </div>
@@ -135,11 +137,11 @@
     <div class="section-tag">Área 5 · Entrega</div>
     <div class="area-head"><div class="area">Entrega</div><div class="dono">Katllen</div></div>
     <div class="kpis">
-      <div class="kpi-line"><span class="nome">Coletas Fortlev pendentes</span><span class="alvo">número + tempo de espera</span></div>
-      <div class="kpi-line"><span class="nome">Trocas e devoluções abertas</span></div>
-      <div class="kpi-line"><span class="nome">Custo de frete sobre a receita</span><span class="pill-mes">mensal</span><span class="alvo">% + R$/entrega</span></div>
+      <div class="kpi-line"><span class="nome">Troca e devolução</span><span class="alvo">qual % até agora?</span></div>
+      <div class="kpi-line"><span class="nome">Custo de frete sobre a receita</span><span class="alvo">qual %?</span></div>
+      <div class="kpi-line"><span class="nome">Acuracidade de estoque / inventário</span><span class="alvo">qual %?</span></div>
     </div>
-    <div class="rodape-mensal">No painel mensal: inventário (acuracidade) · OTD e ruptura em baseline (ainda sem meta)</div>
+    <div class="rodape-mensal">Próximos a monitorar: <strong>taxa de expedição</strong> · <strong>OTD (% de entrega no prazo)</strong> · coletas Fortlev seguem na lâmina semanal</div>
   </div>
   <div class="chrome-br">06 / NN</div>
 </section>
@@ -151,43 +153,14 @@
     <div class="section-tag">Área 6 · Experiência / Atendimento</div>
     <div class="area-head"><div class="area">Experiência</div><div class="dono">Bianka</div></div>
     <div class="kpis">
-      <div class="kpi-line"><span class="nome">SLA de 1º atendimento por canal</span><span class="alvo">WhatsApp · Marketplace · E-mail · Reclame Aqui</span></div>
+      <div class="kpi-line"><span class="nome">SLA de 1º atendimento: WhatsApp e Marketplace</span><span class="alvo">ML é o crítico: protege a nota</span></div>
+      <div class="kpi-line"><span class="nome">Reclame Aqui</span><span class="alvo">tempo de resposta + resposta pública</span></div>
+      <div class="kpi-line"><span class="nome">Tempo de atendimento por e-mail</span><span class="alvo">mesmo dia útil</span></div>
       <div class="kpi-line"><span class="nome">Casos resolvidos na semana</span><span class="alvo">resolvido = cliente confirmou</span></div>
     </div>
     <div class="rodape-mensal">No painel mensal: % resolvido no 1º contato · futuro: % resolvido pela IA</div>
   </div>
   <div class="chrome-br">07 / NN</div>
-</section>
-
-<!-- ─── 7 · TECNOLOGIA E AUTOMAÇÃO (Gui) ──────────────────────────────────── -->
-<section class="slide dark" data-screen-label="Tecnologia">
-  <div class="chrome-tl">Placar · KPIs por área</div>
-  <div class="slide-pad">
-    <div class="section-tag">Área 7 · Tecnologia e Automação</div>
-    <div class="area-head"><div class="area">Tecnologia e Automação</div><div class="dono">Gui</div></div>
-    <div class="kpis">
-      <div class="kpi-line"><span class="nome">Entregas e destraves da semana</span></div>
-      <div class="kpi-line"><span class="nome">Horas devolvidas pela IA</span><span class="alvo">o rastreador que mede a empresa toda</span></div>
-    </div>
-    <div class="rodape-mensal">No painel mensal: horas economizadas global · a régua é única: tempo de antes × vezes que rodou</div>
-  </div>
-  <div class="chrome-br">08 / NN</div>
-</section>
-
-<!-- ─── 8 · COMERCIAL (Gui, interino) ─────────────────────────────────────── -->
-<section class="slide dark" data-screen-label="Comercial">
-  <div class="chrome-tl">Placar · KPIs por área</div>
-  <div class="slide-pad">
-    <div class="section-tag">Área 8 · Comercial</div>
-    <div class="area-head"><div class="area">Comercial</div><div class="dono">Gui · interino até 31/ago</div></div>
-    <div class="kpis">
-      <div class="kpi-line"><span class="nome">Propostas respondidas em até 48h</span><span class="alvo">100%</span></div>
-      <div class="kpi-line"><span class="nome">Funil com próximo passo datado</span><span class="alvo">100%</span></div>
-      <div class="kpi-line"><span class="nome">Conversas e oportunidades novas</span></div>
-    </div>
-    <div class="rodape-mensal">No painel mensal: pipeline em R$ · margem acima do piso · fechamentos</div>
-  </div>
-  <div class="chrome-br">09 / NN</div>
 </section>
 
 <!-- ─── COBRANÇA · METAS (pacto de junho) ─────────────────────────────────── -->
@@ -234,14 +207,12 @@
 <script type="application/json" id="speaker-notes">
 [
 "Capa. O recado: indicador é mandato de cima, número vem de baixo. Cada líder fala o seu ao vivo.",
-"Ivna abre. Etapa de cada vaga e dias até 31/ago; quantos líderes devem o plano do dia 25.",
-"Cris. Caixa com projeção, vencidos 100% com ação, juros/multa zero. Tesouraria pós-Julia = exceção.",
+"Ivna abre com o plano de ação dela. Depois: quantos líderes enviaram o plano do dia 25 no prazo. Feche com a rodada: cada líder fala 30s do próprio PDI IA-first.",
+"Cris. Quanto tem a recuperar (marketplace, estornos, Fortlev), juros/multa zero, e as duas perguntas: como está a MC e qual o % frete pago × receita de frete. Caixa fica pro 1:1.",
 "Paula. % IA e o funil de produtos da semana. Lâmina que já nasce pronta.",
-"Jeferson. Conversão e saúde do catálogo. Produtos no negativo entram aqui (caso Pablo).",
-"Katllen. Coletas Fortlev com aging na frente; frete é mensal mas fica à vista por peso no resultado.",
-"Bianka. SLA por canal, ML é o crítico. Resolvido = cliente confirmou, não respondido.",
-"Sua vez: Tec. Entregas da semana e o rastreador de horas como prioridade de infraestrutura.",
-"Sua vez: Comercial. 48h e funil datado em 100%; cotações órfãs viram exceção.",
+"Jeferson. Ainda sem número: a resposta de hoje é 'quantos?'. Produtos no negativo entram aqui (caso Pablo).",
+"Katllen. Três perguntas de %: troca/devolução, frete, acuracidade. Anuncie os próximos: expedição e OTD.",
+"Bianka. WhatsApp e ML na frente (ML protege a nota), Reclame Aqui e e-mail com relógio próprio. Resolvido = cliente confirmou.",
 "Metas. Enquadre como fechamento do pacto de junho, não pedido novo. Ivna é a prova de que funciona.",
 "Fecho. Validação dos fixos + metas até sexta e o modelo na Central da Marca."
 ]
