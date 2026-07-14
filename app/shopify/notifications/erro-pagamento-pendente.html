@@ -1,0 +1,126 @@
+<!--
+  Efizi · Notificação transacional — ERRO NO PAGAMENTO PENDENTE (Pending payment error)
+  Onde colar: Admin Shopify → Configurações → Notificações → Erro no pagamento pendente → Editar código
+  Dispara quando um pagamento pendente (PIX/boleto) não pode ser processado. Versão enxuta.
+-->
+<!doctype html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>{{ shop.name }}</title>
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<![endif]-->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  body{margin:0;padding:0;width:100%!important;background:#F5F3EF;}
+  table{border-collapse:collapse;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{text-decoration:none;}
+  .em{color:#FF4000!important;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .px{padding-left:24px!important;padding-right:24px!important;}
+    .h1{font-size:34px!important;line-height:1.05!important;}
+    .card-px{padding-left:22px!important;padding-right:22px!important;}
+    .stack{display:block!important;width:100%!important;text-align:center!important;padding:0 0 10px 0!important;}
+    .stack a{display:block!important;}
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#F5F3EF;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;font-size:1px;line-height:1px;color:#F5F3EF;">O pagamento pendente do pedido {{ order_name }} não foi processado. É só tentar de novo.&#8203;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;">
+<tr><td align="center" style="padding:0;">
+
+<table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">
+
+  <!-- HEADER -->
+  <tr><td align="center" style="padding:30px 32px 24px 32px;">
+    <img src="https://cdn.shopify.com/s/files/1/0593/9894/6914/files/efizi-logo-orange.png?v=1783116148" width="96" alt="{{ shop.name }}" style="width:96px;height:auto;margin:0 auto;">
+  </td></tr>
+
+  <!-- CARD PRINCIPAL -->
+  <tr><td style="padding:0 16px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FFFFFF;border-radius:18px;overflow:hidden;">
+
+      <!-- Faixa de status -->
+      <tr><td class="card-px" style="padding:34px 40px 0 40px;">
+        <p style="margin:0;font-size:13px;font-weight:800;letter-spacing:2px;color:#FF4000;text-transform:uppercase;">Problema no pagamento</p>
+        <h1 class="h1" style="margin:12px 0 0 0;font-size:38px;line-height:1.05;font-weight:800;letter-spacing:-1px;color:#0A0A0A;">Seu pagamento <span class="em" style="color:#FF4000;">não foi concluído</span>{% if customer.first_name != blank %}, {{ customer.first_name }}{% elsif billing_address.first_name != blank %}, {{ billing_address.first_name }}{% endif %}.</h1>
+        <p style="margin:16px 0 0 0;font-size:18px;line-height:1.55;color:#6B6660;font-weight:500;">Não conseguimos processar o pagamento pendente do pedido <strong style="color:#0A0A0A;">{{ order_name }}</strong>. Nada com você: dá pra resolver rapidinho, é só tentar de novo ou usar outra forma.</p>
+      </td></tr>
+
+      <!-- O QUE COSTUMA SER (por forma de pagamento) -->
+      <tr><td class="card-px" style="padding:24px 40px 0 40px;">
+        <p style="margin:0 0 14px 0;font-size:12px;font-weight:800;letter-spacing:1.5px;color:#0A0A0A;text-transform:uppercase;">O que costuma ser</p>
+        <p style="margin:0 0 10px 0;font-size:15px;font-weight:800;color:#0A0A0A;">Se foi PIX ou boleto</p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#4A4640;">
+          <tr><td width="24" valign="top" style="padding:6px 0;color:#FF4000;font-weight:800;">&rarr;</td><td valign="top" style="padding:6px 0;line-height:1.45;">O boleto venceu antes de ser pago</td></tr>
+          <tr><td valign="top" style="padding:6px 0;color:#FF4000;font-weight:800;">&rarr;</td><td valign="top" style="padding:6px 0;line-height:1.45;">O PIX não foi concluído dentro do prazo</td></tr>
+        </table>
+        <p style="margin:20px 0 10px 0;font-size:15px;font-weight:800;color:#0A0A0A;">Se foi no cartão</p>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#4A4640;">
+          <tr><td width="24" valign="top" style="padding:6px 0;color:#FF4000;font-weight:800;">&rarr;</td><td valign="top" style="padding:6px 0;line-height:1.45;">Saldo ou limite insuficiente</td></tr>
+          <tr><td valign="top" style="padding:6px 0;color:#FF4000;font-weight:800;">&rarr;</td><td valign="top" style="padding:6px 0;line-height:1.45;">Endereço de cobrança diferente do que consta na fatura</td></tr>
+          <tr><td valign="top" style="padding:6px 0;color:#FF4000;font-weight:800;">&rarr;</td><td valign="top" style="padding:6px 0;line-height:1.45;">O banco ou o nosso sistema de antifraude bloqueou por segurança</td></tr>
+        </table>
+      </td></tr>
+
+      <!-- CTA concluir -->
+      <tr><td class="card-px" align="left" style="padding:28px 40px 0 40px;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td align="center" style="background:#FF4000;border-radius:9999px;">
+            <a href="{{ order_status_url }}" style="display:inline-block;padding:16px 40px;font-size:17px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;">Concluir o pagamento &rarr;</a>
+          </td>
+        </tr></table>
+      </td></tr>
+
+      <!-- EMPURRÃO PIX -->
+      <tr><td class="card-px" style="padding:24px 40px 0 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0A0A0A;border-radius:12px;"><tr>
+          <td style="padding:18px 22px;">
+            <p style="margin:0;font-size:16px;font-weight:800;line-height:1.35;color:#F5F3EF;">No PIX cai na hora e você leva <span style="color:#FFD500;">5% off</span>.</p>
+            <p style="margin:5px 0 0 0;font-size:14px;line-height:1.45;color:#B8B4AE;">É a forma mais rápida de garantir o seu pedido.</p>
+          </td>
+        </tr></table>
+      </td></tr>
+
+      <!-- AJUDA -->
+      <tr><td class="card-px" style="padding:30px 40px 34px 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F3EF;border-radius:14px;"><tr>
+          <td align="center" style="padding:28px 24px;">
+            <p style="margin:0;font-size:17px;line-height:1.4;color:#0A0A0A;font-weight:800;">Travou de novo? A gente te ajuda.</p>
+            <p style="margin:8px 0 22px 0;font-size:15px;line-height:1.5;color:#6B6660;">Chama no WhatsApp ou liga pra gente<br>que a gente resolve o pagamento com você.</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" align="center"><tr>
+              <td class="stack" valign="top" align="center" style="padding:0 5px 0 0;">
+                <a href="https://wa.me/551140039921" style="display:inline-block;background:#1FA855;border-radius:9999px;padding:14px 26px;font-size:15px;font-weight:800;color:#ffffff;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;white-space:nowrap;">&#128172;&nbsp; Chamar no WhatsApp</a>
+              </td>
+              <td class="stack" valign="top" align="center" style="padding:0 0 0 5px;">
+                <a href="tel:+551140039921" style="display:inline-block;background:#ffffff;border:2px solid #0A0A0A;border-radius:9999px;padding:12px 26px;font-size:15px;font-weight:800;color:#0A0A0A;font-family:'Manrope','Helvetica Neue',Arial,sans-serif;white-space:nowrap;">&#128222;&nbsp; Ligar pra gente</a>
+              </td>
+            </tr></table>
+          </td>
+        </tr></table>
+      </td></tr>
+
+    </table>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td class="px" align="center" style="padding:34px 40px 40px 40px;">
+    <img src="https://cdn.shopify.com/s/files/1/0593/9894/6914/files/efizi-logo-orange.png?v=1783116148" width="72" alt="{{ shop.name }}" style="width:72px;height:auto;margin:0 auto 14px;">
+    <p style="margin:0;font-size:13px;line-height:1.6;color:#9A968F;">O maior e-commerce de tratamento de água e esgoto do Brasil<br><a href="{{ shop.url }}" style="color:#9A968F;text-decoration:underline;">{{ shop.domain }}</a></p>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>

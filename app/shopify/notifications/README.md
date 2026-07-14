@@ -26,6 +26,9 @@ O link de descadastro e o rodapé legal obrigatório a Shopify adiciona sozinha.
 | `reembolso.html` | Reembolso | — |
 | `ativacao-conta.html` | Ativação da conta do cliente | — |
 | `pagamento-pendente.html` | Pedido aguardando pagamento / Lembrete de pagamento | — |
+| `pagamento-confirmado.html` | Pagamento pendente realizado *(PIX/boleto confirmado)* | passo 1 |
+| `erro-pagamento.html` | Erro no pagamento | — |
+| `erro-pagamento-pendente.html` | Erro no pagamento pendente | — |
 | `draft-order-proposta.html` | Fatura de pedido rascunho | — |
 | `redefinicao-senha.html` | Redefinição de senha da conta do cliente | — |
 | `contato-cliente.html` | Contato com o cliente | — |
