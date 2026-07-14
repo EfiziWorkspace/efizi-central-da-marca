@@ -1,0 +1,260 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Efizi · KPIs por Área (reunião de líderes)" subtitle="Um slide por área, KPI gigante: o líder diz o número ao vivo" viewport="1920x1080" -->
+<!-- ============================================================================
+     EFIZI · KPIs POR ÁREA — deck de condução da reunião de líderes
+     Um slide por área com os indicadores FIXOS combinados, em tipografia
+     gigante. O slide mostra O QUE se mede; o líder fala O NÚMERO ao vivo.
+     Princípio da casa: nós definimos o indicador, o líder traz a meta.
+     CONTROLES: ← → navegar · F tela cheia · N notas · R reset · Cmd/Ctrl+P → PDF
+     ============================================================================ -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Efizi · KPIs por Área</title>
+<link rel="stylesheet" href="../brandbook/deck-v4.css">
+<script src="../deck-stage.js" defer></script>
+<style>
+  .slide .section-tag { font-size: 16px; }
+
+  /* cabeçalho da área */
+  .area-head { display:flex; align-items:center; justify-content:space-between; gap:48px; margin-top:16px; }
+  .area-head .area { font-size:58px; font-weight:800; letter-spacing:-0.02em; color:#fff; }
+  .area-head .dono { display:inline-flex; padding:12px 26px; border-radius:999px; background:var(--primary); color:#fff;
+    font-size:22px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+
+  /* linhas de KPI gigantes */
+  .kpis { display:flex; flex-direction:column; justify-content:center; flex:1; gap:8px; }
+  .kpi-line { display:flex; align-items:baseline; gap:36px; padding:30px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+  .kpi-line:last-child { border-bottom:none; }
+  .kpi-line .nome { font-size:66px; font-weight:800; letter-spacing:-0.02em; line-height:1.06; color:#fff; }
+  .kpi-line .alvo { font-size:30px; font-weight:800; color:var(--impact-yellow); white-space:nowrap; }
+  .kpi-line .pill-mes { display:inline-flex; align-self:center; padding:8px 18px; border-radius:999px;
+    background:rgba(255,255,255,.14); color:rgba(255,255,255,.85); font-size:17px; font-weight:800;
+    letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
+
+  .rodape-mensal { font-size:21px; color:rgba(255,255,255,.62); padding-top:20px; border-top:1px solid rgba(255,255,255,.14); }
+  .rodape-mensal strong { color:rgba(255,255,255,.85); }
+
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes deckRise{ from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .slide[data-deck-active] .slide-pad > *{ animation:deckRise .62s cubic-bezier(.2,.75,.25,1) backwards; }
+    .slide[data-deck-active] .slide-pad > *:nth-child(1){ animation-delay:.05s; }
+    .slide[data-deck-active] .slide-pad > *:nth-child(2){ animation-delay:.13s; }
+    .slide[data-deck-active] .slide-pad > *:nth-child(3){ animation-delay:.21s; }
+    .slide[data-deck-active] .slide-pad > *:nth-child(4){ animation-delay:.29s; }
+  }
+</style>
+</head>
+<body>
+
+<deck-stage>
+
+<!-- ─── CAPA ──────────────────────────────────────────────────────────────── -->
+<section class="slide orange" data-screen-label="Capa">
+  <div class="chrome-tl">Efizi · Reunião de líderes</div>
+  <div class="chrome-tr">Placar semanal</div>
+  <div class="slide-pad" style="justify-content:flex-end;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:80px;">
+      <div>
+        <div style="font-size:24px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-bottom:32px;">Os números de cada área</div>
+        <h1 class="display-l" style="color:#fff; max-width:1500px;">Nós definimos o indicador.<br><em style="font-style:normal; color:var(--impact-yellow);">O número, quem diz é você.</em></h1>
+        <div style="margin-top:48px; font-size:28px; line-height:1.4; max-width:1000px; opacity:.92;">Um slide por área, com os indicadores fixos que combinamos. Cada líder fala o número da semana ao vivo.</div>
+      </div>
+      <img src="../assets/efizi-logo-on-orange.svg" height="88" alt="Efizi">
+    </div>
+  </div>
+  <div class="chrome-br">01 / NN</div>
+</section>
+
+<!-- ─── 1 · GENTE (Ivna) ──────────────────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Gente">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 1 · Gente</div>
+    <div class="area-head"><div class="area">Gente</div><div class="dono">Ivna</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">3 contratações até 31/ago</span><span class="alvo">Controller · Coord. Entrega · Coord. Marketplace</span></div>
+      <div class="kpi-line"><span class="nome">Planos de desenvolvimento do dia 25</span><span class="alvo">100% dos líderes</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: <strong>horas devolvidas pela IA (manchete da empresa)</strong> · assiduidade e pontualidade · % participação no PDI</div>
+  </div>
+  <div class="chrome-br">02 / NN</div>
+</section>
+
+<!-- ─── 2 · CONTROLADORIA (Cris) ──────────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Controladoria">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 2 · Controladoria e Finanças</div>
+    <div class="area-head"><div class="area">Controladoria e Finanças</div><div class="dono">Cris</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">Caixa + projeção de 4 semanas</span></div>
+      <div class="kpi-line"><span class="nome">Vencidos com ação de cobrança</span><span class="alvo">100% deles</span></div>
+      <div class="kpi-line"><span class="nome">Juros e multa da semana</span><span class="alvo">R$ 0</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: DRE no prazo · <strong>margem de contribuição por categoria</strong> · chargeback · inadimplência · ciclo de caixa · caça-vazamentos</div>
+  </div>
+  <div class="chrome-br">03 / NN</div>
+</section>
+
+<!-- ─── 3 · ENGENHARIA DE PRODUTO (Paula) ─────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Produto">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 3 · Engenharia de Produto</div>
+    <div class="area-head"><div class="area">Engenharia de Produto</div><div class="dono">Paula</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">% de atendimentos resolvidos pela IA</span></div>
+      <div class="kpi-line"><span class="nome">Produtos: prospectados, aprovados, publicados</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: tempo de prospecção de produto (quando entrar)</div>
+  </div>
+  <div class="chrome-br">04 / NN</div>
+</section>
+
+<!-- ─── 4 · MARCA E DEMANDA (Jeferson) ────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Marca e Demanda">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 4 · Marca e Demanda</div>
+    <div class="area-head"><div class="area">Marca e Demanda</div><div class="dono">Jeferson</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">Acessos + conversão da loja</span></div>
+      <div class="kpi-line"><span class="nome">Catálogo publicado e calculando frete</span><span class="alvo">100%</span></div>
+      <div class="kpi-line"><span class="nome">Produtos com preço certo</span><span class="alvo">% no positivo, sem MC negativa</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: ROAS · CAC · retenção (recompra e reativação) · engajamento nas redes</div>
+  </div>
+  <div class="chrome-br">05 / NN</div>
+</section>
+
+<!-- ─── 5 · ENTREGA (Katllen) ─────────────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Entrega">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 5 · Entrega</div>
+    <div class="area-head"><div class="area">Entrega</div><div class="dono">Katllen</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">Coletas Fortlev pendentes</span><span class="alvo">número + tempo de espera</span></div>
+      <div class="kpi-line"><span class="nome">Trocas e devoluções abertas</span></div>
+      <div class="kpi-line"><span class="nome">Custo de frete sobre a receita</span><span class="pill-mes">mensal</span><span class="alvo">% + R$/entrega</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: inventário (acuracidade) · OTD e ruptura em baseline (ainda sem meta)</div>
+  </div>
+  <div class="chrome-br">06 / NN</div>
+</section>
+
+<!-- ─── 6 · EXPERIÊNCIA (Bianka) ──────────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Experiência">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 6 · Experiência / Atendimento</div>
+    <div class="area-head"><div class="area">Experiência</div><div class="dono">Bianka</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">SLA de 1º atendimento por canal</span><span class="alvo">WhatsApp · Marketplace · E-mail · Reclame Aqui</span></div>
+      <div class="kpi-line"><span class="nome">Casos resolvidos na semana</span><span class="alvo">resolvido = cliente confirmou</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: % resolvido no 1º contato · futuro: % resolvido pela IA</div>
+  </div>
+  <div class="chrome-br">07 / NN</div>
+</section>
+
+<!-- ─── 7 · TECNOLOGIA E AUTOMAÇÃO (Gui) ──────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Tecnologia">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 7 · Tecnologia e Automação</div>
+    <div class="area-head"><div class="area">Tecnologia e Automação</div><div class="dono">Gui</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">Entregas e destraves da semana</span></div>
+      <div class="kpi-line"><span class="nome">Horas devolvidas pela IA</span><span class="alvo">o rastreador que mede a empresa toda</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: horas economizadas global · a régua é única: tempo de antes × vezes que rodou</div>
+  </div>
+  <div class="chrome-br">08 / NN</div>
+</section>
+
+<!-- ─── 8 · COMERCIAL (Gui, interino) ─────────────────────────────────────── -->
+<section class="slide dark" data-screen-label="Comercial">
+  <div class="chrome-tl">Placar · KPIs por área</div>
+  <div class="slide-pad">
+    <div class="section-tag">Área 8 · Comercial</div>
+    <div class="area-head"><div class="area">Comercial</div><div class="dono">Gui · interino até 31/ago</div></div>
+    <div class="kpis">
+      <div class="kpi-line"><span class="nome">Propostas respondidas em até 48h</span><span class="alvo">100%</span></div>
+      <div class="kpi-line"><span class="nome">Funil com próximo passo datado</span><span class="alvo">100%</span></div>
+      <div class="kpi-line"><span class="nome">Conversas e oportunidades novas</span></div>
+    </div>
+    <div class="rodape-mensal">No painel mensal: pipeline em R$ · margem acima do piso · fechamentos</div>
+  </div>
+  <div class="chrome-br">09 / NN</div>
+</section>
+
+<!-- ─── FECHO ─────────────────────────────────────────────────────────────── -->
+<section class="slide orange" data-screen-label="Fecho">
+  <div class="chrome-tl">Efizi · Reunião de líderes</div>
+  <div class="slide-pad" style="justify-content:center;">
+    <div class="display-l" style="color:#fff; max-width:1600px;">Toda segunda, 9h.<br><em style="font-style:normal; color:var(--impact-yellow);">Número pronto, não se monta na hora.</em></div>
+    <div style="margin-top:48px; font-size:28px; line-height:1.45; color:rgba(255,255,255,.92); max-width:1100px;">Até sexta: cada líder valida seus fixos comigo. O modelo da lâmina está na Central da Marca: marca.efizi.app</div>
+    <img src="../assets/efizi-logo-on-orange.svg" height="72" alt="Efizi" style="margin-top:64px; align-self:flex-start;">
+  </div>
+  <div class="chrome-br">10 / NN</div>
+</section>
+
+</deck-stage>
+
+<script type="application/json" id="speaker-notes">
+[
+"Capa. O recado: indicador é mandato de cima, número vem de baixo. Cada líder fala o seu ao vivo.",
+"Ivna abre. Etapa de cada vaga e dias até 31/ago; quantos líderes devem o plano do dia 25.",
+"Cris. Caixa com projeção, vencidos 100% com ação, juros/multa zero. Tesouraria pós-Julia = exceção.",
+"Paula. % IA e o funil de produtos da semana. Lâmina que já nasce pronta.",
+"Jeferson. Conversão e saúde do catálogo. Produtos no negativo entram aqui (caso Pablo).",
+"Katllen. Coletas Fortlev com aging na frente; frete é mensal mas fica à vista por peso no resultado.",
+"Bianka. SLA por canal, ML é o crítico. Resolvido = cliente confirmou, não respondido.",
+"Sua vez: Tec. Entregas da semana e o rastreador de horas como prioridade de infraestrutura.",
+"Sua vez: Comercial. 48h e funil datado em 100%; cotações órfãs viram exceção.",
+"Fecho. Validação dos fixos até sexta e o modelo na Central da Marca."
+]
+</script>
+
+<script>
+(function(){
+  function ready(fn){
+    if(window.customElements && customElements.whenDefined){ customElements.whenDefined('deck-stage').then(function(){ setTimeout(fn,0); }); }
+    else { window.addEventListener('load', fn); }
+  }
+  ready(function(){
+    var stage=document.querySelector('deck-stage');
+    if(!stage) return;
+    var slides=[].slice.call(stage.children).filter(function(el){ return el.matches && el.matches('section.slide'); });
+    var total=slides.length;
+    slides.forEach(function(s,i){ var br=s.querySelector('.chrome-br'); if(br) br.textContent=('0'+(i+1)).slice(-2)+' / '+total; });
+    var notes=[]; try{ notes=JSON.parse((document.getElementById('speaker-notes')||{}).textContent||'[]'); }catch(e){}
+    var panel=document.createElement('div');
+    panel.setAttribute('data-noncommentable','');
+    panel.style.cssText='position:fixed;left:24px;bottom:24px;max-width:520px;z-index:2147483200;'+
+      'background:rgba(10,10,10,.92);color:#fff;font:600 16px/1.55 Manrope,-apple-system,sans-serif;'+
+      'padding:16px 20px;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.45);display:none;';
+    document.body.appendChild(panel);
+    var visible=false;
+    function render(){ var i=stage.index;
+      panel.innerHTML='<div style="font:800 12px/1 Manrope;letter-spacing:.14em;text-transform:uppercase;color:#FF6A3D;margin-bottom:8px;">Nota · slide '+(i+1)+' / '+total+'</div>'+(notes[i]||'—'); }
+    stage.addEventListener('slidechange', function(){ if(visible) render(); });
+    function toggleFullscreen(){ var el=document.documentElement; var fsEl=document.fullscreenElement||document.webkitFullscreenElement;
+      if(!fsEl){ (el.requestFullscreen||el.webkitRequestFullscreen||function(){}).call(el); }
+      else { (document.exitFullscreen||document.webkitExitFullscreen||function(){}).call(document); } }
+    window.addEventListener('keydown', function(e){
+      if(e.metaKey||e.ctrlKey||e.altKey) return;
+      var t=e.target; if(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      var k=e.key;
+      if(k==='n'||k==='N'){ visible=!visible; panel.style.display=visible?'block':'none'; if(visible) render(); }
+      else if(k==='r'||k==='R'){ stage.reset(); }
+      else if(k==='f'||k==='F'){ e.preventDefault(); toggleFullscreen(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
