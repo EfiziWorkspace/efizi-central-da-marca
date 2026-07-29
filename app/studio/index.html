@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · Skills da marca</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../design-system/efizi-tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--efizi-font-sans,'Manrope',sans-serif);color:var(--efizi-ink,#0A0A0A);background:var(--efizi-cream,#F5F3EF);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+  @media(max-width:560px){.wrap{padding:0 22px}}
+  .top{background:var(--efizi-ink,#0A0A0A);color:var(--efizi-cream,#F5F3EF);padding:26px 0}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .back{font-size:13.5px;font-weight:700;color:rgba(245,243,239,.7);display:inline-flex;align-items:center;gap:7px}
+  .back:hover{color:#fff}.back svg{width:15px;height:15px}
+  .top .site{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.5)}
+  .head{padding:44px 0 8px}
+  .head .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--efizi-orange,#FF4000);margin:0 0 12px}
+  .head h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0 0 14px}
+  .head p{font-size:17px;line-height:1.55;max-width:720px;margin:0;color:var(--efizi-gray-600,#57534E)}
+
+  .setup{margin:28px 0 8px;background:var(--efizi-white,#fff);border:1px solid var(--efizi-gray-200,#E7E5E4);border-radius:16px;padding:24px 26px}
+  .setup h2{font-size:16px;font-weight:800;margin:0 0 14px}
+  .setup ol{margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:var(--efizi-gray-700,#44403C)}
+  .setup code{background:var(--efizi-gray-100,#F5F5F4);padding:2px 7px;border-radius:6px;font-size:13px}
+  .setup .pre{margin-top:14px;font-size:13px;color:var(--efizi-gray-500,#78716C)}
+  .setup .pre b{color:var(--efizi-ink,#0A0A0A)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:26px 0 8px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .skill{background:var(--efizi-white,#fff);border:1px solid var(--efizi-gray-200,#E7E5E4);border-radius:16px;padding:24px 24px 22px;display:flex;flex-direction:column;box-shadow:var(--efizi-shadow-sm,0 1px 3px rgba(0,0,0,.08))}
+  .skill .tag{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--efizi-orange,#FF4000);margin:0 0 8px}
+  .skill h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+  .skill .desc{font-size:14.5px;line-height:1.55;color:var(--efizi-gray-600,#57534E);margin:0 0 6px;flex:1}
+  .skill .desc i{color:var(--efizi-gray-700,#44403C)}
+  .skill .req{font-size:12.5px;font-weight:700;color:var(--efizi-gray-500,#78716C);margin:10px 0 16px;display:inline-flex;align-items:center;gap:7px}
+  .skill .req::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--efizi-gray-400,#A8A29E);flex-shrink:0}
+  .skill .req.hf::before{background:var(--efizi-orange,#FF4000)}
+  .dl{display:inline-flex;align-items:center;gap:9px;align-self:flex-start;background:var(--efizi-ink,#0A0A0A);color:#fff;font-size:14px;font-weight:800;padding:12px 20px;border-radius:99px}
+  .dl:hover{background:#000}.dl svg{width:15px;height:15px}
+  footer{border-top:1px solid var(--efizi-gray-200,#E7E5E4);margin-top:44px;padding:26px 0 44px;font-size:13px;color:var(--efizi-gray-500,#78716C)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../#studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Central da Marca</a>
+    <span class="site">Efizi · Skills</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <p class="kicker">Studio · Skills</p>
+    <h1>Skills da marca</h1>
+    <p>As skills que produzem na cara da Efizi, pra você usar no seu Claude Code. Baixe só a que precisar.</p>
+  </div>
+
+  <div class="setup">
+    <h2>Como instalar</h2>
+    <ol>
+      <li>Baixe o <code>.zip</code> da skill que quiser (abaixo).</li>
+      <li>Descompacte e copie a pasta para <code>~/.claude/skills/</code>.</li>
+      <li>Reinicie o Claude Code. A skill aparece na lista; use pedindo naturalmente ou com <code>/nome-da-skill</code>.</li>
+    </ol>
+    <div class="pre"><b>Pré-requisitos:</b> Claude Code instalado. As skills marcadas com o ponto laranja precisam de conta no <b>Higgsfield</b> (geração de imagem). Algumas assumem o repo da marca (fontes/logos) — se precisar, fale com o Guilherme.</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="skill">
+      <p class="tag">Feed · Stories · Carrossel</p>
+      <h3>carrossel-efizi</h3>
+      <p class="desc">Cria carrossel/peça do zero: a IA gera a imagem, o texto entra por código (logo oficial + Manrope + acentos). <i>"cria um carrossel do Biodigestor MAX"</i></p>
+      <span class="req hf">Precisa de Higgsfield</span>
+      <a class="dl" href="skills/carrossel-efizi.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar carrossel-efizi</a>
+    </div>
+
+    <div class="skill" id="mockup-tela">
+      <p class="tag">Mockup fotorreal</p>
+      <h3>mockup-tela</h3>
+      <p class="desc">Põe um print de site/página na tela de um notebook ou monitor, numa cena na marca. <i>"coloca a home na tela desse notebook"</i></p>
+      <span class="req hf">Precisa de Higgsfield</span>
+      <a class="dl" href="skills/mockup-tela.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar mockup-tela</a>
+    </div>
+
+    <div class="skill">
+      <p class="tag">Decks · deck-stage</p>
+      <h3>efizi-apresentacoes</h3>
+      <p class="desc">Monta decks na marca (navegação por teclado, revelação por clique, motion) + PowerPoint e Google Slides. <i>"monta um deck sobre X"</i></p>
+      <span class="req">Só Claude Code</span>
+      <a class="dl" href="skills/efizi-apresentacoes.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar efizi-apresentacoes</a>
+    </div>
+
+    <div class="skill" id="documento-html-efizi">
+      <p class="tag">Landing · Painel · Doc</p>
+      <h3>documento-html-efizi</h3>
+      <p class="desc">Página HTML na marca (Manrope embutida, offline, tema claro/escuro), verificada antes de entregar. <i>"faz uma landing de Y"</i></p>
+      <span class="req">Só Claude Code</span>
+      <a class="dl" href="skills/documento-html-efizi.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar documento-html-efizi</a>
+    </div>
+
+    <div class="skill">
+      <p class="tag">Transacional</p>
+      <h3>efizi-email</h3>
+      <p class="desc">E-mail transacional no casco da marca: NF-e, boleto, pedido, pagamento, redefinição de senha. <i>"faz o e-mail do pedido"</i></p>
+      <span class="req">Só Claude Code</span>
+      <a class="dl" href="skills/efizi-email.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar efizi-email</a>
+    </div>
+
+    <div class="skill">
+      <p class="tag">Campanha · Ciclo de vida</p>
+      <h3>efizi-email-marketing</h3>
+      <p class="desc">E-mail de marketing no casco da marca: campanha, boas-vindas, carrinho abandonado, voltou ao estoque, winback. <i>"faz uma campanha de e-mail"</i></p>
+      <span class="req">Só Claude Code</span>
+      <a class="dl" href="skills/efizi-email-marketing.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar efizi-email-marketing</a>
+    </div>
+
+    <div class="skill" id="efizi-pdp-descricao">
+      <p class="tag">Loja Shopify</p>
+      <h3>efizi-pdp-descricao</h3>
+      <p class="desc">Descrição rica da PDP: copy da marca + dados do manual do fabricante + metafields + deploy no tema. <i>"monta a PDP do produto Z"</i></p>
+      <span class="req hf">Precisa de acesso à loja (Shopify)</span>
+      <a class="dl" href="skills/efizi-pdp-descricao.zip" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Baixar efizi-pdp-descricao</a>
+    </div>
+
+  </div>
+
+  <footer>Skills internas da Efizi · use no seu Claude Code · Central da Marca. Dúvida? Fale com o Guilherme.</footer>
+</div>
+
+</body>
+</html>

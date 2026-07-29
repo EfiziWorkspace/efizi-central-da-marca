@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efizi · E-mails na marca</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../design-system/efizi-tokens.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--efizi-font-sans,'Manrope',sans-serif);color:var(--efizi-ink,#0A0A0A);background:var(--efizi-cream,#F5F3EF);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+  @media(max-width:560px){.wrap{padding:0 22px}}
+  .top{background:var(--efizi-ink,#0A0A0A);color:var(--efizi-cream,#F5F3EF);padding:26px 0}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .back{font-size:13.5px;font-weight:700;color:rgba(245,243,239,.7);display:inline-flex;align-items:center;gap:7px}
+  .back:hover{color:#fff}.back svg{width:15px;height:15px}
+  .top .site{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,243,239,.5)}
+  .head{padding:44px 0 8px}
+  .head .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--efizi-orange,#FF4000);margin:0 0 12px}
+  .head h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0 0 14px}
+  .head p{font-size:17px;line-height:1.55;max-width:680px;margin:0;color:var(--efizi-gray-600,#57534E)}
+  section{padding:38px 0 8px}
+  .sec-head{margin-bottom:22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .sec-head h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0}
+  .sec-head .count{font-size:13px;font-weight:700;color:var(--efizi-gray-500,#78716C)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr 1fr}}
+  .mail{background:var(--efizi-white,#fff);border:1px solid var(--efizi-gray-200,#E7E5E4);border-radius:14px;overflow:hidden;box-shadow:var(--efizi-shadow-sm,0 1px 3px rgba(0,0,0,.08));transition:box-shadow .18s,transform .18s;display:block}
+  .mail:hover{box-shadow:var(--efizi-shadow-lg,0 12px 32px rgba(0,0,0,.14));transform:translateY(-3px)}
+  .mail .ph{aspect-ratio:7/9;overflow:hidden;background:var(--efizi-gray-100,#F5F5F4);border-bottom:1px solid var(--efizi-gray-200,#E7E5E4)}
+  .mail .ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .mail .cap{padding:12px 15px 14px}
+  .mail .cap .n{font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+  .mail .cap .t{font-size:11.5px;font-weight:700;color:var(--efizi-gray-500,#78716C);margin-top:2px}
+  footer{border-top:1px solid var(--efizi-gray-200,#E7E5E4);margin-top:44px;padding:26px 0 44px;font-size:13px;color:var(--efizi-gray-500,#78716C)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <a class="back" href="../#studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Central da Marca</a>
+    <span class="site">Efizi · E-mails</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <p class="kicker">Studio · E-mails</p>
+    <h1>E-mails na marca</h1>
+    <p>Todos os e-mails que o cliente recebe, no casco da marca. Clique num card para abrir o exemplo (dados fictícios).</p>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>Transacionais</h2><span class="count">12 · disparados por evento</span></div>
+    <div class="grid">
+      <a class="mail" href="../shopify/notifications/pedido-confirmado-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/pedido-confirmado.png" alt=""></span><span class="cap"><div class="n">Pedido confirmado</div><div class="t">Confirmação de pedido</div></span></a>
+      <a class="mail" href="../shopify/notifications/pedido-enviado-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/pedido-enviado.png" alt=""></span><span class="cap"><div class="n">Pedido enviado</div><div class="t">Confirmação de envio</div></span></a>
+      <a class="mail" href="../shopify/notifications/saiu-pra-entrega-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/saiu-pra-entrega.png" alt=""></span><span class="cap"><div class="n">Saiu para entrega</div><div class="t">Fora para entrega</div></span></a>
+      <a class="mail" href="../shopify/notifications/entregue-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/entregue.png" alt=""></span><span class="cap"><div class="n">Pedido entregue</div><div class="t">Pedido entregue</div></span></a>
+      <a class="mail" href="../shopify/notifications/pagamento-pendente-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/pagamento-pendente.png" alt=""></span><span class="cap"><div class="n">Pagamento pendente</div><div class="t">Aguardando pagamento</div></span></a>
+      <a class="mail" href="../shopify/notifications/cancelado-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/cancelado.png" alt=""></span><span class="cap"><div class="n">Pedido cancelado</div><div class="t">Pedido cancelado</div></span></a>
+      <a class="mail" href="../shopify/notifications/reembolso-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/reembolso.png" alt=""></span><span class="cap"><div class="n">Reembolso</div><div class="t">Reembolso</div></span></a>
+      <a class="mail" href="../shopify/notifications/carrinho-abandonado-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/carrinho-abandonado.png" alt=""></span><span class="cap"><div class="n">Carrinho abandonado</div><div class="t">Checkout abandonado</div></span></a>
+      <a class="mail" href="../shopify/notifications/ativacao-conta-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/ativacao-conta.png" alt=""></span><span class="cap"><div class="n">Ativação de conta</div><div class="t">Ativação da conta</div></span></a>
+      <a class="mail" href="../shopify/notifications/redefinicao-senha-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/redefinicao-senha.png" alt=""></span><span class="cap"><div class="n">Redefinição de senha</div><div class="t">Redefinir senha</div></span></a>
+      <a class="mail" href="../shopify/notifications/contato-cliente-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/contato-cliente.png" alt=""></span><span class="cap"><div class="n">Contato com o cliente</div><div class="t">Contato com o cliente</div></span></a>
+      <a class="mail" href="../shopify/notifications/draft-order-proposta-preview.html" target="_blank" rel="noopener"><span class="ph"><img src="../shopify/notifications/_thumbs/draft-order-proposta.png" alt=""></span><span class="cap"><div class="n">Proposta / fatura</div><div class="t">Fatura de rascunho</div></span></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Marketing e ciclo de vida</h2><span class="count">5 · campanha e automação</span></div>
+    <div class="grid">
+      <a class="mail" href="../email-html/email-biodigestor-claro.html" target="_blank" rel="noopener"><span class="ph"><img src="../email-html/_thumbs/email-biodigestor-claro.png" alt=""></span><span class="cap"><div class="n">Biodigestor · claro</div><div class="t">Campanha</div></span></a>
+      <a class="mail" href="../email-html/email-biodigestor-escuro.html" target="_blank" rel="noopener"><span class="ph"><img src="../email-html/_thumbs/email-biodigestor-escuro.png" alt=""></span><span class="cap"><div class="n">Biodigestor · escuro</div><div class="t">Campanha</div></span></a>
+      <a class="mail" href="../email-html/email-biodigestor-hibrido.html" target="_blank" rel="noopener"><span class="ph"><img src="../email-html/_thumbs/email-biodigestor-hibrido.png" alt=""></span><span class="cap"><div class="n">Biodigestor · híbrido</div><div class="t">Campanha</div></span></a>
+      <a class="mail" href="../email-html/newsletter-boas-vindas.html" target="_blank" rel="noopener"><span class="ph"><img src="../email-html/_thumbs/newsletter-boas-vindas.png" alt=""></span><span class="cap"><div class="n">Boas-vindas</div><div class="t">Ciclo de vida</div></span></a>
+      <a class="mail" href="../email-html/voltou-ao-estoque.html" target="_blank" rel="noopener"><span class="ph"><img src="../email-html/_thumbs/voltou-ao-estoque.png" alt=""></span><span class="cap"><div class="n">Voltou ao estoque</div><div class="t">Back-in-stock</div></span></a>
+    </div>
+  </section>
+
+  <footer>E-mails da marca Efizi · transacional (Shopify Notifications / n8n) + marketing (campanha e ciclo de vida) · Central da Marca.</footer>
+</div>
+
+</body>
+</html>
